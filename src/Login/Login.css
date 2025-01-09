@@ -7,9 +7,8 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
-    background-color: #f6f8ed;
-    background: linear-gradient(to right, #f6f8ed,#f6f8ed);
+.body{
+    background-color: #FFF0C1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,14 +16,20 @@ body{
     height: 100vh;
 }
 
-.container{
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+}
+#container{
     background-color: #fff;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
     overflow: hidden;
     width: 768px;
-    max-width: 100%;
+    max-width: 768px;
     min-height: 480px;
 }
 
@@ -37,6 +42,7 @@ body{
 
 .container span{
     font-size: 12px;
+    margin-top: 10px;
 }
 
 .container a{
@@ -65,14 +71,17 @@ body{
     margin-bottom: -10px;
 }
 
-.container button.hidden{
+#register {
     background-color: transparent;
     border-color: #fff;
 }
 
+.toggle-panel h1{
+    font-size: 30px;
+    font-weight: 700;
+}
 
-
-#google{
+.container #google{
     margin-top: -10px;
 }
 
@@ -117,7 +126,9 @@ body{
 .signin{
     margin-bottom: 10px;
     margin-top: 30px;
-    color: #8C6A5D;
+    color: #a88b56;
+    font-size: 30px;
+    font-weight: 800;
 }
 
 
@@ -139,6 +150,8 @@ body{
 .CA{
     margin-bottom: -10px;
     color: #8C6A5D;
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .container.active .sign-up{
@@ -198,9 +211,9 @@ body{
 } */
 
 .toggle{
-    background-color: #8C6A5D;
+    background-color:#FFDC9C;
     height: 100%;
-    background: linear-gradient(to right, #EEE4B1, #8C6A5D);
+    
     color: #fff;
     position: relative;
     left: -100%;
@@ -240,9 +253,8 @@ body{
 .toggle-right{
     right: 0;
     transform: translateX(0);
-    background-color: #8C6A5D;
-    background: linear-gradient(to left, #8C6A5D, #EEE4B1);
-    color: #fff;
+    background-color: #FFDC9C;
+    color: #8C6A5D;
 }
 
 .container.active .toggle-right{
@@ -257,11 +269,50 @@ body{
 .role{
     display: flex;
     flex-direction: row;
-    margin-bottom: -5px;
-    border-radius: 8px;
+    margin-bottom: 5px;  
+    gap: 8px;
 }
 
-.role p {
-    padding: 10px;
-    border: 2px solid black;
+.role button {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    border: 2px solid #8C6A5D;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 110px;
 }
+
+#login{
+    background-color: transparent;
+    border-color: #fff;
+}
+
+/* Styling for role selection buttons */
+.role button {
+    padding: 10px 20px;
+    margin: 5px;
+    background: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .role button:hover {
+    background-color: #d3d3d3;
+  }
+  
+  .role button.active {
+    background-color: gray; /* Green for active */
+    color: white;
+  }
+  
+  /* Disabled button styling */
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

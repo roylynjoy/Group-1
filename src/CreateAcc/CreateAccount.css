@@ -7,7 +7,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
+.bd{
     background-color: #f6f8ed;
     background: linear-gradient(to right, #f6f8ed,#f6f8ed);
     display: flex;
@@ -36,7 +36,7 @@ body{
     font-size: 12px;
 }
 
-.fa-solid{
+.fa-arrow-left{
     margin-left: 20px;
     margin-top:20px;
     color: #8C6A5D;
