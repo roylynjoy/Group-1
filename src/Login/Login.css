@@ -8,7 +8,7 @@
 }
 
 .body{
-    background-color: #FFF0C1;
+    background-color: #F7F4EB;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,9 +71,10 @@
     margin-bottom: -10px;
 }
 
-#register {
-    background-color: transparent;
-    border-color: #fff;
+#register, #login {
+    background-color: #FEE6B8;
+    border: 1px solid black;
+    border-radius: 25px;
 }
 
 .toggle-panel h1{
@@ -126,7 +127,7 @@
 .signin{
     margin-bottom: 10px;
     margin-top: 30px;
-    color: #a88b56;
+    color: #EB8D04;
     font-size: 30px;
     font-weight: 800;
 }
@@ -211,10 +212,10 @@
 } */
 
 .toggle{
-    background-color:#FFDC9C;
+    background-color:#FDB853;
     height: 100%;
     
-    color: #fff;
+    color: black;
     position: relative;
     left: -100%;
     height: 100%;
@@ -253,8 +254,8 @@
 .toggle-right{
     right: 0;
     transform: translateX(0);
-    background-color: #FFDC9C;
-    color: #8C6A5D;
+    background-color: #FDB853;
+    color: #000;
 }
 
 .container.active .toggle-right{
@@ -277,27 +278,25 @@
     display: flex;
     justify-content: center;
     padding: 8px;
-    border: 2px solid #8C6A5D;
-    border-radius: 8px;
+    
     cursor: pointer;
     font-weight: 500;
     width: 110px;
 }
 
-#login{
-    background-color: transparent;
-    border-color: #fff;
+.form-container #rl{
+    border-radius: 25px;
 }
 
 /* Styling for role selection buttons */
 .role button {
+    
     padding: 10px 20px;
     margin: 5px;
     background: #f0f0f0;
     border: 1px solid #ccc;
     cursor: pointer;
     font-size: 16px;
-    border-radius: 5px;
     transition: background-color 0.3s;
   }
   
@@ -315,4 +314,18 @@
     background-color: #ccc;
     cursor: not-allowed;
   }
+
+  .form-container #google{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+  }
   
+  .form-container img{
+    width: 30px;
+  }

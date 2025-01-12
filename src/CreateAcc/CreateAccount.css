@@ -43,8 +43,8 @@
 }
 
 .container button{
-    background-color: #8C6A5D;
-    color: #fff;
+    background-color: #FDB853;
+    color: #000;
     font-size: 12px;
     padding: 10px 45px;
     border: 1px solid transparent;
@@ -70,12 +70,12 @@
 
 
 .container input{
-    background-color: #eee;
+    background-color: #FFF2D6;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
-    border-radius: 8px;
+    border-radius: 25px;
     width: 60%;
     outline: none;
 }

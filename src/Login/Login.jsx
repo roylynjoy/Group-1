@@ -181,13 +181,14 @@ function Login() {
                 <div className="form-container sign-in">
                     <form>
                         <h1 className="signin">Log In</h1>
-                        <span id="spn">using your La Verdad email</span>
                         <input
+                            className="input"
                             type="email"
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Email"
                         />
                         <input
+                            className="input"
                             type="password"
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
@@ -198,7 +199,7 @@ function Login() {
                         </button>
                         <p>or</p>
                         <button id="google" onClick={handleSignInWithGoogle}>
-                            <i className="fa-brands fa-google"></i> Sign in with Google
+                            <img src="src\pictures\GOOGLE.webp" alt="" /> Sign in with Google
                         </button>
                         {error && <p>{error}</p>}
                     </form>

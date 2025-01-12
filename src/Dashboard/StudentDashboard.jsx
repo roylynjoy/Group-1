@@ -2,110 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './SD.css';
 import '../index.css';
-import { format, startOfMonth, endOfMonth, startOfWeek, addDays, addMonths, subMonths } from "date-fns";
+import Header from '../comp/header';
+import Calendar from "./calendar";
+import { IoIosArrowUp } from "react-icons/io";
 
 
-const Calendar = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
 
-  const handlePrevMonth = () => {
-    setCurrentDate(subMonths(currentDate, 1));
-  };
 
-  const handleNextMonth = () => {
-    setCurrentDate(addMonths(currentDate, 1));
-  };
-
-  const renderHeader = () => {
-    return (
-      <div className="calendar-header">
-        <button onClick={handlePrevMonth}>❮</button>
-        <h2>{format(currentDate, "MMMM yyyy")}</h2>
-        <button onClick={handleNextMonth}>❯</button>
-      </div>
-    );
-  };
-
-  const renderDays = () => {
-    const daysOfWeek = ["SUN", "MON", "TUES", "WED", "THU", "FRI", "SAT"];
-    return (
-      <div className="calendar-days">
-        {daysOfWeek.map((day) => (
-          <div className="calendar-day-name" key={day}>
-            {day} 
-          </div>
-        ))}
-      </div>
-    );
-  };
-
-  const renderCells = () => {
-    const monthStart = startOfMonth(currentDate);
-    const monthEnd = endOfMonth(currentDate);
-    const startDate = startOfWeek(monthStart);
-    const endDate = startOfWeek(addDays(monthEnd, 6));
-  
-    const today = new Date(); // Get today's date
-    const todayDay = format(today, "d");
-    const todayMonthYear = format(today, "MMMM yyyy");
-  
-    const rows = [];
-    let days = [];
-    let day = startDate;
-  
-    while (day <= endDate) {
-      for (let i = 0; i < 7; i++) {
-        const isCurrentMonth = day >= monthStart && day <= monthEnd;
-        const isToday =
-          format(day, "d") === todayDay && format(day, "MMMM yyyy") === todayMonthYear;
-  
-        days.push(
-          <div
-            className={`calendar-cell ${isCurrentMonth ? "current-month" : "other-month"} ${
-              isToday ? "today" : ""
-            }`}
-            key={day}
-          >
-            {format(day, "d")}
-          </div>
-        );
-        day = addDays(day, 1);
-      }
-      rows.push(
-        <div className="calendar-row" key={day}>
-          {days}
-        </div>
-      );
-      days = [];
-    }
-  
-    return <div className="calendar-body">{rows}</div>;
-  };
-  
-
-  return (
-    <div className="calendar">
-      {renderHeader()}
-      {renderDays()}
-      {renderCells()}
-    </div>
-  );
-};
 
 const Dashboard = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [showLogoutBox, setShowLogoutBox] = useState(false);
-  const navigate = useNavigate();
-
-  const handleProfileClick = () => {
-    setShowLogoutBox(!showLogoutBox);
-  };
-
-  const handleLogout = () => {
-    navigate('/homepage');
-    console.log("User logged out");
-    setShowLogoutBox(false);
-  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -115,60 +21,28 @@ const Dashboard = () => {
     return () => clearInterval(timer); // Cleanup on component unmount
   }, []);
 
-  const formatDate = (date) => {
-    return date.toLocaleDateString("en-PH", {
-      weekday: "long", 
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   };
 
   return (
+    <>
     <body className="bd1">
       <div className="dashboard">
-        <header className="header">
-          <div id="logo">
-            <img src="src/pictures/logo.png" alt="Logo" />
-          <h1>Fieldmate</h1>
-          </div>
-          
-          <div className="user-profile">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-bell"></i>
-            <i class="fa-solid fa-envelope"></i>
-            <img 
-              src="src\pictures\user1.png" 
-              alt="User" 
-              onClick={handleProfileClick}
-              style={{ cursor: 'pointer' }}
-            />
-            {showLogoutBox && (
-              <div className="logout-box">
-                <button id="edit">Edit Profile</button>
-                <button id="edit">Settings</button>
-                <button onClick={handleLogout} className="logout-button">
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        </header>
-
-        <div className="dash">
-            <span>Student Dashboard</span>
-            <div id="img">
-              <img src="src\pictures\icon2.png" alt="" />
-              <img src="src\pictures\icon1.png" alt="" />
-              <img src="src\pictures\icon3.png" alt="" />
-            </div>
-        </div>
+        <Header />
 
         <div className="SD-container">
 
           <div className="grid">
             <div className="col-span-3 perf ">
-              
+              <div id="perf">
+              <h1>Welcome Back, Joanna!</h1>
+              <span>Always stay connected in your Fieldmate</span>
+              </div>
+              <img src="../src/pictures/user1.1.png" alt="" />
             </div>
 
             
@@ -178,12 +52,13 @@ const Dashboard = () => {
             </div>
 
             <div className="performance col-span-1">
-              <h3>Overall Performance</h3>
+              <h3>Total Hours Rendered</h3>
               <div className="performance-circle">90.3%</div>
             </div>
 
             <div className="col-span-1 readings">
               <h3>Recent Readings</h3>
+              <img src="src\pictures\readings.png" alt="" />
               <p>Major Subject Title</p>
               <p>Module x - Chapter Title</p>
             </div>
@@ -191,6 +66,13 @@ const Dashboard = () => {
         </div>
       </div>
     </body>
+    <footer className="foot">
+      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+      <p>Privacy Policy | Terms of Service </p>
+      <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
+    </footer>
+
+  </>
   );
 };
 

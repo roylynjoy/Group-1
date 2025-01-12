@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './Resources.css';
-import Footer from '../comp/footer';
-
 
 const Resources = () => {;
   const [showLogoutBox, setShowLogoutBox] = useState(false);
@@ -85,7 +83,7 @@ const Resources = () => {;
         </div>
       </div>
     </body>
-    <Footer />
+
   </>
   );
 };
