@@ -62,7 +62,7 @@ const Resources = () => {
         <div className="dash">
           <span>Resources</span>
             <div id="img">
-              <TiHome id="icon"/>
+              <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
               <FaUserCheck id="icon"/>
               <ImBooks id="icon"/>
             </div>
@@ -72,7 +72,7 @@ const Resources = () => {
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">
-                  <p id="sub">Management Accounting</p>
+                  <p id="sub"><Link to="/Resources/ResourcesBook" >Management Accounting</Link></p>
                 </div>
                 <div id="ST-cont2">
                   <p id="sub">Accounting Essentials for Small Businesses</p>

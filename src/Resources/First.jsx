@@ -4,7 +4,9 @@ import './Resources.css'
 import Header from '../comp/header';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-
+import { FaUserCheck } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
+import { TiHome } from "react-icons/ti";
 
 
 
@@ -15,12 +17,51 @@ const First = () => {
       behavior: 'smooth'
     });
   };
-  
+  const [showLogoutBox, setShowLogoutBox] = useState(false);
+  const navigate = useNavigate();
+
+  const handleProfileClick = () => {
+    setShowLogoutBox(!showLogoutBox);
+  };
+
+  const handleLogout = () => {
+    navigate('/homepage');
+    console.log("User logged out");
+    setShowLogoutBox(false);
+  };
+
   return (
     <>
     <body className="bd1">
       <div className="Resources">
-      <Header />
+      <header className="header">
+          <div id="logo">
+            <img src="../src/pictures/logo.png" alt="Logo" />
+            <h1>Fieldmate</h1>
+          </div>
+                
+          <div className="user-profile">
+            <i className="fa-solid fa-bell"></i>
+            <i className="fa-solid fa-envelope"></i>
+            <img src="../src/pictures/user1.png" alt="User" onClick={handleProfileClick} style={{ cursor: 'pointer' }}/>
+            {showLogoutBox && (
+              <div className="logout-box">
+                <button id="edit">Edit Profile</button>
+                <button id="edit">Settings</button>
+                <button onClick={handleLogout} className="logout-button">Logout</button>
+              </div>
+            )}
+          </div>
+        </header>
+      
+        <div className="dash">
+          <span>Resources</span>
+            <div id="img">
+              <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
+              <FaUserCheck id="icon"/>
+              <ImBooks id="icon"/>
+            </div>
+        </div>
 
         <div className="SD-container">
           <div className="welcome">
@@ -42,9 +83,7 @@ const First = () => {
             <h5 className="title2"><Link to="/Resources/Third">Third</Link></h5>
             <h5 className="title3"><Link to="/Resources/Second">Second</Link></h5>
             <h5 className="first"><Link to="/Resources/First">First</Link></h5>
-            
           </div>
-
         </div>
       </div>
     </body>

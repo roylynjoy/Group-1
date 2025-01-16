@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import './Resources.css';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
+import { FaUserCheck } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
+import { TiHome } from "react-icons/ti";
+
 
 const ResourcesBook = () => {
   const [showLogoutBox, setShowLogoutBox] = useState(false);
@@ -25,13 +29,17 @@ const ResourcesBook = () => {
     });
   };
 
+  const handleBack = () => {
+    navigate(-1);
+};
+
   return (
     <>
     <body className="bd1">
       <div className="Resources">
         <header className="header">
           <div id="logo">
-            <img src="src/pictures/logo.png" alt="Logo" />
+            <img src="../src/pictures/logo.png" alt="Logo" />
           <h1>Fieldmate</h1>
           </div>
           
@@ -40,7 +48,7 @@ const ResourcesBook = () => {
             <i className="fa-solid fa-bell"></i>
             <i className="fa-solid fa-envelope"></i>
             <img 
-              src="src/pictures/user1.png" 
+              src="../src/pictures/user1.png" 
               alt="User" 
               onClick={handleProfileClick}
               style={{ cursor: 'pointer' }}
@@ -58,11 +66,11 @@ const ResourcesBook = () => {
         </header>
 
         <div className="dash">
-            <span>Student Resources</span>
+          <span>Resources</span>
             <div id="img">
-              <img src="src/pictures/icon2.png" alt="" />
-              <img src="src/pictures/icon1.png" alt="" />
-              <img src="src/pictures/icon3.png" alt="" />
+              <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
+              <FaUserCheck id="icon"/>
+              <Link to="/Resources" ><ImBooks id="icon"/></Link>
             </div>
         </div>
         
@@ -70,7 +78,10 @@ const ResourcesBook = () => {
             <img src="../src/pictures/bg2.png" alt="" /> 
             <div className="bag">
             <div className="Book-container">
+              <div className="MA">
+                <i class="fa-solid fa-arrow-left bookback" onClick={handleBack}></i>
                 <h2>Management Accounting</h2>
+              </div>
                 <div>
                     <p>Course Description</p>
                     <p>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { TiHome } from "react-icons/ti";
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
+import { Link } from "react-router-dom";
 
 
 
@@ -52,9 +53,9 @@ function header() {
         <div className="dash">
             <span>Student Dashboard</span>
             <div id="img">
-              <TiHome id="icon"/>
+              <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
               <FaUserCheck id="icon"/>
-              <ImBooks id="icon"/>
+              <Link to="/Resources" ><ImBooks id="icon"/></Link>
             </div>
         </div>
     </div>

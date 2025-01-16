@@ -207,15 +207,12 @@ body {
 } */
 
 .card-1 img {
-  /* image 31 */
 
   position: absolute;
-  width: 681.58px;
+  width: 600px;
   height: 407.8px;
   left: 64.18px;
   margin-top: 150px;
-
-  background: url("src\pictures\lv.png");
   filter: drop-shadow(4px 8px 8px rgba(0, 0, 0, 0.25));
   border-radius: 30px;
 
@@ -227,7 +224,7 @@ body {
   position: absolute;
   width: 500px;
   height: 111.15px;
-  left: 823.66px;
+  left: 753.66px;
   margin-top: 200px;
 
   font-style: 'Zen Kaku Gothic New';
@@ -248,10 +245,10 @@ body {
   color: #555;
 
   position: absolute;
-  width: 500px;
+  width: 600px;
   height: 204.47px;
-  left: 794px;
-  margin-top: 270px;
+  left: 694px;
+  margin-top: 310px;
 
   font-style:'Zen Kaku Gothic New';
   font-weight: 400;
@@ -268,13 +265,12 @@ body {
   /* image 32 */
 
   position: absolute;
-  width: 581.58px;
+  width: 550px;
   height: 407.8px;
-  left: 700.97px;
+  left: 730.97px;
   margin-top: 650px;
-  margin-right: 50px;
 
-  background: url("src\pictures\course.png");
+
   filter: drop-shadow(4px 8px 8px rgba(0, 0, 0, 0.25));
   border-radius: 30px;
 
@@ -286,7 +282,7 @@ body {
   position: absolute;
   width: 772.81px;
   height: 111.15px;
-  left: 120px;
+  left: 130px;
   margin-top: 700px;
 
   font-style: 'Zen Kaku Gothic New';
@@ -302,10 +298,10 @@ body {
 
 .card-2 p{
   position: absolute;
-  width: 500px;
+  width: 600px;
   height: 204.47px;
-  left: 100px;
-  margin-top: 730px;
+  left: 80px;
+  margin-top: 770px;
 
   font-style: 'Zen Kaku Gothic New';
   font-weight: 400;
@@ -322,9 +318,9 @@ body {
   /* image */
 
   position: absolute;
-  width: 681.58px;
+  width: 600px;
   height: 407.8px;
-  left: 69.42px;
+  left: 64.18px;
   margin-top:  1150px;
 
   background: url(image.png);
@@ -337,10 +333,10 @@ body {
   /* JUNIOR PHILIPPINE INSTITUTE OF ACCOUNTANCY */
 
   position: absolute;
-  width: 500px;
+  width: 600px;
   height: 111.15px;
-  left: 800.15px;
-  margin-top:  1250px;
+  left: 700.15px;
+  margin-top:  1180px;
 
   font-style: 'Zen Kaku Gothic New';
   font-weight: 600;
@@ -355,13 +351,11 @@ body {
 }
 
 .card-3 p{
-  /* Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis. */
-
   position: absolute;
-  width: 500px;
+  width: 600px;
   height: 204.47px;
-  left: 787.7px;
-  margin-top:  1350px;
+  left: 694px;
+  margin-top:  1300px;
 
   font-style: 'Zen Kaku Gothic New';
   font-weight: 400;

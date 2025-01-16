@@ -246,17 +246,28 @@
     font-weight: 600;
 }
 
-.Book-container h2{
+.MA{
     background: #C4C4C4;
-    height: 150px;
+    height: 180px;
     border-radius: 20px;
     display: flex;
-    justify-items: flex-start;
-    align-items: flex-end;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
     padding: 20px;
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+.MA h2{
+    color: black;
+    margin-left: 45px;
+    font-size: 35px;
+}
+
+.bookback{
+    font-size: 20px;
 }
 
 .Book-container p{
@@ -342,5 +353,5 @@
 }
 
 .adjust{
-    bottom: -90%;
+    bottom: -100%;
 }

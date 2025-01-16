@@ -58,7 +58,7 @@ const Dashboard = () => {
 
             <div className="col-span-1 readings">
               <h3>Recent Readings</h3>
-              <img src="src\pictures\readings.png" alt="" />
+              <img src="../src/pictures/readings.png" alt="" />
               <p>Major Subject Title</p>
               <p>Module x - Chapter Title</p>
             </div>

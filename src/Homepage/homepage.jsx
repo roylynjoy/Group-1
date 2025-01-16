@@ -36,19 +36,19 @@ const homepage = () => {
                 <h2>About Us</h2>
                 <div className="content">
                   <div className="card-1">
-                    <img src="src\pictures\lv.png" alt="La Verdad Christian College" />
+                    <img src="../src/pictures/lv.png" alt="La Verdad Christian College" />
                     <h3>La Verdad Christian College</h3>
-                    <p>Empowering students with quality education and excellent training for a brighter future.</p>
+                    <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
                   </div>
                   <div className="card-2">
                     <img src="src\pictures\course.png" alt="Accountancy Course" />
                     <h3>Accountancy Course</h3>
-                    <p>Comprehensive curriculum designed to prepare students for real-world challenges in accountancy.</p>
+                    <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
                   </div>
                   <div className="card-3">
                     <img src="src\pictures\JPIA.png" alt="Junior Philippine Institute of Accountancy" />
                     <h3>Junior Philippine Institute of Accountancy</h3>
-                    <p>Connecting aspiring accountants through collaborative activities and leadership opportunities.</p>
+                    <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
                   </div>
                 </div>
               </section>
