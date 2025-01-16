@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Resources.css';
+import { IoIosArrowUp } from "react-icons/io";
+import { Link } from 'react-router-dom';
+import { TiHome } from "react-icons/ti";
+import { FaUserCheck } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
 
-const Resources = () => {;
+const Resources = () => {
   const [showLogoutBox, setShowLogoutBox] = useState(false);
   const navigate = useNavigate();
 
@@ -16,6 +21,13 @@ const Resources = () => {;
     setShowLogoutBox(false);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
     <body className="bd1">
@@ -27,11 +39,10 @@ const Resources = () => {;
           </div>
           
           <div className="user-profile">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-bell"></i>
-            <i class="fa-solid fa-envelope"></i>
+            <i className="fa-solid fa-bell"></i>
+            <i className="fa-solid fa-envelope"></i>
             <img 
-              src="src\pictures\user1.png" 
+              src="src/pictures/user1.png" 
               alt="User" 
               onClick={handleProfileClick}
               style={{ cursor: 'pointer' }}
@@ -49,11 +60,11 @@ const Resources = () => {;
         </header>
 
         <div className="dash">
-            <span>Student Resources</span>
+          <span>Resources</span>
             <div id="img">
-              <img src="src\pictures\icon2.png" alt="" />
-              <img src="src\pictures\icon1.png" alt="" />
-              <img src="src\pictures\icon3.png" alt="" />
+              <TiHome id="icon"/>
+              <FaUserCheck id="icon"/>
+              <ImBooks id="icon"/>
             </div>
         </div>
 
@@ -61,32 +72,33 @@ const Resources = () => {;
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">
-                  <p id="sub">Subject Title</p>
+                  <p id="sub">Management Accounting</p>
                 </div>
                 <div id="ST-cont2">
-                  <p id="sub">Subject Title</p>
+                  <p id="sub">Accounting Essentials for Small Businesses</p>
                 </div>
                 <div id="ST-cont3">
-                  <p id="sub">Subject Title</p>
+                  <p id="sub">Business Advice For Accounting</p>
                 </div>
                 <div id="ST-cont4">
-                  <p id="sub">Subject Title</p>
+                  <p id="sub">Financial Accounting</p>
                 </div>
             </div>
-            <h5 className="title1">Fourth</h5>
-            <h5 className="title2">Third</h5>
-            <h5 className="title3">Second</h5>
-            <h5 className="title4">First</h5>
-            
+            <h5 className="title1"><Link to="/Resources">Fourth</Link></h5>
+            <h5 className="title2"><Link to="/Resources/Third"> Third</Link></h5>
+            <h5 className="title3"><Link to="/Resources/Second">Second</Link></h5>
+            <h5 className="title4"><Link to="/Resources/First">First</Link></h5>
           </div>
-
         </div>
       </div>
     </body>
-
+    <footer className="foot1">
+      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+      <p>Privacy Policy | Terms of Service </p>
+      <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
+    </footer>
   </>
   );
 };
 
-export default Resources
-
+export default Resources;

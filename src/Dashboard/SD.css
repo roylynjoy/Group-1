@@ -107,7 +107,11 @@
 #img{
   display: flex;
   justify-content: flex-end;
-  
+  gap: 20px;
+  margin-right: 20px;
+}
+#img #icon{
+  font-size: 25px;
 }
 
 .dash span{
@@ -126,7 +130,7 @@
   margin-bottom: 50px;
 }
 .welcome {
-  background: url(../pictures/bg.jpg);
+  background: url(../src/pictures/bg2.png);
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center; 
@@ -139,24 +143,6 @@
   
 }
 
-.welcome h2 {
-  max-width: 25%;
-  /* background: gray; */
-  padding: 15px;
-  margin-top: 155px;
-  color: #ccc;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-}
-
-.welcome p {
-  margin-top: 15px;
-  background: gray;
-  padding: 10px;
-  border: 1px solid black;
-  max-width: 50%;
-  border-radius: 10px;
-}
 
 .grid {
   display: grid;
@@ -171,6 +157,11 @@
   border-radius: 37px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
+}
+
+.performance img{
+  width: 15rem;
+  margin-top: 15px;
 }
 
 
@@ -224,6 +215,7 @@
 .performance h3{
   font-size: 30px;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 .readings{
@@ -251,7 +243,7 @@
   border-radius: 37px;
   padding: 10px;
   background: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
   margin-left: 0%;
 }
 
@@ -298,15 +290,18 @@
   height: 40px;
   border-radius: 5px;
   font-size: 15px;
-  color: #333;
-}
-
-.calendar-cell.today {
+  color: #0f173a;
   font-weight: bold;
 }
 
+.calendar-cell.today {
+  color: white;
+  background-color: rgb(36, 129, 160);
+  border-radius: 100%;
+}
+
 .calendar-cell.current-month {
-  background: #f9f9f9;
+  
 }
 
 .calendar-cell.other-month {

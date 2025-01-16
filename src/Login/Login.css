@@ -18,8 +18,8 @@
 
 .back {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 15px;
+    left: 15px;
     
 }
 #container{
@@ -40,10 +40,6 @@
     margin: 20px 0;
 }
 
-.container span{
-    font-size: 12px;
-    margin-top: 10px;
-}
 
 .container a{
     color: #333;
@@ -53,12 +49,9 @@
 }
 
 .container button{
-    background-color: #8C6A5D;
-    color: #fff;
     font-size: 12px;
     padding: 10px 45px;
     border: 1px solid transparent;
-    /* border-radius: 8px; */
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
@@ -66,13 +59,34 @@
     cursor: pointer;
 }
 
+.input{
+    background-color: #EDEDED;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-style: "Inter";
+    padding: 10px;
+    font-size: 13px;
+    width: 15rem;
+}
+
+.container input{
+    padding-left: 10px;
+}
 #sgn{
     border-radius: 20px;
     margin-bottom: -10px;
+    background-color: #FDB853;
+}
+
+#SU{
+    background-color: #FDB853;
+    border-radius: 25px;
+    padding: 5px 20px;
 }
 
 #register, #login {
-    background-color: #FEE6B8;
+    background-color: transparent;
     border: 1px solid black;
     border-radius: 25px;
 }
@@ -96,16 +110,6 @@
     height: 100%;
 }
 
-.container input{
-    background-color: #eee;
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 8px;
-    width: 100%;
-    outline: none;
-}
 
 #spn{
     margin-bottom: 18px;
@@ -132,8 +136,6 @@
     font-weight: 800;
 }
 
-
-
 .container.active .sign-in{
     transform: translateX(100%);
 }
@@ -146,14 +148,98 @@
 }
 
 #CA{
-    margin-top: -20px;
+    margin-top: 5px;
 }
 .CA{
-    margin-bottom: -10px;
-    color: #8C6A5D;
+    margin-bottom: 10px;
+    color: #EB8D04;
     font-size: 30px;
-    font-weight: 700;
+    font-weight: bolder;
 }
+
+.name{
+    display: flex;
+    gap: 10px;
+}
+
+.name #input{
+    background-color: #EDEDED;
+    border-radius: 10px;
+    width: 9rem;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-style: "Inter";
+    font-size: 13px;
+    margin-top: 5px;
+    padding-left: 15px;
+}
+
+#input1{
+    margin-top: 6px;
+    width: 18.5rem;
+    background-color: #EDEDED;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-style: "Inter";
+    font-size: 13px;
+    padding-left: 15px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    width: 18.5em;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+  }
+  
+  .dropdown  button {
+    width: 100%;
+    padding: 5px;
+    padding-left: 15px;
+    background-color: #f9f6df;
+    border: 1px solid gray;
+    border-radius: 25px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #8C8C8C;
+    font-style: 'Inter';
+    text-transform: none;
+  }
+  
+  .dropdown-toggle:hover {
+    background-color: #f1e8c1;
+  }
+  
+  .arrow {
+    font-size: 12px;
+  }
+  
+  .dropdown-menu {
+    width: 100%;
+    background-color: #f9f6df;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    margin-top: 5px;
+  }
+  
+  .dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #f1e8c1;
+  }
+  
 
 .container.active .sign-up{
     transform: translateX(100%);
@@ -204,12 +290,6 @@
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }
-
-/* .toggle-container{
-    border-radius: 800px;
-    width: 550px;
-    height: 550px;
-} */
 
 .toggle{
     background-color:#FDB853;
@@ -271,10 +351,11 @@
     display: flex;
     flex-direction: row;
     margin-bottom: 5px;  
-    gap: 8px;
+    gap: 5px;
+    
 }
 
-.role button {
+/* .role button {
     display: flex;
     justify-content: center;
     padding: 8px;
@@ -282,40 +363,44 @@
     cursor: pointer;
     font-weight: 500;
     width: 110px;
-}
+} */
 
 .form-container #rl{
     border-radius: 25px;
 }
 
-/* Styling for role selection buttons */
 .role button {
-    
-    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 20px;
     margin: 5px;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-  }
-  
-  .role button:hover {
-    background-color: #d3d3d3;
-  }
-  
-  .role button.active {
-    background-color: gray; /* Green for active */
-    color: white;
-  }
-  
-  /* Disabled button styling */
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+    font-weight: bold;
+    width: 110px;
+    background: #F9F6DF;
+    border: 1px solid transparent;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0.25, 0.25, 0.25);
+    text-transform: none;
+    font-size: 14px;
+}
 
-  .form-container #google{
+.role button:hover {
+    background-color: #f3f2eb; /* Hover color for non-active buttons */
+}
+
+.role button.active {
+    background-color: #FDB853; 
+    border: 1px solid black;
+    color: black;
+}
+
+
+
+
+.form-container #google{
     background-color: white;
     border: 1px solid black;
     border-radius: 25px;
@@ -324,8 +409,35 @@
     flex-direction: row;
     align-items: center;
     gap: 10px;
-  }
+}
   
-  .form-container img{
+.form-container img{
     width: 30px;
-  }
+}
+
+/*Welcome*/
+.WC{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #F7F4EB;
+}
+.WC h1{
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.WC p{
+    font-size: 35px;
+    margin-bottom: 50px;
+}
+
+.WC button{
+    background-color: #FDB853;
+    padding: 10px 30px;
+    font-size: 21px;
+    border-radius: 50px;
+    border: 1px solid black;
+}

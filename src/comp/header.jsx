@@ -1,5 +1,9 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
+import { TiHome } from "react-icons/ti";
+import { FaUserCheck } from "react-icons/fa";
+import { ImBooks } from "react-icons/im";
+
 
 
 function header() {
@@ -20,16 +24,15 @@ function header() {
     <div>
         <header className="header">
           <div id="logo">
-            <img src="src/pictures/logo.png" alt="Logo" />
+            <img src="../src/pictures/logo.png" alt="Logo" />
           <h1>Fieldmate</h1>
           </div>
           
           <div className="user-profile">
-            <i class="fa-solid fa-magnifying-glass"></i>
             <i class="fa-solid fa-bell"></i>
             <i class="fa-solid fa-envelope"></i>
             <img 
-              src="src\pictures\user1.png" 
+              src="../src/pictures/user1.png" 
               alt="User" 
               onClick={handleProfileClick}
               style={{ cursor: 'pointer' }}
@@ -49,9 +52,9 @@ function header() {
         <div className="dash">
             <span>Student Dashboard</span>
             <div id="img">
-              <img src="src\pictures\icon2.png" alt="" />
-              <img src="src\pictures\icon1.png" alt="" />
-              <img src="src\pictures\icon3.png" alt="" />
+              <TiHome id="icon"/>
+              <FaUserCheck id="icon"/>
+              <ImBooks id="icon"/>
             </div>
         </div>
     </div>

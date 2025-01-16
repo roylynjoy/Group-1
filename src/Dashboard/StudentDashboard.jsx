@@ -53,7 +53,7 @@ const Dashboard = () => {
 
             <div className="performance col-span-1">
               <h3>Total Hours Rendered</h3>
-              <div className="performance-circle">90.3%</div>
+              <img src="../src/pictures/perf.png" alt="" />
             </div>
 
             <div className="col-span-1 readings">
