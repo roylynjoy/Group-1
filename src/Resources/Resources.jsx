@@ -63,7 +63,7 @@ const Resources = () => {
           <span>Resources</span>
             <div id="img">
               <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
-              <FaUserCheck id="icon"/>
+              <Link to="/Attendance"><FaUserCheck id="icon"/></Link>
               <ImBooks id="icon"/>
             </div>
         </div>

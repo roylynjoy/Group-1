@@ -1,0 +1,447 @@
+/* General Styling */
+.bd1 {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+html, body {
+  height: 100%; /* Full height to avoid unwanted spacing */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.welcome {
+  background: url(../pictures/bg.jpg);
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  height: 300px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 8%;
+  padding-left: 50px;
+  margin-bottom: 0;
+}
+
+.welcome h2 {
+  max-width: 25%;
+  padding: 15px;
+  margin-top: 155px;
+  color: #ccc;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.welcome p {
+  margin-top: 15px;
+  background: gray;
+  padding: 10px;
+  border: 1px solid black;
+  max-width: 50%;
+  border-radius: 10px;
+}
+
+.dashboard {
+  flex: 1; /* Take all available space except the footer */
+  overflow-y: auto; /* Make the content scrollable */
+}
+
+/* Submit Attendance */
+.att-wrapper {
+  display: flex;
+  justify-self: center;
+  gap: 20px;
+}
+
+.attendance-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  background-color: #FFF5CC;
+  border: #333 0.5px solid;
+  padding: 20px;
+  width: 25vw;
+  height: 35vh;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.attendance-container label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.attendance-container p {
+  margin: 5px 0 15px;
+  color: #555;
+}
+
+.attendance-container button {
+  align-self: center; 
+  width: fit-content;
+  background-color: #5BA8FF;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  cursor: pointer;
+  margin: 10px 0;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.submit-all {
+  background-color: #FAAF46;
+  color: black;
+  font-weight: bold;
+  border: black 3px solid;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 50px 0;
+  transition: background-color 0.3s ease;
+}
+
+.attendance-container button:hover {
+  background-color: #0057BA;
+}
+
+.attendance-container button:disabled {
+  background-color: #d6d6d6;
+  cursor: not-allowed;
+}
+
+.att-text {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  margin: 0;         
+}
+
+.att-text label,
+.att-text p {
+  margin: 20px;            
+}
+
+#perfAtt {
+  margin-bottom: 30px;
+  height: 200px;
+  background: url("../src/pictures/bg2.png");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center;
+  display: flex;
+  flex-direction: row;
+  justify-content:  space-evenly;
+  align-items: flex-end;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+#perfAtt h1{
+  background-color: #FFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 50px 0;
+  box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.3);
+}
+
+.prompt {
+  display: flex;
+  justify-content: center;
+}
+
+/*Supervisor Attendance*/
+
+.attendance-filter {
+  position: relative; /* Ensures the calendar popup is positioned relative to this container */
+  display: inline-block; /* Keeps the layout inline for better alignment */
+  padding-left: 3%;
+}
+
+.date-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FFF;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.calendar-toggle-button {
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-toggle-button:hover {
+  color: #333;
+}
+
+.date-input-popup {
+  position: absolute;
+  top: 100%; /* Ensures the popup appears directly below the date-display */
+  left: 0; /* Aligns the popup to the left of the parent container */
+  z-index: 10; /* Brings the popup above other elements */
+  width: max-content; /* Makes sure the calendar doesn't stretch unnecessarily */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.attendance-list-section {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.attendance-row-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.attendance-row {
+  display: grid;
+  grid-template-columns: 11% 20% 16% 18% 16% 17%; /* No column for record button */
+  gap: 10px;
+  align-items: center;
+  background-color: #FFF5CC;
+  border: 2px solid #FDDD5D;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.attendance-header-row {
+  display: grid;
+  grid-template-columns: 10% 18% 15% 15% 15% 15% 10%; /* Matches attendance row */
+  gap: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f7f2;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+
+.attendance-header {
+  text-align: center;
+}
+
+
+.attendance-cell {
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+}
+
+.attendance-record-button {
+  gap: 20px;
+  height: 100%; 
+  padding-left: 2%;
+}
+
+.record-button {
+  padding: 10px 20px;
+  background-color: #DD0004;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.record-button:hover {
+  background-color: #701922;
+}
+
+.record-button:disabled {
+  background-color: #afafaf;
+  cursor: not-allowed;
+}
+
+.profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  justify-self: center;
+}
+
+/*Company*/
+.company-attendance-management {
+  padding: 0 3%;
+}
+
+.company-message {
+  font-size: 16px;
+  color: #333;
+}
+
+.company-loading {
+  font-size: 16px;
+  color: #007bff;
+}
+
+/* .line-boundary hr{
+
+} */
+
+.company-filter-date {
+  margin-bottom: 20px;
+}
+
+.company-filter-date label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.company-filter-date input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.company-time-in-section h3,
+.company-time-out-section h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.company-attendance-list-section {
+  margin-top: 10px;
+  margin-left: 1%;
+}
+
+.company-attendance-header-row {
+  display: grid;
+  grid-template-columns: 15% 23% 26% 12% 15%;
+  text-align: center;
+  gap: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.company-attendance-row-wrapper {
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.company-attendance-row {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 17% 31% 33% 15%;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #FFF5CC;
+  border: 2px solid #FDDD5D;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.company-attendance-cell {
+  font-weight: 500;
+}
+
+.company-attendance-cell img {
+  place-self: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.line-boundary {
+  background-color: #333;
+  width: 100%;
+  height: 3px;
+  margin: 3% 0;
+
+}
+
+/* Buttons */
+
+.approve-deny-buttons {
+  display: flex;
+  justify-content: center; 
+  place-self: center;
+  gap: 20px;
+  height: 100%; 
+  padding-left: 2%;
+}
+
+.company-approve,
+.company-deny {
+  align-self: center;
+  padding: 10px 10px;
+  width: 100px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.company-approve {
+  background-color: #0ea700;
+  color: white;
+}
+
+.company-deny {
+  background-color: #DD0004;
+  color: white;
+}
+
+.company-approve:hover {
+  background-color: #218838;
+}
+
+.company-deny:hover {
+  background-color: #7a101a;
+}
+
+.company-no-records {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+
+/* Footer styling */
+
+
+

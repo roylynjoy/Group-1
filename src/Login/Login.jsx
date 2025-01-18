@@ -1,24 +1,92 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Login.css';
 import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider } from '../firebase';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { doc, getDoc } from 'firebase/firestore'; 
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase'; 
 
 function Login() {
+    // States for Login form
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
 
     // States for Create Account form
     const [name, setName] = useState('');
+    const [idNumber, setIdNumber] = useState('');
+    const [contactNumber, setContactNumber] = useState('');
     const [lvEmail, setLvEmail] = useState('');
     const [selectedRole, setSelectedRole] = useState('');
-    
+
     const [isActive, setIsActive] = useState(false); 
     const navigate = useNavigate();
 
+    // Function to navigate based on the email
+    const navigateToDashboard = async (email) => {
+        try {
+            // Check Students collection for email match
+            const studentQuerySnapshot = await getDocs(query(collection(db, 'Students'), where("email", "==", email)));
+            if (!studentQuerySnapshot.empty) {
+                navigate('/StudentDashboard');
+                return;
+            }
+
+            // Check Supervisors collection for email match
+            const supervisorQuerySnapshot = await getDocs(query(collection(db, 'Supervisors'), where("email", "==", email)));
+            if (!supervisorQuerySnapshot.empty) {
+                navigate('/SupervisorAtt');
+                return;
+            }
+
+            // Check Companies collection for email match
+            const companyQuerySnapshot = await getDocs(query(collection(db, 'Companies'), where("email", "==", email)));
+            if (!companyQuerySnapshot.empty) {
+                navigate('/CompanyAtt');
+                return;
+            }
+
+            // If no match found
+            setError('No matching account found. Please contact support.');
+        } catch (error) {
+            console.error('Error navigating:', error);
+            setError(`Error navigating: ${error.message}`);
+        }
+    };
+
     // Handle sign-in with email and password
-    
+    const handleSignIn = async (e) => {
+        e.preventDefault();
+
+        if (!email.includes('laverdad.edu.ph')) {
+            setError('Please enter a valid email address.');
+            return;
+        }
+
+        if (!email || !password) {
+            setError('Both email and password are required.');
+            return;
+        }
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            await navigateToDashboard(email);  // Call the function to navigate based on matching collection
+        } catch (error) {
+            console.error('Error signing in:', error);
+            setError(`Error signing in: ${error.message}`);
+        }
+    };
+
+    // Handle sign-in with Google
+    const handleSignInWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth, googleProvider);
+            navigate('/studentDashboard');
+        } catch (error) {
+            setError(`Error signing in with Google: ${error.message}`);
+        }
+    };
+
     // Toggle the "active" class for switching forms
     const handleRegisterToggle = () => setIsActive(true);
     const handleLoginToggle = () => setIsActive(false);
@@ -26,49 +94,29 @@ function Login() {
     // Handle Next Button Click
     const handleNext = (e) => {
         e.preventDefault();
+        
+        // Validate the form and selected role
+        if (!name || !idNumber || !contactNumber || !lvEmail || !selectedRole) {
+            setError("Please fill out all fields and select a role.");
+            return;
+        }
 
         // Navigate to different pages based on selected role
         if (selectedRole === 'Student') {
-            navigate('/Login/Welcome');
+            navigate('/CA');
         } else if (selectedRole === 'Supervisor') {
-            navigate('/');
+            navigate('/CA1'); // Or any other page for Supervisor
         } else if (selectedRole === 'Coordinator') {
-            navigate('/');
+            navigate('/CA1'); // Or any other page for Coordinator
         }
     };
+
+    // Check if Next button should be enabled (role selected and form filled)
+    const isNextEnabled = name && idNumber && contactNumber && lvEmail && selectedRole;
 
     const handleBack = () => {
         navigate(-1);
     };
-
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState("Company");
-
-    const options = ["ABC Company", "XYZ Company"];
-
-    const toggleDropdown = (e) => {
-        e.stopPropagation();
-        setIsOpen(!isOpen);
-    };
-
-    const handleOptionClick = (option, e) => {
-        e.stopPropagation();
-        setSelectedOption(option);
-        setIsOpen(false);
-    };
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-        if (!event.target.closest(".dropdown")) {
-            setIsOpen(false);
-        }
-        };
-
-        document.addEventListener("click", handleClickOutside);
-        return () => {
-        document.removeEventListener("click", handleClickOutside);
-        };
-    }, []);
 
     return (
         <body className="body">
@@ -78,6 +126,7 @@ function Login() {
                 <div className="form-container sign-up">
                     <form id="CA">
                         <h1 className="CA">Create Account</h1>
+                        <span>or use your email for registration</span>
 
                         {/* Role selection buttons */}
                         <div className="role">
@@ -105,62 +154,34 @@ function Login() {
                         </div>
 
                         {/* Form inputs */}
-                        <div className='name'>
-                        <input id='input'
+                        <input
                             type="text"
-                            placeholder="First Name"
+                            placeholder="Name"
                             onChange={(e) => setName(e.target.value)}
                         />
-                        <input id='input'
-                            type="text"
-                            placeholder="Last Name"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        </div>
-                        <input id='input1'
+                        <input
                             type="number"
-                            placeholder="Supervisor Number"
+                            placeholder="ID Number"
+                            onChange={(e) => setIdNumber(e.target.value)}
                         />
-                        <input id='input1'
+                        <input
+                            type="tel"
+                            placeholder="Contact Number"
+                            onChange={(e) => setContactNumber(e.target.value)}
+                        />
+                        <input
                             type="email"
-                            placeholder="LV Email"
+                            placeholder="LV email"
                             onChange={(e) => setLvEmail(e.target.value)}
                         />
-                        <div className="dropdown">
-                        <button className="dropdown-toggle" onClick={toggleDropdown}>
-                            {selectedOption} <span className="arrow">&#9662;</span>
-                        </button>
-                        
-                        {isOpen && (
-                            <ul className="dropdown-menu">
-                            {options.map((option, index) => (
-                                <li
-                                key={index}
-                                className="dropdown-item"
-                                onClick={() => handleOptionClick(option)}
-                                >
-                                {option}
-                                </li>
-                            ))}
-                            </ul>
-                        )}
-                        </div>
-                        <input id='input1'
-                            type="password"
-                            placeholder="Password"
-                        />
-                        <input id='input1'
-                            type="password"
-                            placeholder="Confirm Password"
-                        />
-                        
 
                         {/* Next Button */}
-                        <button id='SU'
+                        <button 
                             type="button" 
                             onClick={handleNext}
+                            disabled={!isNextEnabled}  // Disable if form is incomplete or no role selected
                         >
-                            SIGN UP
+                            Next
                         </button>
 
                         {error && <p className="error">{error}</p>}
@@ -184,20 +205,15 @@ function Login() {
                             placeholder="Password"
                         />
                         <a href="#">Forgot Your Password?</a>
-                        <button id="sgn">
+                        <button id="sgn" onClick={handleSignIn}>
                             Log In
                         </button>
                         <p>or</p>
-                        <button id="google">
+                        <button id="google" onClick={handleSignInWithGoogle}>
                             <img src="src\pictures\GOOGLE.webp" alt="" /> Sign in with Google
                         </button>
                         {error && <p>{error}</p>}
                     </form>
-                    
-                    <div>
-                        
-                    </div>
-                    
                 </div>
 
                 {/* Toggle Panels */}

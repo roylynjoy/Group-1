@@ -1,9 +1,5 @@
 import React, { useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { TiHome } from "react-icons/ti";
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
-import { Link } from "react-router-dom";
 
 
 
@@ -51,11 +47,8 @@ function header() {
         </header>
 
         <div className="dash">
-            <span>Student Dashboard</span>
+            <span>Coordinator Dashboard</span>
             <div id="img">
-              <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
-              <Link to="/Attendance"><FaUserCheck id="icon"/></Link>
-              <Link to="/Resources" ><ImBooks id="icon"/></Link>
             </div>
         </div>
     </div>

@@ -15,6 +15,9 @@ import Chapter103 from './Resources/chapter1.3';
 import Chapter2 from './Resources/chapter2.1';
 import Chapter202 from './Resources/chapter2.2';
 import Chapter203 from './Resources/chapter2.3';
+import Attendance from './Attendance/Attendance';
+import SupervisorAtt from './Attendance/SupervisorAtt';
+import CompanyAtt from './Attendance/CompanyAtt';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import './App.css';
@@ -49,6 +52,9 @@ function App() {
         <Route path="Resources/Chapter2.1" element={<Chapter2 />} />
         <Route path="Resources/Chapter2.2" element={<Chapter202 />} />
         <Route path="Resources/Chapter2.3" element={<Chapter203 />} />
+        <Route path="/Attendance" element={<Attendance />} />
+        <Route path="/SupervisorAtt" element={<SupervisorAtt />} />
+        <Route path="/CompanyAtt" element={<CompanyAtt />} />
       </Routes>
     </Router>
   );
