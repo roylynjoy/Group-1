@@ -1,23 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import './Resources.css'
+import '../Resources/Resources.css'
 import Header from '../comp/header';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
 import { TiHome } from "react-icons/ti";
+import { FaPlus } from "react-icons/fa";
 
 
 
 
 const Second = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   const [showLogoutBox, setShowLogoutBox] = useState(false);
     const navigate = useNavigate();
@@ -57,9 +52,9 @@ const Second = () => {
               </header>
             
               <div className="dash">
-                <span>Resources</span>
+                <span>Supervisor Resources</span>
                   <div id="img">
-                    <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
+                    <Link to="/" ><TiHome id="icon"/></Link>
                     <FaUserCheck id="icon"/>
                     <ImBooks id="icon"/>
                   </div>
@@ -77,14 +72,14 @@ const Second = () => {
                 <div id="ST-cont3">
                   <p id="sub">Subject Title</p>
                 </div>
-                <div id="ST-cont4">
-                  <p id="sub">Subject Title</p>
+                <div id="add">
+                  <Link to="/Supervisor/AddBooks"><FaPlus /></ Link>
                 </div>
             </div>
-            <h5 className="fourth"><Link to="/Resources">Fourth</Link></h5>
-            <h5 className="title2"><Link to="/Resources/Third">Third</Link></h5>
-            <h5 className="second"><Link to="/Resources/Second">Second</Link></h5>
-            <h5 className="title4"><Link to="/Resources/First">First</Link></h5>
+            <h5 className="title1"><Link to="/Supervisor/SupervisorResources">Fourth</Link></h5>
+            <h5 className="title2"><Link to="/Supervisor/SThird"> Third</Link></h5>
+            <h5 className="title3"><Link to="/Supervisor/SSecond">Second</Link></h5>
+            <h5 className="title4"><Link to="/Supervisor/SFirst">First</Link></h5>
             
           </div>
 

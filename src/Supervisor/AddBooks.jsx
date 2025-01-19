@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Resources.css';
-import { IoIosArrowUp } from "react-icons/io";
+import '../Resources/Resources.css';
 import { Link } from 'react-router-dom';
-import { TiHome } from "react-icons/ti";
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
+import { TiHome } from "react-icons/ti";
+import { FiFilePlus } from "react-icons/fi";
+import { LuPenLine } from "react-icons/lu";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import { FaArrowLeft } from "react-icons/fa";
 
-const Resources = () => {
+
+
+
+const ResourcesBook = () => {
   const [showLogoutBox, setShowLogoutBox] = useState(false);
   const navigate = useNavigate();
 
@@ -21,12 +27,10 @@ const Resources = () => {
     setShowLogoutBox(false);
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+
+  const handleBack = () => {
+    navigate(-1);
+};
 
   return (
     <>
@@ -34,15 +38,16 @@ const Resources = () => {
       <div className="Resources">
         <header className="header">
           <div id="logo">
-            <img src="src/pictures/logo.png" alt="Logo" />
+            <img src="../src/pictures/logo.png" alt="Logo" />
           <h1>Fieldmate</h1>
           </div>
           
           <div className="user-profile">
+            <i className="fa-solid fa-magnifying-glass"></i>
             <i className="fa-solid fa-bell"></i>
             <i className="fa-solid fa-envelope"></i>
             <img 
-              src="src/pictures/user1.png" 
+              src="../src/pictures/user1.png" 
               alt="User" 
               onClick={handleProfileClick}
               style={{ cursor: 'pointer' }}
@@ -60,46 +65,44 @@ const Resources = () => {
         </header>
 
         <div className="dash">
-          <span>Resources</span>
+          <span>Supervisor Resources</span>
             <div id="img">
-              <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
+              <Link to="/" ><TiHome id="icon"/></Link>
               <FaUserCheck id="icon"/>
-              <ImBooks id="icon"/>
+              <Link to="/" ><ImBooks id="icon"/></Link>
             </div>
         </div>
-
-        <div className="SD-container">
-          <div className="welcome">
-            <div className="resources-container">
-                <div id="ST-cont1">
-                  <p id="sub"><Link to="/Resources/ResourcesBook" >Management Accounting</Link></p>
+        
+        <div className="bg">   
+            <img src="../src/pictures/bg2.png" alt="" /> 
+            <div className="bag">
+            <div className="Book-container add-container">
+                <FaArrowLeft  className="addarrow" onClick={handleBack}/>
+                <div className="plus">
+                    <FiFilePlus />
                 </div>
-                <div id="ST-cont2">
-                  <p id="sub">Accounting Essentials for Small Businesses</p>
+                <p>Subject Title : ______________</p>
+                <p>Instructor Name : ______________</p> 
+                <h5>Course Description</h5>   
+                <i>Description...</i>
+                <h5>Table of Content</h5>
+                <p>Module 1: ___________________</p>
+                <div className="add2">
+                    <p><LuPenLine /> Chapter 1.1 : __________________</p>
+                    <h6><IoMdAddCircleOutline />Add Chapter</h6>
                 </div>
-                <div id="ST-cont3">
-                  <p id="sub">Business Advice For Accounting</p>
-                </div>
-                <div id="ST-cont4">
-                  <p id="sub">Financial Accounting</p>
-                </div>
+                <p><IoMdAddCircleOutline />Add Module</p>
             </div>
-            <h5 className="title1"><Link to="/Resources">Fourth</Link></h5>
-            <h5 className="title2"><Link to="/Resources/Third"> Third</Link></h5>
-            <h5 className="title3"><Link to="/Resources/Second">Second</Link></h5>
-            <h5 className="title4"><Link to="/Resources/First">First</Link></h5>
+            </div>
           </div>
         </div>
-      </div>
     </body>
-    <div>
-    <footer className="foot1 ">
+    <footer className="foot">
       <p>&copy; 2025 LVCC inc... All rights reserved.</p>
       <p>Privacy Policy | Terms of Service </p>
     </footer>
-    </div>
   </>
   );
 };
 
-export default Resources;
+export default ResourcesBook;

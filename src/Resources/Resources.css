@@ -80,9 +80,11 @@
 
     position: absolute;
     width: 90%;
-    height: 50%;
+    height: 60%;
     left: 82.72px;
     top: 227px;
+    padding-left: 50px;
+    padding-right: 50px;
 
     background: #FFF6D0;
     border: 3px solid #000000;
@@ -94,7 +96,7 @@
 
 .title1, .title2, .title3, .title4, .fourth, .third, .second, .first{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     font-weight: 500;
 }
@@ -102,25 +104,25 @@
 .resources-container{
     display: flex;
     
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     gap: 50px;
     margin-bottom: 50px;
     
 }
 
-#ST-cont1, #ST-cont2, #ST-cont3, #ST-cont4 {
+#ST-cont1, #ST-cont2, #ST-cont3, #ST-cont4, #add {
     box-sizing: border-box;
 
     
     width: 230px;
-    height: 250px;
+    height: 270px;
     
     /* margin-left: 30px;
     margin-top: 30px; */
     
 
-    background: #E7AE01;
+    background: #D8EDFE;
     border: 1px solid #000000;
     box-shadow: -5px 2px 2px rgba(0, 0, 0, 0.25), 5px 5px 2px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
@@ -129,15 +131,50 @@
     align-items: end;
 }
 
+#add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+}
+
+#ST-cont1{
+    background: url(../src/pictures/MA.png);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
+#ST-cont2{
+    background: url(../src/pictures/AE.png);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
+#ST-cont3{
+    background: url(../src/pictures/BAA.png);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+#ST-cont4{
+    background: url(../src/pictures/FA.png);
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
 .resources-container p{
     
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 
     box-sizing: border-box;
 
-    position: absolute;
+    /* position: absolute; */
     width: 230px;
     height: 70px;
     font-weight: 600;
@@ -329,11 +366,23 @@
     max-width: 90%;
     font-size: 20px;
 }
+
+.rc{
+    display: flex;
+    justify-content: flex-start;
+}
+
+footer p{
+    display: flex;
+    flex-direction: column;
+}
+
 .foot1{
-    position: absolute;
+
     width: 100vw;
     height: 100px;
-    bottom: -80px;
+    
+    margin-top: 200px;
   
     background: #E7BD18;
   
@@ -343,15 +392,77 @@
     flex-direction: column;
     font-weight: 500;
 }
-  
-.foot1 #arrow-up-icon{
-    position: absolute;
-    width: 30px;
-    height: 48px;
-    right: 50px;
-    top: 30px;
+
+.bg .add-container{
+    width: 1307.53px;
+    height: 1050px;
+    border-radius: 20px;
+    border: 3px solid #000000; 
+    box-shadow: -6px -9px 6px 1px rgba(0, 0, 0, 0.25), 6px 9px 6px 1px rgba(0, 0, 0, 0.25);
+    font-style: "Nunito";
 }
 
-.adjust{
-    bottom: -100%;
+.add-container p{
+    margin-top: -10px;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.add-container h5{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.add-container i{
+    margin-left: 50px;
+    font-style: "Nunito", "italic";
+    font-weight: 200;
+    color: #606060;
+    
+}
+
+
+.plus{
+    background: #D8EDFE;
+    /* width: 909.36px; */
+    height: 216px;
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 50px;
+    border-radius: 20px;
+    border: 1px solid #C4C4C4;
+    /* box-shadow: 0px 9px 6px rgba(0, 0, 0, 0.25); */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    
+    margin-bottom: 50px;
+}
+
+
+.addarrow{
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 25px;
+}
+
+/* .add2 {
+    display: flex;
+    align-items: center; 
+} */
+.add2 p {
+    margin-left: 100px; 
+    padding-left: 5px; 
+}
+
+.add2 h6{
+    margin-left: 150px;
+    font-weight: 300;
+}
+.add2 svg {
+    vertical-align: middle; /* Ensures the icon aligns with the text */
+    margin-right: 5px; /* Adds space between the icon and text */
 }
