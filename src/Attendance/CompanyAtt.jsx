@@ -5,7 +5,7 @@ import HeaderComp from '../comp/headerComp';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { collection, query, where, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 const CompanyAtt = () => {
   const [filterDate, setFilterDate] = useState('');
@@ -28,26 +28,36 @@ const CompanyAtt = () => {
 
   const verifyCompanyEmail = async () => {
     try {
+      if (!userEmail) {
+        setMessage('No user is logged in.');
+        return;
+      }
+
       const companiesRef = collection(db, 'Companies');
       const q = query(companiesRef, where('email', '==', userEmail));
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
-        navigate('/login'); 
+        setMessage('No company found for this email.');
         setIsCompany(false);
+        navigate('/login');
         return;
       }
 
       setIsCompany(true);
     } catch (error) {
-      console.error('Error verifying student email:', error);
+      console.error('Error verifying company email:', error);
       setMessage('An error occurred while verifying your email.');
       setIsCompany(false);
     }
   };
+
   useEffect(() => {
-    fetchAttendanceRecords();
-  }, [filterDate]); // Re-fetch when filterDate changes
+    // Only fetch data if the company is verified
+    if (isCompany) {
+      fetchAttendanceRecords();
+    }
+  }, [filterDate, isCompany]); // Fetch whenever filterDate or isCompany changes
 
   const fetchAttendanceRecords = async () => {
     setLoading(true);
@@ -56,134 +66,71 @@ const CompanyAtt = () => {
       const companiesRef = collection(db, 'Companies');
       const companyQuery = query(companiesRef, where('email', '==', userEmail));
       const companySnapshot = await getDocs(companyQuery);
-  
+
       if (companySnapshot.empty) {
         setMessage('No company found for this email.');
         setLoading(false);
         return;
       }
-  
-      // Get the company value from the company document
+
       const companyData = companySnapshot.docs[0].data();
-      const companyName = companyData.company;  // assuming 'company' is the field name
-  
-      // Query for Time In records that match the company
-      const timeInQuery = filterDate
-        ? query(
-            attendanceCollectionRef,
-            where('TimeInStatus', '==', false),
-            where('DenyIn', '==', false),
-            where('Date', '==', new Date(filterDate)), // Filter by Date
-            where('company', '==', companyName) // Match company field
-          )
-        : query(
-            attendanceCollectionRef,
-            where('TimeInStatus', '==', false),
-            where('DenyIn', '==', false),
-            where('company', '==', companyName) // Match company field
-          );
-  
+      const companyName = companyData.company; // Assuming 'company' is the field name
+
+      // Fetch Time In records without filtering by date in Firestore
+      const timeInQuery = query(
+        attendanceCollectionRef,
+        where('TimeInStatus', '==', false),
+        where('DenyIn', '==', false),
+        where('company', '==', companyName)
+      );
+
       const timeInSnapshot = await getDocs(timeInQuery);
-      const timeInData = timeInSnapshot.docs
-        .map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        .filter((record) => record.TimeIn !== null); // Exclude records with null TimeIn
-  
-      // Add the student's first name to each record
-      const timeInRecordsWithName = await Promise.all(timeInData.map(async (record) => {
-        const studentRef = collection(db, 'Students');
-        const studentQuery = query(studentRef, where('email', '==', record.userEmail));
-        const studentSnapshot = await getDocs(studentQuery);
-        const studentData = studentSnapshot.docs[0]?.data();
-        return {
-          ...record,
-          name: studentData?.firstName || 'Unknown', // Default to 'Unknown' if name is not found
-        };
+      const timeInData = timeInSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
       }));
-  
-      setTimeInRecords(timeInRecordsWithName);
-  
-      // Query for Time Out records that match the company
-      const timeOutQuery = filterDate
-        ? query(
-            attendanceCollectionRef,
-            where('TimeOutStatus', '==', false),
-            where('DenyOut', '==', false),
-            where('Date', '==', new Date(filterDate)), // Filter by Date
-            where('company', '==', companyName) // Match company field
-          )
-        : query(
-            attendanceCollectionRef,
-            where('TimeOutStatus', '==', false),
-            where('DenyOut', '==', false),
-            where('company', '==', companyName) // Match company field
-          );
-  
+
+      // Fetch Time Out records without filtering by date in Firestore
+      const timeOutQuery = query(
+        attendanceCollectionRef,
+        where('TimeOutStatus', '==', false),
+        where('DenyOut', '==', false),
+        where('company', '==', companyName)
+      );
+
       const timeOutSnapshot = await getDocs(timeOutQuery);
-      const timeOutData = timeOutSnapshot.docs
-        .map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }))
-        .filter((record) => record.TimeOut !== null); // Exclude records with null TimeOut
-  
-      // Add the student's first name to each record for Time Out
-      const timeOutRecordsWithName = await Promise.all(timeOutData.map(async (record) => {
-        const studentRef = collection(db, 'Students');
-        const studentQuery = query(studentRef, where('email', '==', record.userEmail));
-        const studentSnapshot = await getDocs(studentQuery);
-        const studentData = studentSnapshot.docs[0]?.data();
-        return {
-          ...record,
-          name: studentData?.firstName || 'Unknown', // Default to 'Unknown' if name is not found
-        };
+      const timeOutData = timeOutSnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
       }));
-  
-      setTimeOutRecords(timeOutRecordsWithName);
+
+      // If filterDate is set, filter the records in JavaScript
+      if (filterDate) {
+        const filterDateObj = new Date(filterDate).setHours(0, 0, 0, 0);
+        
+        // Filter Time In records by date
+        const filteredTimeIn = timeInData.filter((record) => {
+          const recordDate = new Date(record.Date.seconds * 1000).setHours(0, 0, 0, 0);
+          return recordDate === filterDateObj;
+        });
+
+        // Filter Time Out records by date
+        const filteredTimeOut = timeOutData.filter((record) => {
+          const recordDate = new Date(record.Date.seconds * 1000).setHours(0, 0, 0, 0);
+          return recordDate === filterDateObj;
+        });
+
+        setTimeInRecords(filteredTimeIn);
+        setTimeOutRecords(filteredTimeOut);
+      } else {
+        setTimeInRecords(timeInData);
+        setTimeOutRecords(timeOutData);
+      }
     } catch (error) {
       console.error('Error fetching attendance records:', error);
       setMessage('Failed to fetch attendance records.');
     } finally {
       setLoading(false);
-    }
-  };
-  
-
-  const handleApprove = async (recordId, isTimeIn) => {
-    try {
-      const attendanceDocRef = doc(db, 'Attendance', recordId);
-
-      if (isTimeIn) {
-        await updateDoc(attendanceDocRef, { TimeInStatus: true });
-        setTimeInRecords(timeInRecords.filter((record) => record.id !== recordId));
-      } else {
-        await updateDoc(attendanceDocRef, { TimeOutStatus: true });
-        setTimeOutRecords(timeOutRecords.filter((record) => record.id !== recordId));
-      }
-      setMessage('Attendance approved successfully!');
-    } catch (error) {
-      console.error('Error approving attendance:', error);
-      setMessage('Failed to approve attendance.');
-    }
-  };
-
-  const handleDeny = async (recordId, isTimeIn) => {
-    try {
-      const attendanceDocRef = doc(db, 'Attendance', recordId);
-
-      if (isTimeIn) {
-        await updateDoc(attendanceDocRef, { DenyIn: true });
-        setTimeInRecords(timeInRecords.filter((record) => record.id !== recordId));
-      } else {
-        await updateDoc(attendanceDocRef, { DenyOut: true });
-        setTimeOutRecords(timeOutRecords.filter((record) => record.id !== recordId));
-      }
-      setMessage('Attendance denied successfully!');
-    } catch (error) {
-      console.error('Error denying attendance:', error);
-      setMessage('Failed to deny attendance.');
     }
   };
 
@@ -198,7 +145,6 @@ const CompanyAtt = () => {
       <div className="bd1">
         <div className="dashboard">
           <HeaderComp />
-  
           <div className="SD-container">
             <div className="grid">
               <div className="col-span-3 perf">
@@ -209,10 +155,10 @@ const CompanyAtt = () => {
                 <img src="../src/pictures/Coordinator.png" alt="" />
               </div>
             </div>
-  
+
             <div className="company-attendance-management">
               {message && <p className="company-message">{message}</p>}
-  
+
               {/* Date Filter */}
               <div className="company-filter-date">
                 <input
@@ -221,9 +167,9 @@ const CompanyAtt = () => {
                   onChange={(e) => setFilterDate(e.target.value)}
                 />
               </div>
-  
+
               {loading && <p className="company-loading">Loading...</p>}
-  
+
               {/* Time In Section */}
               <div className="company-time-in-section">
                 <h3>Pending Student Time In</h3>
@@ -235,7 +181,7 @@ const CompanyAtt = () => {
                     <div className="company-attendance-header">Time In</div>
                     <div className="company-attendance-header"></div>
                   </div>
-  
+
                   {timeInRecords.length > 0 ? (
                     timeInRecords.map((record) => (
                       <div className="company-attendance-row-wrapper" key={record.id}>
@@ -248,19 +194,19 @@ const CompanyAtt = () => {
                           </div>
                         </div>
                         <div className="approve-deny-buttons">
-                            <button
-                              className="company-approve"
-                              onClick={() => handleApprove(record.id, true)}
-                            >
-                              Approve
-                            </button>
-                            <button
-                              className="company-deny"
-                              onClick={() => handleDeny(record.id, true)}
-                            >
-                              Deny
-                            </button>
-                          </div>
+                          <button
+                            className="company-approve"
+                            onClick={() => handleApprove(record.id, true)}
+                          >
+                            Approve
+                          </button>
+                          <button
+                            className="company-deny"
+                            onClick={() => handleDeny(record.id, true)}
+                          >
+                            Deny
+                          </button>
+                        </div>
                       </div>
                     ))
                   ) : (
@@ -268,9 +214,9 @@ const CompanyAtt = () => {
                   )}
                 </div>
               </div>
-  
+
               <div className='line-boundary'></div>
-              
+
               {/* Time Out Section */}
               <div className="company-time-out-section">
                 <h3>Pending Student Time Out</h3>
@@ -282,7 +228,7 @@ const CompanyAtt = () => {
                     <div className="company-attendance-header">Time Out</div>
                     <div className="company-attendance-header"></div>
                   </div>
-  
+
                   {timeOutRecords.length > 0 ? (
                     timeOutRecords.map((record) => (
                       <div className="company-attendance-row-wrapper" key={record.id}>
@@ -293,22 +239,21 @@ const CompanyAtt = () => {
                           <div className="company-attendance-cell">
                             {formatTimestamp(record.TimeOut)}
                           </div>
-                          
                         </div>
                         <div className="approve-deny-buttons">
-                            <button
-                              className="company-approve"
-                              onClick={() => handleApprove(record.id, false)}
-                            >
-                              Approve
-                            </button>
-                            <button
-                              className="company-deny"
-                              onClick={() => handleDeny(record.id, false)}
-                            >
-                              Deny
-                            </button>
-                          </div>
+                          <button
+                            className="company-approve"
+                            onClick={() => handleApprove(record.id, false)}
+                          >
+                            Approve
+                          </button>
+                          <button
+                            className="company-deny"
+                            onClick={() => handleDeny(record.id, false)}
+                          >
+                            Deny
+                          </button>
+                        </div>
                       </div>
                     ))
                   ) : (
@@ -322,9 +267,6 @@ const CompanyAtt = () => {
       </div>
     </>
   );
-  
-  
-  
 };
 
 export default CompanyAtt;

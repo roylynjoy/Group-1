@@ -177,7 +177,7 @@ const SupervisorAtt = () => {
                   <h1>Welcome Back, Supervisor!</h1>
                   <span>Always stay connected in your Fieldmate</span>
                 </div>
-                <img src="../src/pictures/user1.1.png" alt="" />
+                <img src="../src/pictures/Supervisor.png" alt="" />
               </div>
 
             </div>
