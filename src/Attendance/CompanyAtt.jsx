@@ -172,7 +172,7 @@ const CompanyAtt = () => {
 
               {/* Time In Section */}
               <div className="company-time-in-section">
-                <h3>Pending Student Time In</h3>
+                <p className='time-sections'>Pending Student Time In</p>
                 <div className="company-attendance-list-section">
                   <div className="company-attendance-header-row">
                     <div className="company-attendance-header"></div>
@@ -219,7 +219,7 @@ const CompanyAtt = () => {
 
               {/* Time Out Section */}
               <div className="company-time-out-section">
-                <h3>Pending Student Time Out</h3>
+                <p className='time-sections'>Pending Student Time Out</p>
                 <div className="company-attendance-list-section">
                   <div className="company-attendance-header-row">
                     <div className="company-attendance-header"></div>

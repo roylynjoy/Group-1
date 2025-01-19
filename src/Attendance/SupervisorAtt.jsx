@@ -182,7 +182,7 @@ const SupervisorAtt = () => {
 
             </div>
             <div className="supervisor-container">
-                {message && <p>{message}</p>} 
+                {/* {message && <p>{message}</p>}  */}
   
                 {selectedView === 'attendance' ? (
                   <div className="attendance-section">
@@ -255,7 +255,7 @@ const SupervisorAtt = () => {
                           ))}
                         </>
                       ) : (
-                        <p>No records to display.</p>
+                        <p className='no-record-message'>No records to display.</p>
                       )}
                     </div>
                   </div>
