@@ -12,7 +12,6 @@ const homepage = () => {
   };
   return (
         <div className="homepage"> 
-            <div className="deer"></div>
               <header className="hp-header">
                 <h1>Fieldmate</h1>
                 <h6 id='home'>HOME</h6>

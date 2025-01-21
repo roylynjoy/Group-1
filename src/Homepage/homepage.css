@@ -44,6 +44,7 @@ body {
 
 .hp-header h6{
  margin-left: 70px;
+ font-size: 23px;
 }
 
 .hp-header p {
@@ -58,9 +59,9 @@ body {
 
 .deer{
   position: absolute;
-  width: 900px;
-  height: 900px;
-  left: 749.95px;
+  width: 1200px;
+  height: 1100px;
+  left: 829.95px;
   top: -128px;
 
   background: #FFF0C1;
@@ -70,9 +71,9 @@ body {
 
 .deer img{
   position: absolute;
-  width: 730px;
-  height: 730px;
-  left: 20.36px;
+  width: 930px;
+  /* height: 780px; */
+  left: -35px;
   top: 110.7px; 
   filter: drop-shadow(20px 20px 20px rgba(0, 0, 0, 0.45));
 }
@@ -83,8 +84,8 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-left: -30px;
-  height: 110vh;
+
+  height: 100vh;
   width: 100vw;
   
 }
@@ -92,12 +93,12 @@ body {
 .fm-container h1{
   position: absolute;
   width: 1034.96px;;
-  left: 2.31px;
+  left: 62.31px;
   top: 160.78px;
 
   font-style: 'Work Sans';
   font-weight: 600;
-  font-size: 120px;
+  font-size: 150px;
   line-height: 176px;
   text-align: center;
 
@@ -110,12 +111,12 @@ body {
   position: absolute;
   width: 1034.96px;
   height: 95.42px;
-  left: -5.03px;
+  left: 65.03px;
   margin-top: -20px;
 
   font-style:'Work Sans';
   font-weight: 500;
-  font-size: 43px;
+  font-size: 55px;
   line-height: 65px;
   text-align: center;
 
@@ -126,11 +127,11 @@ body {
   position: absolute;
   width: 866.13px;
   height: 110.1px;
-  left: 90.39px;
+  left:150.39px;
   margin-top: 70px;
 
   font-style:'Work Sans';
-  font-size: 20px;
+  font-size: 30px;
   line-height: 35px;
   text-align: center;
 
@@ -149,8 +150,9 @@ body {
   border-radius: 50px;
   position: absolute;
   filter: drop-shadow(-3px 7px 8px rgba(0, 0, 0, 0.25));
-  margin-top: 150px;
-  left: 450px;
+  margin-top: 170px;
+  left: 510px;
+  font-size: 25px;
 }
 
 .about-container{
@@ -160,7 +162,7 @@ body {
   width: 100vw;
   height: 1750.46px;
   left: 2.31px;
-  top: 100vh;
+  top: 110vh;
 
   background: #F7F4EB;
   border-radius: 50px 50px 0px 0px;
