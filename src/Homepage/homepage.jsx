@@ -26,7 +26,8 @@ const homepage = () => {
                 <div id='fm'>
                   <h1>Fieldmate:</h1>
                   <h2>BSA/BSAIS FIELD PRACTICUM</h2>
-                  <p>Your guide to success in accountancy field practicums.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.  
+                  </p>
                   <button id='cta-button'><Link to="/Login">GET STARTED</Link></button>
                 </div>
               </div>
