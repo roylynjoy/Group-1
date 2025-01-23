@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './SD.css';
-import '../index.css';
 import Header from '../comp/header';
 import Calendar from "./calendar";
 import { IoIosArrowUp } from "react-icons/io";

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
 import HeaderSup from '../comp/headerSup';
-import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { db } from '../firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
@@ -16,6 +16,8 @@ const SupervisorAtt = () => {
   const [selectedView, setSelectedView] = useState('attendance');
   const [isSupervisor, setIsSupervisor] = useState(false);
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAttendanceId, setSelectedAttendanceId] = useState(null);
 
   const navigate = useNavigate();
   const auth = getAuth();
@@ -59,11 +61,6 @@ const SupervisorAtt = () => {
 
   const toggleCalendar = () => {
     setIsCalendarOpen(!isCalendarOpen);
-  };
-
-  const formatDateDisplay = (date) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' };
-    return date.toLocaleDateString('en-US', options);
   };
 
   useEffect(() => {
@@ -149,7 +146,6 @@ const SupervisorAtt = () => {
     return timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   };
 
-
   const getAttendanceStatus = (attendance) => {
     if (attendance.TimeInStatus && attendance.TimeOutStatus) {
       return 'Approved';
@@ -164,12 +160,29 @@ const SupervisorAtt = () => {
     });
   };
 
+  const openModal = (attendanceId) => {
+    setSelectedAttendanceId(attendanceId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedAttendanceId(null);
+  };
+
+  const handleModalConfirm = () => {
+    if (selectedAttendanceId) {
+      handleRecordAttendance(selectedAttendanceId);
+    }
+    closeModal();
+  };
+
   return (
     <>
       <div className="bd1">
         <div className="dashboard">
           <HeaderSup />
-  
+
           <div className="SD-container">
             <div className="grid">
               <div className="col-span-3 perf">
@@ -179,53 +192,34 @@ const SupervisorAtt = () => {
                 </div>
                 <img src="../src/pictures/Supervisor.png" alt="" />
               </div>
-
             </div>
             <div className="supervisor-container">
-                {/* {message && <p>{message}</p>}  */}
-  
                 {selectedView === 'attendance' ? (
                   <div className="attendance-section">
                     <div className="attendance-filter">
                       <div className="date-display">
-                        <span>{formatDateDisplay(date)}</span>
-                        <button
-                          className="calendar-toggle-button"
-                          onClick={toggleCalendar} // Toggle calendar visibility
-                        >
-                          <IoIosArrowDown />
-                        </button>
+                        <input
+                          type="date"
+                          value={date.toISOString().substring(0, 10)}
+                          onChange={handleDateChange}
+                          className="date-input"
+                        />
                       </div>
-
-                      {/* Position the calendar relative to the container */}
-                      {isCalendarOpen && (
-                        <div className="calendar-popup-container">
-                          <input
-                            id="calendar-input"
-                            type="date"
-                            value={date.toISOString().substring(0, 10)}
-                            onChange={handleDateChange}
-                            className="date-input-popup"
-                          />
-                        </div>
-                      )}
                     </div>
 
                     <div className="attendance-list-section">
                       {attendances.length > 0 ? (
                         <>
-                          {/* Attendance Headers */}
                           <div className="attendance-header-row">
-                            <div className="attendance-header"></div> {/* Blank for profile */}
+                            <div className="attendance-header"></div> 
                             <div className="attendance-header">Name</div>
                             <div className="attendance-header">Company</div>
                             <div className="attendance-header">Time In</div>
                             <div className="attendance-header">Time Out</div>
                             <div className="attendance-header">Status</div>
-                            <div className="attendance-header"></div> {/* Blank for Record button */}
+                            <div className="attendance-header"></div> 
                           </div>
 
-                          {/* Attendance Rows */}
                           {attendances.map((attendance) => (
                             <div className="attendance-row-wrapper" key={attendance.id}>
                               <div className="attendance-row">
@@ -244,7 +238,7 @@ const SupervisorAtt = () => {
                               </div>
                               <div className="attendance-record-button">
                                 <button
-                                  onClick={() => handleRecordAttendance(attendance.id)}
+                                  onClick={() => openModal(attendance.id)}
                                   disabled={getAttendanceStatus(attendance) === "Pending"}
                                   className="record-button"
                                 >
@@ -267,6 +261,17 @@ const SupervisorAtt = () => {
         </div>
       </div>
 
+      {isModalOpen && (
+        <div className="custom-modal-overlay">
+          <div className="custom-modal">
+            <p>Are you sure you want to mark this record as recorded?</p>
+            <div className="custom-modal-buttons">
+              <button className="custom-modal-yes" onClick={confirmAction}>Yes</button>
+              <button className="custom-modal-no" onClick={cancelAction}>No</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

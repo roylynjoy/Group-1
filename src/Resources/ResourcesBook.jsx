@@ -103,7 +103,7 @@ const ResourcesBook = () => {
           </div>
         </div>
     </body>
-    <footer className="foot1 adjust">
+    <footer className="foot">
       <p>&copy; 2025 LVCC inc... All rights reserved.</p>
       <p>Privacy Policy | Terms of Service </p>
       <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>

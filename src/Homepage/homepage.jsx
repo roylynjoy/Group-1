@@ -12,7 +12,6 @@ const homepage = () => {
   };
   return (
         <div className="homepage"> 
-            <div className="deer"></div>
               <header className="hp-header">
                 <h1>Fieldmate</h1>
                 <h6 id='home'>HOME</h6>
@@ -27,29 +26,35 @@ const homepage = () => {
                 <div id='fm'>
                   <h1>Fieldmate:</h1>
                   <h2>BSA/BSAIS FIELD PRACTICUM</h2>
-                  <p>Your guide to success in accountancy field practicums.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.  
+                  </p>
                   <button id='cta-button'><Link to="/Login">GET STARTED</Link></button>
                 </div>
               </div>
 
               <section className="about-container" id='about'>
-                <h2>About Us</h2>
+                <h2>ABOUT US</h2>
                 <div className="content">
                   <div className="card-1">
                     <img src="../src/pictures/lv.png" alt="La Verdad Christian College" />
+                    <div className='LV'>
                     <h3>La Verdad Christian College</h3>
                     <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
-                  </div>
+                  </div></div>
                   <div className="card-2">
-                    <img src="src\pictures\course.png" alt="Accountancy Course" />
+                    
+                    <div className='LV'>
                     <h3>Accountancy Course</h3>
                     <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
+                    </div>
+                    <img src="src\pictures\course.png" alt="Accountancy Course" />
                   </div>
                   <div className="card-3">
                     <img src="src\pictures\JPIA.png" alt="Junior Philippine Institute of Accountancy" />
+                    <div className='LV'>
                     <h3>Junior Philippine Institute of Accountancy</h3>
                     <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
-                  </div>
+                  </div></div>
                 </div>
               </section>
 

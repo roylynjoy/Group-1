@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import './Resources.css'
+import '../Resources/Resources.css'
 import Header from '../comp/header';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
 import { TiHome } from "react-icons/ti";
+import { FaPlus } from "react-icons/fa";
+
 
 
 
 
 const Third = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
 
   const [showLogoutBox, setShowLogoutBox] = useState(false);
     const navigate = useNavigate();
@@ -36,10 +32,36 @@ const Third = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-      <Header/>              
+      <header className="header">
+        <div id="logo">
+          <img src="../src/pictures/logo.png" alt="Logo" />
+          <h1>Fieldmate</h1>
+        </div>
+                            
+        <div className="user-profile">
+          <i className="fa-solid fa-bell"></i>
+          <i className="fa-solid fa-envelope"></i>
+          <img src="../src/pictures/user1.png" alt="User" onClick={handleProfileClick} style={{ cursor: 'pointer' }}/>
+          {showLogoutBox && (
+            <div className="logout-box">
+              <button id="edit">Edit Profile</button>
+              <button id="edit">Settings</button>
+              <button onClick={handleLogout} className="logout-button">Logout</button>
+            </div>
+          )}
+        </div>
+      </header>
+                  
+      <div className="dash">
+        <span>Supervisor Resources</span>
+          <div id="img">
+            <Link to="/" ><TiHome id="icon"/></Link>
+            <FaUserCheck id="icon"/>
+            <ImBooks id="icon"/>
+          </div>
+      </div>
 
         <div className="SD-container">
-        <div id="perfAtt"></div>
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">
@@ -48,15 +70,15 @@ const Third = () => {
                 <div id="ST-cont2">
                   <p id="sub">Subject Title</p>
                 </div>
-                <div id="ST-cont3">
-                  <p id="sub ">Subject Title</p>
+                <div id="add">
+                  <Link to="/Supervisor/AddBooks"><FaPlus /></ Link>
                 </div>
                 
             </div>
-            <h5 className="fourth"><Link to="/Resources">Fourth</Link></h5>
+            <h5 className="fourth"><Link to="/Supervisor/SupervisorResources">Fourth</Link></h5>
             <h5 className="third">Third</h5>
-            <h5 className="title3"><Link to="/Resources/Second">Second</Link></h5>
-            <h5 className="title4"><Link to="/Resources/First">First</Link></h5>
+            <h5 className="title3"><Link to="/Supervisor/SSecond">Second</Link></h5>
+            <h5 className="title4"><Link to="/Supervisor/SFirst">First</Link></h5>
             
           </div>
 

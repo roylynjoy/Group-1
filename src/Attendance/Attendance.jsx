@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
-import '../index.css';
 import Header from '../comp/header';
 import { IoIosArrowUp } from "react-icons/io";
 import { db } from '../firebase';
@@ -285,13 +284,13 @@ const Attendance = () => {
 
   return (
     <>
-      <div className="bd1"> {/* Changed from <body> to <div> */}
+      <div className="bd2"> {/* Changed from <body> to <div> */}
         <div className="dashboard">
           <Header />
 
           <div className="SD-container">
-            <div className="grid">
-              <div className="col-span-3 perfAtt">
+            <div className="">
+ 
                 <div id="perfAtt">
                   <h1>Date: {currentDate} | {currentDay}</h1>
                   <button
@@ -303,7 +302,7 @@ const Attendance = () => {
                     Submit Attendance
                   </button>
                 </div>
-              </div>
+
             </div>
             <div className="prompt">
               {message && <p>{message}</p>}
@@ -345,7 +344,7 @@ const Attendance = () => {
           </div>
         </div>
       </div>
-      <footer className="foot1">
+      <footer className="foot2">
         <p>&copy; 2025 LVCC inc... All rights reserved.</p>
         <p>Privacy Policy | Terms of Service </p>
         <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>

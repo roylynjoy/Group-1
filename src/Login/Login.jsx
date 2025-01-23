@@ -81,7 +81,7 @@ function Login() {
     const handleSignInWithGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
-            navigate('/studentDashboard');
+            navigate('/tudentDashboard');
         } catch (error) {
             setError(`Error signing in with Google: ${error.message}`);
         }
