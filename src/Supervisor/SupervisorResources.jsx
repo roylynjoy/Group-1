@@ -16,6 +16,7 @@ const SupervisorResources = () => {
       <Header/>
       <NavSupervisor />
         <div className="SD-container">
+        <div id="perfAtt"></div>
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">

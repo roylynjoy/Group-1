@@ -65,6 +65,94 @@
   color: gray;
 }
 
+.edit-profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile h3 {
+  font-weight: bold;
+  color: black;
+  margin-left: 10px;
+}
+
+.profile-cont {
+  display: flex;
+  align-items: center;
+}
+
+.profile-cont img {
+  margin: 20px;
+}
+
+.modal-settings {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-settings-cont {
+  background: white;
+  width: 30vw;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.settings-form input {
+  background-color: #EDEDED;
+}
+
+.password-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: black 1px solid;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #EDEDED;
+}
+
+.settings-form h1 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.eye-button {
+  cursor: pointer;
+}
+
+.change-button {
+  background-color: #FDB853;
+  border: black 1px solid;
+  width: fit-content;
+  border-radius: 50px;
+  padding: 5px 15px;
+  font-weight: bold;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
+  transition: ease-in-out 0.1s;
+}
+
+.change-button:hover {
+  background-color: #bd842f;
+  
+}
+
 .modal-title {
   font-weight: bold;
   color: black;
@@ -139,18 +227,26 @@
 }
 
 .logout-box {
-  width: 150px;
+  width: 25vw;
   position: absolute;
   top: 100%;
+  right: 1%;
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
   margin-top: 8px;
-  margin-right: -50px;
+  margin-right: -60px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   z-index: 100;
   color: gray;
+  display: flex;
+  flex-direction: column;
+}
+
+.logout-box hr {
+  width: 80%;
+  place-self: center;
 }
 
 .logout-button, #edit {

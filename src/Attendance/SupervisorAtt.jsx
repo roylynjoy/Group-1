@@ -149,9 +149,9 @@ const SupervisorAtt = () => {
 
   const getAttendanceStatus = (attendance) => {
     if (attendance.TimeInStatus && attendance.TimeOutStatus) {
-      return 'Approved';
+      return { status: 'Approved', color: 'green' };  // Green for approved
     }
-    return 'Pending';
+    return { status: 'Pending', color: 'orange' };  // Orange for pending
   };
 
   const scrollToTop = () => {
@@ -245,16 +245,19 @@ const SupervisorAtt = () => {
                                 <div className="attendance-cell">{attendance.company}</div>
                                 <div className="attendance-cell">{formatTimestamp(attendance.TimeIn)}</div>
                                 <div className="attendance-cell">{formatTimestamp(attendance.TimeOut)}</div>
-                                <div className="attendance-cell">{getAttendanceStatus(attendance)}</div>
+                                <div className="attendance-cell">
+                                  <p style={{ color: getAttendanceStatus(attendance).color }}>
+                                  {getAttendanceStatus(attendance).status}</p>
+                                </div>
                               </div>
                               <div className="attendance-record-button">
-                                <button
-                                  onClick={() => openModal(attendance.id)}
-                                  disabled={getAttendanceStatus(attendance) === "Pending"}
-                                  className="record-button"
-                                >
-                                  Record
-                                </button>
+                              <button
+                                onClick={() => openModal(attendance.id)}
+                                disabled={getAttendanceStatus(attendance).status === "Pending"}
+                                className="record-button"
+                              >
+                                Record
+                              </button>
                               </div>
                             </div>
                           ))}

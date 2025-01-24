@@ -1,14 +1,28 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { IoEye, IoEyeOff } from "react-icons/io5"; // Import eye icons for toggling visibility
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [showLogoutBox, setShowLogoutBox] = useState(false);
   const [showBellModal, setShowBellModal] = useState(false);
   const [showEnvelopeModal, setShowEnvelopeModal] = useState(false);
-  const [selectedMessage, setSelectedMessage] = useState(null); // For selected message
-  const [isDetailsView, setIsDetailsView] = useState(false); // For switching views
+  const [showSettingsModal, setShowSettingsModal] = useState(false); // State for settings modal
+  const [passwordVisibility, setPasswordVisibility] = useState({
+    oldPassword: false,
+    newPassword: false,
+    confirmPassword: false,
+  }); // State for password visibility
+  const [isDetailsView, setIsDetailsView] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState(null);
   const navigate = useNavigate();
+
+  const togglePasswordVisibility = (field) => {
+    setPasswordVisibility((prevState) => ({
+      ...prevState,
+      [field]: !prevState[field],
+    }));
+  };
 
   const handleProfileClick = () => {
     setShowLogoutBox(!showLogoutBox);
@@ -55,6 +69,15 @@ function Header() {
   const resetModalState = () => {
     setIsDetailsView(false);
     setSelectedMessage(null);
+  };
+
+  const handleSettingsClick = () => {
+    setShowSettingsModal(true);
+    setShowLogoutBox(false); // Close logout box when settings modal is open
+  };
+
+  const handleCloseSettingsModal = () => {
+    setShowSettingsModal(false);
   };
 
   const messages = [
@@ -129,8 +152,19 @@ function Header() {
           />
           {showLogoutBox && (
             <div className="logout-box">
-              <button id="edit">Edit Profile</button>
-              <button id="edit">Settings</button>
+              <div className="edit-profile">
+                <h3>Profile</h3>
+                <div className="profile-cont">
+                  <img
+                    src="/images/user1.png"
+                    alt="User"
+                  />
+                  <p>Joana Diane Doe</p>
+                </div>
+              </div>
+              <hr />
+              <button id="edit" onClick={handleSettingsClick}>Settings</button>
+              <hr />
               <button onClick={handleLogout} className="logout-button">
                 Logout
               </button>
@@ -138,6 +172,62 @@ function Header() {
           )}
         </div>
       </header>
+
+      {/* Settings Modal */}
+      {showSettingsModal && (
+        <div className="modal-settings">
+          <div className="modal-settings-cont">
+            <button onClick={handleCloseSettingsModal} className="back-button">
+              <IoMdArrowRoundBack />
+            </button>
+
+            <div className="settings-form">
+              <h1>Settings</h1>
+
+              <div className="password-field">
+                <input
+                  type={passwordVisibility.oldPassword ? "text" : "password"}
+                  placeholder="Old Password"
+                />
+                <button
+                  className="eye-button"
+                  onClick={() => togglePasswordVisibility("oldPassword")}
+                >
+                  {passwordVisibility.oldPassword ? <IoEyeOff /> : <IoEye />}
+                </button>
+              </div>
+
+              <div className="password-field">
+                <input
+                  type={passwordVisibility.newPassword ? "text" : "password"}
+                  placeholder="New Password"
+                />
+                <button
+                  className="eye-button"
+                  onClick={() => togglePasswordVisibility("newPassword")}
+                >
+                  {passwordVisibility.newPassword ? <IoEyeOff /> : <IoEye />}
+                </button>
+              </div>
+
+              <div className="password-field">
+                <input
+                  type={passwordVisibility.confirmPassword ? "text" : "password"}
+                  placeholder="Confirm Password"
+                />
+                <button
+                  className="eye-button"
+                  onClick={() => togglePasswordVisibility("confirmPassword")}
+                >
+                  {passwordVisibility.confirmPassword ? <IoEyeOff /> : <IoEye />}
+                </button>
+              </div>
+
+              <button className="change-button">Change</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
