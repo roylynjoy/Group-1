@@ -330,7 +330,7 @@ const Attendance = () => {
                 </div>
                 <div className="att-text">
                   <label>Status:</label>
-                  <p>{timeInStatus}</p>
+                  <p style={{color: timeInStatus === 'Pending' ? 'orange' : timeInStatus === 'Approved' ? 'green' : 'red',}}>{timeInStatus}</p>
                 </div>
                 <button
                   onClick={() => handleAttendanceSubmit('TimeIn')}
@@ -346,7 +346,7 @@ const Attendance = () => {
                 </div>
                 <div className="att-text">
                   <label>Status:</label>
-                  <p>{timeOutStatus}</p>
+                  <p style={{color: timeInStatus === 'Pending' ? 'orange' : timeInStatus === 'Approved' ? 'green' : 'red',}}>{timeOutStatus}</p>
                 </div>
                 <button
                   onClick={() => handleAttendanceSubmit('TimeOut')}
