@@ -155,7 +155,7 @@ const Attendance = () => {
           // Skip fetching if "Submit All" was pressed or Time-In is already submitted
           return;
         }
-
+  
         const attendanceRef = collection(db, 'Attendance');
         const q = query(
           attendanceRef,
@@ -163,7 +163,7 @@ const Attendance = () => {
           where('userEmail', '==', userEmail)
         );
         const querySnapshot = await getDocs(q);
-
+  
         if (querySnapshot.empty) {
           // If no data is found, set default values
           setTimeIn('00:00');
@@ -174,21 +174,40 @@ const Attendance = () => {
           // Data exists, update the state accordingly
           querySnapshot.forEach((doc) => {
             const data = doc.data();
+            
+            // Set TimeIn and TimeOut values
             setTimeIn(data.TimeIn ? data.TimeIn.toDate().toLocaleTimeString() : '00:00');
             setTimeOut(data.TimeOut ? data.TimeOut.toDate().toLocaleTimeString() : '00:00');
-            setTimeInStatus(data.TimeInStatus ? 'Approved' : 'Pending');
-            setTimeOutStatus(data.TimeOutStatus ? 'Approved' : 'Pending');
+            
+            // Determine TimeInStatus
+            if (data.DenyIn) {
+              setTimeInStatus('Denied');
+            } else if (data.TimeInStatus) {
+              setTimeInStatus('Approved');
+            } else {
+              setTimeInStatus('Pending');
+            }
+  
+            // Determine TimeOutStatus
+            if (data.DenyOut) {
+              setTimeOutStatus('Denied');
+            } else if (data.TimeOutStatus) {
+              setTimeOutStatus('Approved');
+            } else {
+              setTimeOutStatus('Pending');
+            }
           });
         }
       } catch (error) {
         console.error('Error fetching attendance data:', error);
       }
     };
-
+  
     if (currentDate && userEmail && !isSubmitAllPressed) {
       fetchAttendanceData();
     }
   }, [currentDate, userEmail, isSubmitAllPressed]);
+  
 
   const handleAttendanceSubmit = async (type) => {
     try {
