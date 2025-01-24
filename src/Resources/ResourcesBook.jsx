@@ -39,7 +39,7 @@ const ResourcesBook = () => {
       <div className="Resources">
         <header className="header">
           <div id="logo">
-            <img src="../src/pictures/logo.png" alt="Logo" />
+            <img src="/images/logo.png" alt="Logo" />
           <h1>Fieldmate</h1>
           </div>
           
@@ -48,7 +48,7 @@ const ResourcesBook = () => {
             <i className="fa-solid fa-bell"></i>
             <i className="fa-solid fa-envelope"></i>
             <img 
-              src="../src/pictures/user1.png" 
+              src="/images/user1.png" 
               alt="User" 
               onClick={handleProfileClick}
               style={{ cursor: 'pointer' }}
@@ -75,7 +75,7 @@ const ResourcesBook = () => {
         </div>
         
         <div className="bg">   
-            <img src="../src/pictures/bg2.png" alt="" /> 
+            <img src="/images/bg2.png" alt="" /> 
             <div className="bag">
             <div className="Book-container">
               <div className="MA">

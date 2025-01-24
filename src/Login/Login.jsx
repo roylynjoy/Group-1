@@ -210,7 +210,7 @@ function Login() {
                         </button>
                         <p>or</p>
                         <button id="google" onClick={handleSignInWithGoogle}>
-                            <img src="src\pictures\GOOGLE.webp" alt="" /> Sign in with Google
+                            <img src="/images/GOOGLE.webp" alt="" /> Sign in with Google
                         </button>
                         {error && <p>{error}</p>}
                     </form>

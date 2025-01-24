@@ -190,7 +190,7 @@ const SupervisorAtt = () => {
                   <h1>Welcome Back, Supervisor!</h1>
                   <span>Always stay connected in your Fieldmate</span>
                 </div>
-                <img src="../src/pictures/Supervisor.png" alt="" />
+                <img src="/images/Supervisor.png" alt="" />
               </div>
             </div>
             <div className="supervisor-container">
@@ -226,7 +226,7 @@ const SupervisorAtt = () => {
                                 <div className="attendance-cell">
                                   <img
                                     className="profile"
-                                    src="../src/pictures/blank-profile.jpg"
+                                    src="/images/blank-profile.jpg"
                                     alt="Profile"
                                   />
                                 </div>

@@ -220,7 +220,7 @@ const CompanyAtt = () => {
                   <h1>Welcome Back, Coordinator!</h1>
                   <span>Always stay connected in your Fieldmate</span>
                 </div>
-                <img src="../src/pictures/Coordinator.png" alt="" />
+                <img src="/images/Coordinator.png" alt="" />
               </div>
             </div>
   
@@ -259,7 +259,7 @@ const CompanyAtt = () => {
                         <div className="company-attendance-row">
                           <div className="company-attendance-cell">
                             <img
-                              src="../src/pictures/blank-profile.jpg"
+                              src="/images/blank-profile.jpg"
                               alt=""
                             />
                           </div>
@@ -320,7 +320,7 @@ const CompanyAtt = () => {
                         <div className="company-attendance-row">
                           <div className="company-attendance-cell">
                             <img
-                              src="../src/pictures/blank-profile.jpg"
+                              src="/images/blank-profile.jpg"
                               alt=""
                             />
                           </div>

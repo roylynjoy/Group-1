@@ -138,27 +138,27 @@
 }
 
 #ST-cont1{
-    background: url(../src/pictures/MA.png);
+    background: url(/images//MA.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
 }
 
 #ST-cont2{
-    background: url(../src/pictures/AE.png);
+    background: url(/images//AE.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
 }
 
 #ST-cont3{
-    background: url(../src/pictures/BAA.png);
+    background: url(/images//BAA.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
 }
 #ST-cont4{
-    background: url(../src/pictures/FA.png);
+    background: url(/images//FA.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;

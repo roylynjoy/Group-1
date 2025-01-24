@@ -43,7 +43,7 @@ function header() {
     <div>
       <header className="header">
         <div id="logo">
-          <img src="../src/pictures/logo.png" alt="Logo" />
+          <img src="/images/logo.png" alt="Logo" />
           <h1>Fieldmate</h1>
         </div>
 
@@ -53,7 +53,7 @@ function header() {
             <div className="modal-bell">
               <h3>Messages</h3>
               <div className="msg-cont">
-                <img className="img-modal" src="../src/pictures/blank-profile.jpg" alt="" />
+                <img className="img-modal" src="/images/blank-profile.jpg" alt="" />
                 <div className="msg">
                   <p className="name">Mr. John</p>
                   <p className="announce">Announcement...</p>
@@ -69,21 +69,21 @@ function header() {
             <div className="modal-envelop">
               <h3>Messages</h3>
               <div className="msg-cont">
-                <img className="img-modal"  src="../src/pictures/blank-profile.jpg" alt="" />
+                <img className="img-modal"  src="/images/blank-profile.jpg" alt="" />
                 <div className="msg">
                   <p className="name">Mr. John</p>
                   <p className="announce">Announcement...</p>
                 </div>
               </div>
               <div className="msg-cont">
-                <img className="img-modal"  src="../src/pictures/blank-profile.jpg" alt="" />
+                <img className="img-modal"  src="/images/blank-profile.jpg" alt="" />
                 <div className="msg">
                   <p className="name">Mr. John</p>
                   <p className="announce">Announcement...</p>
                 </div>
               </div>
               <div className="msg-cont">
-                <img className="img-modal"  src="../src/pictures/blank-profile.jpg" alt="" />
+                <img className="img-modal"  src="/images/blank-profile.jpg" alt="" />
                 <div className="msg">
                   <p className="name">Mr. John</p>
                   <p className="announce">Announcement...</p>
@@ -94,7 +94,7 @@ function header() {
           )}
 
           <img
-            src="../src/pictures/user1.png"
+            src="/images/user1.png"
             alt="User"
             onClick={handleProfileClick}
             style={{ cursor: "pointer" }}

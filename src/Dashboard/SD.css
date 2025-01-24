@@ -177,7 +177,7 @@
   margin-bottom: 50px;
 }
 .welcome {
-  background: url(../src/pictures/bg2.png);
+  background: url(/images/bg2.png);
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center; 
@@ -216,7 +216,7 @@
   height: 300px;
   margin: 40px;
   border-radius: 30px;
-  background: url("../src/pictures/bg2.png");
+  background: url("/images/bg2.png");
   background-size: cover; 
   background-repeat: no-repeat; 
   background-position: center;
