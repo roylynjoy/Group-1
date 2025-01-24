@@ -1,21 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { TiHome } from "react-icons/ti";
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 function Header() {
   const [showLogoutBox, setShowLogoutBox] = useState(false);
   const [showBellModal, setShowBellModal] = useState(false);
   const [showEnvelopeModal, setShowEnvelopeModal] = useState(false);
+  const [selectedMessage, setSelectedMessage] = useState(null); // For selected message
+  const [isDetailsView, setIsDetailsView] = useState(false); // For switching views
   const navigate = useNavigate();
 
   const handleProfileClick = () => {
     setShowLogoutBox(!showLogoutBox);
     if (!showLogoutBox) {
-      setShowBellModal(false); // Close bell modal when opening logout box
-      setShowEnvelopeModal(false); // Close envelope modal when opening logout box
+      setShowBellModal(false);
+      setShowEnvelopeModal(false);
     }
   };
 
@@ -28,18 +27,74 @@ function Header() {
   const toggleBellModal = () => {
     setShowBellModal(!showBellModal);
     if (!showBellModal) {
-      setShowEnvelopeModal(false); // Close envelope modal when opening bell modal
-      setShowLogoutBox(false); // Close logout box when opening bell modal
+      setShowEnvelopeModal(false);
+      setShowLogoutBox(false);
     }
+    resetModalState();
   };
 
   const toggleEnvelopeModal = () => {
     setShowEnvelopeModal(!showEnvelopeModal);
     if (!showEnvelopeModal) {
-      setShowBellModal(false); // Close bell modal when opening envelope modal
-      setShowLogoutBox(false); // Close logout box when opening envelope modal
+      setShowBellModal(false);
+      setShowLogoutBox(false);
     }
+    resetModalState();
   };
+
+  const handleMsgClick = (message) => {
+    setSelectedMessage(message);
+    setIsDetailsView(true); // Switch to details view
+  };
+
+  const handleBackClick = () => {
+    setIsDetailsView(false); // Switch back to list view
+    setSelectedMessage(null);
+  };
+
+  const resetModalState = () => {
+    setIsDetailsView(false);
+    setSelectedMessage(null);
+  };
+
+  const messages = [
+    { id: 1, name: "Mr. John", content: "Important announcement about classes." },
+    { id: 2, name: "Ms. Smith", content: "Meeting scheduled for tomorrow." },
+    { id: 3, name: "Admin", content: "Your account has been updated." },
+  ];
+
+  const listView = (
+    <>
+      {messages.map((msg) => (
+        <div
+          key={msg.id}
+          className="msg-cont"
+          onClick={() => handleMsgClick(msg)}
+          style={{ cursor: "pointer" }}
+        >
+          <img
+            className="msg-img"
+            src="/images/blank-profile.jpg"
+            alt="Profile"
+          />
+          <div className="msg">
+            <p className="name">{msg.name}</p>
+            <p className="announce">{msg.content}</p>
+          </div>
+        </div>
+      ))}
+    </>
+  );
+
+  const detailsView = selectedMessage && (
+    <div className="details-view">
+      <button onClick={handleBackClick} className="back-button"><IoMdArrowRoundBack /></button>
+      <div className="msg-details">
+        <h3>{selectedMessage.name}</h3>
+        <p>{selectedMessage.content}</p>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -53,45 +108,16 @@ function Header() {
           <button className="fa-solid fa-bell" onClick={toggleBellModal}></button>
           {showBellModal && (
             <div className="modal-bell">
-              <h3>Messages</h3>
-              <div className="msg-cont">
-                <img  src="/images/blank-profile.jpg" alt="" />
-                <div className="msg">
-                  <p className="name">Mr. John</p>
-                  <p className="announce">Announcement...</p>
-                </div>
-              </div>
-              <p>Bell notifications</p>
-              <button onClick={toggleBellModal}>Close</button>
+              <h3 className="modal-title">Notifications</h3>
+              {isDetailsView ? detailsView : listView}
             </div>
           )}
 
           <button className="fa-solid fa-envelope" onClick={toggleEnvelopeModal}></button>
           {showEnvelopeModal && (
             <div className="modal-envelop">
-              <h3>Messages</h3>
-              <div className="msg-cont">
-                <img   src="/images/blank-profile.jpg" alt="" />
-                <div className="msg">
-                  <p className="name">Mr. John</p>
-                  <p className="announce">Announcement...</p>
-                </div>
-              </div>
-              <div className="msg-cont">
-                <img   src="/images/blank-profile.jpg" alt="" />
-                <div className="msg">
-                  <p className="name">Mr. John</p>
-                  <p className="announce">Announcement...</p>
-                </div>
-              </div>
-              <div className="msg-cont">
-                <img   src="/images/blank-profile.jpg" alt="" />
-                <div className="msg">
-                  <p className="name">Mr. John</p>
-                  <p className="announce">Announcement...</p>
-                </div>
-              </div>
-              <button onClick={toggleEnvelopeModal}>Close</button>
+              <h3 className="modal-title">Messages</h3>
+              {isDetailsView ? detailsView : listView}
             </div>
           )}
 
@@ -112,21 +138,6 @@ function Header() {
           )}
         </div>
       </header>
-
-      <div className="dash">
-        <span>Student Dashboard</span>
-        <div id="img">
-          <Link to="/StudentDashboard">
-            <TiHome id="icon" />
-          </Link>
-          <Link to="/Attendance">
-            <FaUserCheck id="icon" />
-          </Link>
-          <Link to="/Resources">
-            <ImBooks id="icon" />
-          </Link>
-        </div>
-      </div>
     </div>
   );
 }

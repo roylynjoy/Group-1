@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './SD.css';
 import Header from '../comp/header';
+import NavStudent from '../comp/navStudent';
 import Calendar from "./calendar";
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -32,7 +33,7 @@ const Dashboard = () => {
     <body className="bd1">
       <div className="dashboard">
         <Header />
-
+        <NavStudent/>
         <div className="SD-container">
 
           <div className="grid">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import Header from '../comp/header';
+import NavStudent from '../comp/navStudent';
 import { IoIosArrowUp } from "react-icons/io";
 import { db } from '../firebase';
 import { collection, addDoc, updateDoc, query, where, getDocs, Timestamp } from 'firebase/firestore';
@@ -287,6 +288,7 @@ const Attendance = () => {
       <div className="bd2"> {/* Changed from <body> to <div> */}
         <div className="dashboard">
           <Header />
+          <NavStudent />
 
           <div className="SD-container">
             <div className="">

@@ -1,65 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
+import Header from "../comp/header";
+import NavSupervisor from '../comp/navSupervisor';
 import { TiHome } from "react-icons/ti";
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
 
 const SupervisorResources = () => {
-  const [showLogoutBox, setShowLogoutBox] = useState(false);
-  const navigate = useNavigate();
-
-  const handleProfileClick = () => {
-    setShowLogoutBox(!showLogoutBox);
-  };
-
-  const handleLogout = () => {
-    navigate('/homepage');
-    console.log("User logged out");
-    setShowLogoutBox(false);
-  };
-
   return (
     <>
     <body className="bd1">
       <div className="Resources">
-        <header className="header">
-          <div id="logo">
-            <img src="/images/logo.png" alt="Logo" />
-          <h1>Fieldmate</h1>
-          </div>
-            
-          <div className="user-profile">
-            <i className="fa-solid fa-bell"></i>
-            <i className="fa-solid fa-envelope"></i>
-            <img 
-              src="/images/user1.png" 
-              alt="User" 
-              onClick={handleProfileClick}
-              style={{ cursor: 'pointer' }}
-            />
-            {showLogoutBox && (
-              <div className="logout-box">
-                <button id="edit">Edit Profile</button>
-                <button id="edit">Settings</button>
-                <button onClick={handleLogout} className="logout-button">
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        </header>
-
-        <div className="dash">
-          <span>Supervisor Resources</span>
-            <div id="img">
-              <Link to="/" ><TiHome id="icon"/></Link>
-              <FaUserCheck id="icon"/>
-              <ImBooks id="icon"/>
-            </div>
-        </div>
-
+      <Header/>
+      <NavSupervisor />
         <div className="SD-container">
           <div className="welcome">
             <div className="resources-container">

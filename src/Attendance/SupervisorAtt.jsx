@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
-import HeaderSup from '../comp/headerSup';
+import Header from '../comp/header';
+import NavSupervisor from '../comp/navSupervisor';
 import { IoIosArrowDown } from "react-icons/io";
 import { db } from '../firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
@@ -177,11 +178,21 @@ const SupervisorAtt = () => {
     closeModal();
   };
 
+  const confirmAction = () => {
+    handleModalConfirm(); // Call the existing function to handle confirmation
+  };
+  
+  const cancelAction = () => {
+    closeModal(); // Close the modal without taking any action
+  };
+  
+
   return (
     <>
       <div className="bd1">
         <div className="dashboard">
-          <HeaderSup />
+          <Header />
+          <NavSupervisor />
 
           <div className="SD-container">
             <div className="grid">

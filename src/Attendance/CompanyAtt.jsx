@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
-import HeaderComp from '../comp/headerComp';
+import Header from '../comp/header';
+import NavCompany from '../comp/navCompany';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -212,7 +213,8 @@ const CompanyAtt = () => {
     <>
       <div className="bd1">
         <div className="dashboard">
-          <HeaderComp />
+          <Header />
+          <NavCompany />
           <div className="SD-container">
             <div className="grid">
               <div className="col-span-3 perf">
