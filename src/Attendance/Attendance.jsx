@@ -247,12 +247,6 @@ const Attendance = () => {
         } else {
           setMessage('Please submit both Time-In and Time-Out before submitting attendance.');
         }
-  
-        // Reset the time and status for Submit All without reloading
-        setTimeIn('00:00');
-        setTimeOut('00:00');
-        setTimeInStatus('Pending');
-        setTimeOutStatus('Pending');
       } else {
         throw new Error('Invalid action or record already exists.');
       }
@@ -321,7 +315,7 @@ const Attendance = () => {
                 </div>
                 <button
                   onClick={() => handleAttendanceSubmit('TimeIn')}
-                  disabled={isTimeInSubmitted || isSubmitAllPressed}
+                  disabled={isTimeInSubmitted || isSubmitAllPressed || timeIn !== '00:00'}
                 >
                   Submit
                 </button>
