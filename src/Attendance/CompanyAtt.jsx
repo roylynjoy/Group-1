@@ -34,17 +34,19 @@ const CompanyAtt = () => {
         setMessage('No user is logged in.');
         return;
       }
-
+      
       const companiesRef = collection(db, 'Companies');
-      const q = query(companiesRef, where('email', '==', userEmail));
+      // Normalize both the Firestore email and userEmail to lowercase for case-insensitive comparison
+      const q = query(companiesRef, where('email', '==', userEmail.toLowerCase()));
       const querySnapshot = await getDocs(q);
-
+      
       if (querySnapshot.empty) {
         setMessage('No company found for this email.');
         setIsCompany(false);
-        navigate('/login');
+        console.log(email);
+        // navigate('/login');
         return;
-      }
+      }      
 
       setIsCompany(true);
     } catch (error) {
