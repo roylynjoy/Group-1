@@ -360,7 +360,7 @@ const Attendance = () => {
         </div>
       </div>
       <footer className="foot2">
-        <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+        <p>&copy; 2025 LVCC INC... All rights reserved.</p>
         <p>Privacy Policy | Terms of Service </p>
         <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
       </footer>

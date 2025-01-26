@@ -230,6 +230,10 @@
     margin-top: 5px;
   }
   
+  select, option {
+    color: black; /* Ensures black text for both select and option */
+    }
+
   .dropdown-item {
     padding: 10px 15px;
     cursor: pointer;

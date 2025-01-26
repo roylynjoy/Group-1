@@ -78,11 +78,14 @@ function Login() {
     };
 
     // Handle sign-in with Google
-    const handleSignInWithGoogle = async () => {
+    const handleSignInWithGoogle = async (e) => {
+        e.preventDefault();
         try {
-            await signInWithPopup(auth, googleProvider);
-            navigate('/tudentDashboard');
+            const result = await signInWithPopup(auth, googleProvider);
+            const user = result.user;
+            await navigateToDashboard(user.email); // Navigate based on the user's email
         } catch (error) {
+            console.error('Error signing in with Google:', error);
             setError(`Error signing in with Google: ${error.message}`);
         }
     };
@@ -124,69 +127,99 @@ function Login() {
             <div className={`container ${isActive ? 'active' : ''}`} id="container">
                 {/* Create Account Form */}
                 <div className="form-container sign-up">
-                    <form id="CA">
-                        <h1 className="CA">Create Account</h1>
-                        <span>or use your email for registration</span>
+                <form id="CA">
+                    <h1 className="CA">Create Account</h1>
+                    <span>or use your email for registration</span>
 
-                        {/* Role selection buttons */}
-                        <div className="role">
-                            <button id='rl'
-                                type="button"
-                                className={selectedRole === 'Student' ? 'active' : ''}
-                                onClick={() => setSelectedRole('Student')}
-                            >
-                                Student
-                            </button>
-                            <button id='rl'
-                                type="button"
-                                className={selectedRole === 'Supervisor' ? 'active' : ''}
-                                onClick={() => setSelectedRole('Supervisor')}
-                            >
-                                Supervisor
-                            </button>
-                            <button id='rl'
-                                type="button"
-                                className={selectedRole === 'Coordinator' ? 'active' : ''}
-                                onClick={() => setSelectedRole('Coordinator')}
-                            >
-                                Coordinator
-                            </button>
-                        </div>
-
-                        {/* Form inputs */}
-                        <input
-                            type="text"
-                            placeholder="Name"
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                        <input
-                            type="number"
-                            placeholder="ID Number"
-                            onChange={(e) => setIdNumber(e.target.value)}
-                        />
-                        <input
-                            type="tel"
-                            placeholder="Contact Number"
-                            onChange={(e) => setContactNumber(e.target.value)}
-                        />
-                        <input
-                            type="email"
-                            placeholder="LV email"
-                            onChange={(e) => setLvEmail(e.target.value)}
-                        />
-
-                        {/* Next Button */}
-                        <button 
-                            type="button" 
-                            onClick={handleNext}
-                            disabled={!isNextEnabled}  // Disable if form is incomplete or no role selected
+                    {/* Role selection buttons */}
+                    <div className="role">
+                        <button
+                            type="button"
+                            className={selectedRole === 'Student' ? 'active' : ''}
+                            onClick={() => setSelectedRole('Student')}
                         >
-                            Next
+                            Student
                         </button>
+                        <button
+                            type="button"
+                            className={selectedRole === 'Supervisor' ? 'active' : ''}
+                            onClick={() => setSelectedRole('Supervisor')}
+                        >
+                            Supervisor
+                        </button>
+                        <button
+                            type="button"
+                            className={selectedRole === 'Coordinator' ? 'active' : ''}
+                            onClick={() => setSelectedRole('Coordinator')}
+                        >
+                            Coordinator
+                        </button>
+                    </div>
 
-                        {error && <p className="error">{error}</p>}
-                    </form>
-                </div>
+                    {/* Common fields */}
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        onChange={(e) => setName(e.target.value)}
+                    />
+                    <input
+                        type="number"
+                        placeholder="ID Number"
+                        onChange={(e) => setIdNumber(e.target.value)}
+                    />
+                    <input
+                        type="tel"
+                        placeholder="Contact Number"
+                        onChange={(e) => setContactNumber(e.target.value)}
+                    />
+                    <input
+                        type="email"
+                        placeholder="LV email"
+                        onChange={(e) => setLvEmail(e.target.value)}
+                    />
+
+                    {/* Role-specific fields */}
+                    {selectedRole === 'Student' && (
+                        <>
+                            <input
+                                type="text"
+                                placeholder="Student Major"
+                                onChange={(e) => setMajor(e.target.value)} // Example for student-specific field
+                            />
+                        </>
+                    )}
+                    {selectedRole === 'Supervisor' && (
+                        <>
+                            <input
+                                type="text"
+                                placeholder="Department"
+                                onChange={(e) => setDepartment(e.target.value)} // Example for supervisor-specific field
+                            />
+                        </>
+                    )}
+                    {selectedRole === 'Coordinator' && (
+                        <>
+                            <input
+                                type="text"
+                                placeholder="Coordinator Office"
+                                onChange={(e) => setOffice(e.target.value)} // Example for coordinator-specific field
+                            />
+                        </>
+                    )}
+
+                    {/* Next Button */}
+                    <button 
+                        type="button" 
+                        onClick={handleNext}
+                        disabled={!isNextEnabled}  // Disable if form is incomplete or no role selected
+                    >
+                        Next
+                    </button>
+
+                    {error && <p className="error">{error}</p>}
+                </form>
+            </div>
+
 
                 {/* Log In Form */}
                 <div className="form-container sign-in">
