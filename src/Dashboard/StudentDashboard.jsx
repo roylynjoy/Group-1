@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './SD.css';
-import '../index.css';
 import Header from '../comp/header';
+import NavStudent from '../comp/navStudent';
 import Calendar from "./calendar";
 import { IoIosArrowUp } from "react-icons/io";
 
@@ -33,7 +33,7 @@ const Dashboard = () => {
     <body className="bd1">
       <div className="dashboard">
         <Header />
-
+        <NavStudent/>
         <div className="SD-container">
 
           <div className="grid">
@@ -42,7 +42,7 @@ const Dashboard = () => {
               <h1>Welcome Back, Joanna!</h1>
               <span>Always stay connected in your Fieldmate</span>
               </div>
-              <img src="../src/pictures/user1.1.png" alt="" />
+              <img src="/images/user1.1.png" alt="" />
             </div>
 
             
@@ -53,12 +53,12 @@ const Dashboard = () => {
 
             <div className="performance col-span-1">
               <h3>Total Hours Rendered</h3>
-              <img src="../src/pictures/perf.png" alt="" />
+              <img src="/images/perf.png" alt="" />
             </div>
 
             <div className="col-span-1 readings">
               <h3>Recent Readings</h3>
-              <img src="../src/pictures/readings.png" alt="" />
+              <img src="/images/readings.png" alt="" />
               <p>Major Subject Title</p>
               <p>Module x - Chapter Title</p>
             </div>

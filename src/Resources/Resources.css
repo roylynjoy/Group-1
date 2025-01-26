@@ -106,7 +106,6 @@
     
     justify-content: space-evenly;
     align-items: center;
-    gap: 50px;
     margin-bottom: 50px;
     
 }
@@ -114,9 +113,9 @@
 #ST-cont1, #ST-cont2, #ST-cont3, #ST-cont4, #add {
     box-sizing: border-box;
 
-    
-    width: 230px;
-    height: 270px;
+    margin: 50px;
+    width: 250px;
+    height: 290px;
     
     /* margin-left: 30px;
     margin-top: 30px; */
@@ -139,27 +138,27 @@
 }
 
 #ST-cont1{
-    background: url(../src/pictures/MA.png);
+    background: url(/images//MA.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
 }
 
 #ST-cont2{
-    background: url(../src/pictures/AE.png);
+    background: url(/images//AE.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
 }
 
 #ST-cont3{
-    background: url(../src/pictures/BAA.png);
+    background: url(/images//BAA.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
 }
 #ST-cont4{
-    background: url(../src/pictures/FA.png);
+    background: url(/images//FA.png);
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;

@@ -1,0 +1,511 @@
+/* General Styling */
+.bd2 {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html, body{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+.welcome {
+  background: url(../pictures/bg.jpg);
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center; 
+  height: 300px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 8%;
+  padding-left: 50px;
+  margin-bottom: 0;
+}
+
+.welcome h2 {
+  max-width: 25%;
+  padding: 15px;
+  margin-top: 155px;
+  color: #ccc;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.welcome p {
+  margin-top: 15px;
+  background: gray;
+  padding: 10px;
+  border: 1px solid black;
+  max-width: 50%;
+  border-radius: 10px;
+}
+
+.dashboard {
+  flex: 1; /* Take all available space except the footer */
+  overflow-y: auto; /* Make the content scrollable */
+}
+
+/* Submit Attendance */
+.att-wrapper {
+  display: flex;
+  justify-self: center;
+  gap: 20px;
+}
+
+.attendance-container {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  background-color: #FFF5CC;
+  border: #333 0.5px solid;
+  padding: 20px;
+  width: 30vw;
+  height: 40vh;
+  margin-top: 5%;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.attendance-container label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.attendance-container p {
+  margin: 5px 0 15px;
+  color: #555;
+}
+
+.attendance-container button {
+  align-self: center; 
+  width: fit-content;
+  background-color: #5BA8FF;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 25px;
+  cursor: pointer;
+  margin: 10px 0;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.submit-all {
+  background-color: #FAAF46;
+  color: black;
+  font-weight: bold;
+  border: black 3px solid;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  margin: 50px 0;
+  transition: background-color 0.3s ease;
+}
+
+.attendance-container button:hover {
+  background-color: #0057BA;
+}
+
+.attendance-container button:disabled {
+  background-color: #9b9b9b;
+  cursor: not-allowed;
+}
+
+.att-text {
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+  margin: 0;         
+}
+
+.att-text label,
+.att-text p {
+  margin: 20px;            
+}
+
+#perfAtt {
+  margin-top: 40px;
+  margin-bottom: 30px;
+  height: 200px;
+  background: url("/images/bg2.png");
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  background-position: center;
+  display: flex;
+  flex-direction: row;
+  justify-content:  space-evenly;
+  align-items: flex-end;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+#perfAtt h1{
+  background-color: #FFF;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 50px 0;
+  box-shadow: 0px 1px 8px 1px rgba(0, 0, 0, 0.3);
+}
+
+.prompt {
+  display: flex;
+  justify-content: center;
+}
+
+/*Supervisor Attendance*/
+.date-display input{
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 3%;
+}
+
+.attendance-list-section {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.attendance-row-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.attendance-row {
+  display: grid;
+  grid-template-columns: 11% 20% 16% 18% 16% 17%; /* No column for record button */
+  gap: 10px;
+  align-items: center;
+  background-color: #FFF5CC;
+  border: 2px solid #FDDD5D;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.attendance-header-row {
+  display: grid;
+  grid-template-columns: 10% 19% 14% 17% 14% 15% 10%; /* Matches attendance row */
+  gap: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f7f2;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+
+.attendance-header {
+  text-align: center;
+}
+
+
+.attendance-cell {
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+}
+
+.attendance-record-button {
+  gap: 20px;
+  height: 100%; 
+  padding-left: 2%;
+}
+
+.record-button {
+  padding: 10px 20px;
+  background-color: #DD0004;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.record-button:hover {
+  background-color: #701922;
+}
+
+.record-button:disabled {
+  background-color: #9b9b9b;
+  cursor: not-allowed;
+}
+
+.profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  justify-self: center;
+}
+
+.no-record-message {
+  margin: 10%;
+  text-align: center;
+  font-style: italic;
+  color: #afafaf;
+}
+
+/*Company*/
+.company-attendance-management {
+  padding: 0 3%;
+}
+
+.company-message {
+  font-size: 16px;
+  color: #333;
+}
+
+.company-loading {
+  font-size: 16px;
+  color: #007bff;
+}
+
+.time-sections {
+  color: #777;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.company-filter-date {
+  margin-bottom: 20px;
+}
+
+.company-filter-date label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.company-filter-date input {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.company-time-in-section h3,
+.company-time-out-section h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.company-attendance-list-section {
+  margin-top: 10px;
+  margin-left: 1%;
+}
+
+.company-attendance-header-row {
+  display: grid;
+  grid-template-columns: auto 10% 33% 10% 24%;
+  text-align: center;
+  gap: 10px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.company-attendance-row-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+
+.company-attendance-row {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 15% auto auto auto;
+  text-align: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #FFF5CC;
+  border: 2px solid #FDDD5D;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  margin-left: 2%;
+  border-radius: 20px;
+}
+
+.company-attendance-cell {
+  font-weight: 500;
+}
+
+.company-attendance-cell img {
+  place-self: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+}
+
+.line-boundary {
+  background-color: #c7c7c7;
+  width: 100%;
+  height: 1px;
+  margin: 3% 0;
+}
+
+/* Buttons */
+
+.approve-deny-buttons {
+  display: flex;
+  margin: 0% 3% 0% 1%;
+  place-self: center;
+  gap: 20px;
+  height: 100%; 
+}
+
+.company-approve,
+.company-deny {
+  align-self: center;
+  padding: 10px 10px;
+  width: 100px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+.company-approve {
+  background-color: #0ea700;
+  color: white;
+}
+
+.company-deny {
+  background-color: #DD0004;
+  color: white;
+}
+
+.company-approve:hover {
+  background-color: #218838;
+}
+
+.company-deny:hover {
+  background-color: #7a101a;
+}
+
+.company-no-records {
+  text-align: center;
+  font-style: italic;
+  color: #777;
+}
+
+.custom-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.custom-modal {
+  background: white;
+  width: 30vw;
+  height: 30vh;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.custom-modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.custom-modal-yes {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  width: 80px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: ease-in-out 0.3s;
+}
+
+.custom-modal-no {
+  background-color: #f44336;
+  color: white;
+  padding: 10px;
+  width: 80px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  transition: ease-in-out 0.3s;
+}
+
+.custom-modal-yes:hover {
+  background-color: #218838;
+}
+
+.custom-modal-no:hover {
+  background-color: #7a101a;
+}
+
+
+/* Footer styling */
+.foot2 {
+  /* background-color: #E7BD18;
+  position: absolute;
+  width: 100%;
+  height: 15%;
+  z-index: 1000; */
+  position: absolute;
+  width: 100vw;
+  height: 100px;
+
+  background: #E7BD18;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 500;
+}
+
+.foot2 #arrow-up-icon{
+  position: absolute;
+  width: 30px;
+  height: 48px;
+  right: 50px;
+  top: 30px;
+}

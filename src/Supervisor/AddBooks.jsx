@@ -88,7 +88,7 @@ const ResourcesBook = () => {
                 <h5>Table of Content</h5>
                 <p>Module 1: ___________________</p>
                 <div className="add2">
-                    <p><LuPenLine /> Chapter 1.1 : __________________</p>
+                    <p><LuPenLine />Chapter 1.1 : __________________</p>
                     <h6><IoMdAddCircleOutline />Add Chapter</h6>
                 </div>
                 <p><IoMdAddCircleOutline />Add Module</p>

@@ -20,6 +20,9 @@ import SThird from './Supervisor/SThird';
 import SSecond from './Supervisor/SSecond';
 import SFirst from './Supervisor/SFirst';
 import AddBooks from './Supervisor/AddBooks'
+import Attendance from './Attendance/Attendance';
+import SupervisorAtt from './Attendance/SupervisorAtt';
+import CompanyAtt from './Attendance/CompanyAtt';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import './App.css';
@@ -54,11 +57,6 @@ function App() {
         <Route path="Resources/Chapter2.1" element={<Chapter2 />} />
         <Route path="Resources/Chapter2.2" element={<Chapter202 />} />
         <Route path="Resources/Chapter2.3" element={<Chapter203 />} />
-        <Route path="Supervisor/SupervisorResources" element={<SupervisorResources />} />
-        <Route path="Supervisor/SThird" element={<SThird />} />
-        <Route path="Supervisor/SSecond" element={<SSecond />} />
-        <Route path="Supervisor/SFirst" element={<SFirst />} />
-        <Route path="Supervisor/AddBooks" element={<AddBooks />} />
       </Routes>
     </Router>
   );

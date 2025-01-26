@@ -6,10 +6,15 @@ export default defineConfig({
   define: {
     'process.env': {}
   },
+  server: {
+    watch: {
+      usePolling: true
+    }
+  },
   plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-    },
+    }, 
   },
 })

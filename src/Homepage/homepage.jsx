@@ -21,7 +21,7 @@ const homepage = () => {
 
               <div className='fm-container'   >
                 <span className='deer'>
-                  <img src="src\pictures\deer.png" alt="" />
+                  <img src="/images/deer.png" alt="" />
                 </span>
                 <div id='fm'>
                   <h1>Fieldmate:</h1>
@@ -36,7 +36,7 @@ const homepage = () => {
                 <h2>ABOUT US</h2>
                 <div className="content">
                   <div className="card-1">
-                    <img src="../src/pictures/lv.png" alt="La Verdad Christian College" />
+                    <img src="/images/lv.png" alt="La Verdad Christian College" />
                     <div className='LV'>
                     <h3>La Verdad Christian College</h3>
                     <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
@@ -47,10 +47,10 @@ const homepage = () => {
                     <h3>Accountancy Course</h3>
                     <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
                     </div>
-                    <img src="src\pictures\course.png" alt="Accountancy Course" />
+                    <img src="/images/course.png" alt="Accountancy Course" />
                   </div>
                   <div className="card-3">
-                    <img src="src\pictures\JPIA.png" alt="Junior Philippine Institute of Accountancy" />
+                    <img src="/images/JPIA.png" alt="Junior Philippine Institute of Accountancy" />
                     <div className='LV'>
                     <h3>Junior Philippine Institute of Accountancy</h3>
                     <p>Aenean ac malesuada odio, et faucibus augue. Vivamus vel nulla et purus consequat fringilla. Ut aliquam, leo sit amet facilisis tristique, nunc leo cursus elit, nec placerat nisl sem vitae nunc. Sed id magna nec libero feugiat aliquam. Curabitur et arcu vel turpis convallis facilisis.</p>
@@ -60,9 +60,9 @@ const homepage = () => {
 
               <section className="contact-section" id='contact'>
                 <h2>Contact Us</h2>
-                <img src="src\pictures\phone.png" id='img1' alt="" />
-                <img src="src\pictures\email.png" id='img2' alt="" />
-                <img src="src\pictures\location.png" id='img3' alt="" />
+                <img src="/images/phone.png" id='img1' alt="" />
+                <img src="/images/email.png" id='img2' alt="" />
+                <img src="/images/location.png" id='img3' alt="" />
                 <p  id='p1'> +1 234 567 890</p>
                 <p id='p2'>info@laverdad.edu.ph</p>
                 <p id='p3'>La Verdad Christian College, Apalit, Pampanga, Philippines</p>
