@@ -70,12 +70,11 @@ const homepage = () => {
                 <div className="map">
                   {/* Google Maps Embed */}
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.738389918356!2d120.75888491550549!3d14.957033276029794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3396f6237d8bfb61%3A0x7765d4b70c087d36!2sLa%20Verdad%20Christian%20College!5e0!3m2!1sen!2sph!4v1697229383065!5m2!1sen!2sph"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123347.40710675181!2d120.61418624335936!3d14.959002300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33965634a341dc6f%3A0x17091aa8b0043f89!2sLa%20Verdad%20Christian%20College!5e0!3m2!1sen!2sph!4v1737910779201!5m2!1sen!2sph"    
                     width="50%"
                     height="500"
                     style={{ border: 0 }}
                     allowFullScreen=""
-                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Google Map"
                   ></iframe>
@@ -83,7 +82,7 @@ const homepage = () => {
               </section>
 
       <footer className="footer">
-        <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+        <p>&copy; 2025 LVCC Inc... All rights reserved.</p>
         <p>Privacy Policy | Terms of Service </p>
         <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
       </footer>
