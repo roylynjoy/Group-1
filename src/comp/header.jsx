@@ -163,7 +163,7 @@ function Header() {
                 </div>
               </div>
               <hr />
-              <button id="edit" onClick={handleSettingsClick}>Settings</button>
+              <button id="edit" onClick={handleSettingsClick}>Change Password</button>
               <hr />
               <button onClick={handleLogout} className="logout-button">
                 Logout
@@ -182,7 +182,7 @@ function Header() {
             </button>
 
             <div className="settings-form">
-              <h1>Settings</h1>
+              <h1>Change Password</h1>
 
               <div className="password-field">
                 <input

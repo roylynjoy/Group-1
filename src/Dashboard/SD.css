@@ -39,6 +39,19 @@
   color: black
 }
 
+.active-link {
+  background-color: #a5a4a4;
+  border-radius: 15px;
+  padding: 12px;
+}
+
+.active-link3 {
+  background-color: #a5a4a4;
+  border-radius: 15px 50px 50px 15px;
+  padding: 12px;
+}
+
+
 .user-profile {
   width: 50px;
   display: flex;
@@ -295,6 +308,7 @@
 #img{
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 20px;
   margin-right: 20px;
 }

@@ -12,7 +12,7 @@ function Footer() {
 
   return (
     <footer className="foot">
-        <p>&copy; 2025 LVCC INC... All rights reserved.</p>
+        <p>&copy; 2025 FieldMate. All rights reserved.</p>
         <p>Privacy Policy | Terms of Service </p>
     </footer>
   )
