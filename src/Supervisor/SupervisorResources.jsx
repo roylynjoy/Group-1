@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Header from "../comp/header";
-import NavSupervisor from '../comp/navSupervisor';
-import { TiHome } from "react-icons/ti";
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
+import NavSupervisoResources from '../comp/navSupervisorResources';
 import { FaPlus } from "react-icons/fa";
 
 const SupervisorResources = () => {
@@ -14,9 +11,9 @@ const SupervisorResources = () => {
     <body className="bd1">
       <div className="Resources">
       <Header/>
-      <NavSupervisor />
-        <div className="SD-container">
-        <div id="perfAtt"></div>
+      <NavSupervisoResources />
+      <div className="SD-container">
+          <div id="perfAtt"></div>
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">

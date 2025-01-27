@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './Resources.css'
 import Header from '../comp/header';
-import NavStudent from '../comp/navStudent';
+import NavStudent from '../comp/navStudentResources';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
-import { TiHome } from "react-icons/ti";
+import { IoSearchSharp } from "react-icons/io5";
+
 
 
 
@@ -61,7 +60,7 @@ const Third = () => {
             <h5 className="title4"><Link to="/Resources/First">First</Link></h5>
             
           </div>
-
+          <IoSearchSharp className="search"/>
         </div>
       </div>
     </body>

@@ -3,24 +3,14 @@ import { useNavigate } from "react-router-dom";
 import './Resources.css';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
-import { TiHome } from "react-icons/ti";
+import Header from '../comp/header';
+import NavStudent from '../comp/navStudentResources';
+
 
 
 const ResourcesBook = () => {
-  const [showLogoutBox, setShowLogoutBox] = useState(false);
   const navigate = useNavigate();
 
-  const handleProfileClick = () => {
-    setShowLogoutBox(!showLogoutBox);
-  };
-
-  const handleLogout = () => {
-    navigate('/homepage');
-    console.log("User logged out");
-    setShowLogoutBox(false);
-  };
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -37,45 +27,10 @@ const ResourcesBook = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-        <header className="header">
-          <div id="logo">
-            <img src="/images/logo.png" alt="Logo" />
-          <h1>Fieldmate</h1>
-          </div>
-          
-          <div className="user-profile">
-            <i className="fa-solid fa-magnifying-glass"></i>
-            <i className="fa-solid fa-bell"></i>
-            <i className="fa-solid fa-envelope"></i>
-            <img 
-              src="/images/user1.png" 
-              alt="User" 
-              onClick={handleProfileClick}
-              style={{ cursor: 'pointer' }}
-            />
-            {showLogoutBox && (
-              <div className="logout-box">
-                <button id="edit">Edit Profile</button>
-                <button id="edit">Settings</button>
-                <button onClick={handleLogout} className="logout-button">
-                  Logout
-                </button>
-              </div>
-            )}
-          </div>
-        </header>
-
-        <div className="dash">
-          <span>Resources</span>
-            <div id="img">
-              <Link to="/StudentDashboard" ><TiHome id="icon"/></Link>
-              <FaUserCheck id="icon"/>
-              <Link to="/Resources" ><ImBooks id="icon"/></Link>
-            </div>
-        </div>
-        
+        <Header />
+        <NavStudent />
+        <div id="perfAtt"></div>
         <div className="bg">   
-            <img src="/images/bg2.png" alt="" /> 
             <div className="bag">
             <div className="Book-container">
               <div className="MA">
