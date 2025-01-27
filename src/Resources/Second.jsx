@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './Resources.css'
 import Header from '../comp/header';
+import NavStudent from '../comp/navStudent';
+import Footer from '../comp/footer';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { FaUserCheck } from "react-icons/fa";
@@ -37,6 +39,7 @@ const Second = () => {
     <body className="bd1">
       <div className="Resources">
       <Header/>
+      <NavStudent/>
 
         <div className="SD-container">
         <div id="perfAtt"></div>
@@ -65,10 +68,7 @@ const Second = () => {
         </div>
       </div>
     </body>
-    <footer className="foot1">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+    <Footer/>
   </>
   );
 };

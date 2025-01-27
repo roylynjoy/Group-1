@@ -2,13 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './SD.css';
 import Header from '../comp/header';
+import Footer from "../comp/footer";
 import NavStudent from '../comp/navStudent';
 import Calendar from "./calendar";
 import { IoIosArrowUp } from "react-icons/io";
-
-
-
-
 
 const Dashboard = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -39,7 +36,7 @@ const Dashboard = () => {
           <div className="grid">
             <div className="col-span-3 perf ">
               <div id="perf">
-              <h1>Welcome Back, Joanna!</h1>
+              <h1>Welcome, Joanna!</h1>
               <span>Always stay connected in your Fieldmate</span>
               </div>
               <img src="/images/user1.1.png" alt="" />
@@ -66,11 +63,7 @@ const Dashboard = () => {
         </div>
       </div>
     </body>
-    <footer className="foot">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-      <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
-    </footer>
+  <Footer/>
 
   </>
   );

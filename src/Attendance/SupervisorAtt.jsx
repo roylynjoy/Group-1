@@ -3,6 +3,7 @@ import './Att.css';
 import '../index.css';
 import Header from '../comp/header';
 import NavSupervisor from '../comp/navSupervisor';
+import Footer from '../comp/footer';
 import { IoIosArrowDown } from "react-icons/io";
 import { db } from '../firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
@@ -185,7 +186,6 @@ const SupervisorAtt = () => {
   const cancelAction = () => {
     closeModal(); // Close the modal without taking any action
   };
-  
 
   return (
     <>
@@ -198,7 +198,7 @@ const SupervisorAtt = () => {
             <div className="grid">
               <div className="col-span-3 perf">
                 <div id="perf">
-                  <h1>Welcome Back, Supervisor!</h1>
+                  <h1>Welcome, Supervisor!</h1>
                   <span>Always stay connected in your Fieldmate</span>
                 </div>
                 <img src="/images/Supervisor.png" alt="" />
@@ -286,6 +286,7 @@ const SupervisorAtt = () => {
           </div>
         </div>
       )}
+    <Footer/>
     </>
   );
 };

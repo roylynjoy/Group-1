@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './Resources.css';
 import Header from '../comp/header';
 import NavStudent from '../comp/navStudent';
+import Footer from '../comp/footer';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { TiHome } from "react-icons/ti";
@@ -63,10 +64,7 @@ const Resources = () => {
       </div>
     </body>
     <div>
-    <footer className="foot1 ">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+    <Footer/>
     </div>
   </>
   );

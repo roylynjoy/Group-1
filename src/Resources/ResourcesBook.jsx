@@ -89,13 +89,13 @@ const ResourcesBook = () => {
                     <p>Table of Content</p>
                     <div className="TOC">
                     <h6>Module 1: Lorem Ipsum Dolor Sit Amet: Consectetur Adipiscing Elit</h6>
-                    <p><Link to="/Resources/chapter1.1">Chapter 1.1 Curabitur Vehicula Arcu Et Egestas Facilisis</Link></p>
-                    <p><Link to="/Resources/chapter1.2">Chapter 1.2 Suspendisse Etiam Condimentum Nibh Sit Amet Ultricies</Link></p>
-                    <p><Link to="/Resources/chapter1.3">Chapter 1.3 Mauris Dhui Ligula, Vulputate Sit Amet Nulla Ne</Link></p>
+                    <p className="chapters"><Link to="/Resources/chapter1.1">Chapter 1.1 Curabitur Vehicula Arcu Et Egestas Facilisis</Link></p>
+                    <p className="chapters"><Link to="/Resources/chapter1.2">Chapter 1.2 Suspendisse Etiam Condimentum Nibh Sit Amet Ultricies</Link></p>
+                    <p className="chapters"><Link to="/Resources/chapter1.3">Chapter 1.3 Mauris Dhui Ligula, Vulputate Sit Amet Nulla Ne</Link></p>
                     <h6>Module 2: Sed Ut Perspiciatis Unde Omnis Iste Natus Error</h6>
-                    <p><Link to="/Resources/chapter2.1">Chapter 2.1 Curabitur Vehicula Arcu Et Egestas Facilisis</Link></p>
-                    <p><Link to="/Resources/chapter2.2">Chapter 2.2 Suspendisse Etiam Condimentum Nibh Sit Amet Ultricies</Link></p>
-                    <p><Link to="/Resources/chapter2.3">Chapter 2.3 Mauris Dui Ligula, Vulputate Sit Amet Nulla Ne</Link></p>
+                    <p className="chapters"><Link to="/Resources/chapter2.1">Chapter 2.1 Curabitur Vehicula Arcu Et Egestas Facilisis</Link></p>
+                    <p className="chapters"><Link to="/Resources/chapter2.2">Chapter 2.2 Suspendisse Etiam Condimentum Nibh Sit Amet Ultricies</Link></p>
+                    <p className="chapters"><Link to="/Resources/chapter2.3">Chapter 2.3 Mauris Dui Ligula, Vulputate Sit Amet Nulla Ne</Link></p>
                     </div>
                 </div>
             </div>

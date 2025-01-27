@@ -10,10 +10,12 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const [message, setMessage] = useState("");
 
     // Sign-up state fields
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [companyName, setCompanyName] = useState('');
     const [idNumber, setIdNumber] = useState('');
     const [lvEmail, setLvEmail] = useState('');
     const [company, setCompany] = useState('');
@@ -52,8 +54,9 @@ function Login() {
 
             // If no match found
             setError('No matching account found.');
+            console.log(error);
         } catch (error) {
-            console.error('Error navigating:', error);
+            console.log(error);
             setError(`Error navigating: ${error.message}`);
         }
     };
@@ -94,36 +97,44 @@ function Login() {
 
     // Handle Google Sign-In
 // Handle Google Sign-In (only for login)
+// Handle Google Sign-In (only for login)
     const handleGoogleSignIn = async () => {
         try {
-            // Sign in with Google
+            // Sign in with Google without automatically creating a Firebase account
             const result = await signInWithPopup(auth, googleProvider);
             const user = result.user;
 
-            // Check if user already exists in Firebase Authentication (by checking the email)
+            // Check if the user already exists in Firestore
             const userEmail = user.email.toLowerCase(); // Normalize email to lowercase for comparison
 
-            // Check if the user exists in Firestore (Students, Supervisors, or Companies)
+            // Check if the user exists in Students, Supervisors, or Companies collections
             const studentQuerySnapshot = await getDocs(query(collection(db, 'Students'), where("email", "==", userEmail)));
             const supervisorQuerySnapshot = await getDocs(query(collection(db, 'Supervisors'), where("email", "==", userEmail)));
             const companyQuerySnapshot = await getDocs(query(collection(db, 'Companies'), where("email", "==", userEmail)));
 
-            // If the user exists in any of the collections, proceed to the respective dashboard
-            if (!studentQuerySnapshot.empty) {
-                navigate('/StudentDashboard');
-            } else if (!supervisorQuerySnapshot.empty) {
-                navigate('/SupervisorAtt');
-            } else if (!companyQuerySnapshot.empty) {
-                navigate('/CompanyAtt');
-            } else {
+            // If the user does not exist in Firestore, show an error and sign out the user
+            if (studentQuerySnapshot.empty && supervisorQuerySnapshot.empty && companyQuerySnapshot.empty) {
                 setError('No matching account found.');
-                // Optionally sign the user out if no matching account is found in Firestore
-                await auth.signOut();
+                console.log(error);
+                await auth.signOut(); // Sign the user out immediately to avoid Firebase Auth account creation
+            } else {
+                // User exists in Firestore, proceed to the respective dashboard
+                if (!studentQuerySnapshot.empty) {
+                    navigate('/StudentDashboard');
+                } else if (!supervisorQuerySnapshot.empty) {
+                    navigate('/SupervisorAtt');
+                } else if (!companyQuerySnapshot.empty) {
+                    navigate('/CompanyAtt');
+                }
             }
         } catch (error) {
-            setError(`Error Signing In: ${error.message}`);
+            setError(error.message);
+            console.log(error);
         }
     };
+
+
+
 
     // Handle Sign-Up
     const handleSignUp = async (e) => {
@@ -131,22 +142,43 @@ function Login() {
     
         if (password !== confirmPassword) {
             setError("Passwords do not match.");
+            console.log(error);
             return;
         }
     
-        if (selectedRole === 'Supervisor' || selectedRole === 'Coordinator') {
-            if (adminCode !== 'admin123') {
-                setError("Invalid admin code.");
-                return;
-            }
+        if (selectedRole === 'Supervisor' && adminCode !== 'admin123') {
+            setError("Invalid admin code.");
+            console.log(error);
+            return;
+        }
+
+        if (selectedRole === 'Coordinator' && adminCode !== 'admin123') {
+            setError("Invalid admin code.");
+            console.log(error);
+            return;
         }
     
+        if (
+            (selectedRole !== "Coordinator" && !firstName) || // First Name is required for all roles except Coordinator
+            (selectedRole !== "Coordinator" && !lastName) || // Last Name is required for all roles except Coordinator
+            (selectedRole !== "Coordinator" && !idNumber) || // ID Number is required for all roles except Coordinator
+            !lvEmail || // LV Email is required for all roles
+            (selectedRole === "Student" && !company) || // Company is required for Student role
+            !password || // Password is required for all roles
+            !confirmPassword || // Confirm Password is required for all roles
+            (selectedRole === "Supervisor" && !adminCode) || // Admin code is required for Supervisor role
+            (selectedRole === "Supervisor" && adminCode !== 'admin123') ||
+            (selectedRole === "Coordinator" && adminCode !== 'admin123') || 
+            (selectedRole === "Coordinator" && !companyName) // Company name is required for Coordinator role
+        ) {
+            setError("Please fill in all required fields.");
+            return;
+        }
+        
         try {
-            // Create user in Firebase Authentication with the original email
             const userCredential = await createUserWithEmailAndPassword(auth, lvEmail, password);
             const user = userCredential.user;
     
-            // Add user data to Firestore with the email stored as lowercase
             const normalizedEmail = lvEmail.toLowerCase();
     
             if (selectedRole === 'Student') {
@@ -154,7 +186,7 @@ function Login() {
                     firstName,
                     lastName,
                     idNumber,
-                    email: normalizedEmail, // Store lowercase email in Firestore
+                    email: normalizedEmail,
                     company,
                 });
             } else if (selectedRole === 'Supervisor') {
@@ -162,39 +194,45 @@ function Login() {
                     firstName,
                     lastName,
                     idNumber,
-                    email: normalizedEmail, // Store lowercase email in Firestore
+                    email: normalizedEmail,
                 });
             } else if (selectedRole === 'Coordinator') {
                 await addDoc(collection(db, 'Companies'), {
-                    company: firstName,
-                    email: normalizedEmail, // Store lowercase email in Firestore
+                    company: companyName,
+                    email: normalizedEmail,
                 });
             }
     
-            // Clear the fields after successful signup
             setFirstName('');
             setLastName('');
             setIdNumber('');
             setLvEmail('');
             setCompany('');
             setConfirmPassword('');
-            setSelectedRole(''); // Optionally reset the role
+            setSelectedRole(''); 
             setAdminCode('');
-            setError(null); // Clear error message
-            setIsActive(false); // Optionally close the sign-up form
-            navigate('/Login/Welcome'); // Adjust as needed
+            setError(null);
+            setIsActive(false);
+            navigate('/Login/Welcome');
         } catch (error) {
-            setError(`Error signing up: ${error.message}`);
+            setError(error.message);
+            console.log(error);
         }
     };
     
 
     const handleBack = () => {
-        navigate(-1);
+        navigate('/Homepage');
     };
 
-    const handleRegisterToggle = () => setIsActive(true);
-    const handleLoginToggle = () => setIsActive(false);
+    const handleRegisterToggle = () => {
+        setIsActive(true);
+        setError(null);
+    };
+    const handleLoginToggle = () => {
+        setIsActive(false);
+        setError(null);
+    };
 
     // Handle role selection
     const handleRoleSelect = (role) => {
@@ -236,25 +274,41 @@ function Login() {
                                 Coordinator
                             </button>
                         </div>
+                        <div className="field-container">
+                            {selectedRole !== 'Coordinator' && (
+                                <input
+                                    className='field'
+                                    type="text"
+                                    placeholder="First Name"
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                    required
+                                    disabled={!selectedRole}
+                                />
+                            )}
 
-                        <input
-                            className='field'
-                            type="text"
-                            placeholder={selectedRole === 'Coordinator' ? "Name" : "First Name"}
-                            onChange={(e) => setFirstName(e.target.value)}
-                            required
-                            disabled={!selectedRole}
-                        />
-                        {selectedRole !== 'Coordinator' && (
+                            {selectedRole !== 'Coordinator' && (
+                                <input
+                                    className='field'
+                                    type="text"
+                                    placeholder="Last Name"
+                                    onChange={(e) => setLastName(e.target.value)}
+                                    required
+                                    disabled={!selectedRole}
+                                />
+                            )}
+                        </div>
+            
+                        {selectedRole === 'Coordinator' && (
                             <input
                                 className='field'
                                 type="text"
-                                placeholder="Last Name"
-                                onChange={(e) => setLastName(e.target.value)}
+                                placeholder="Company Name"
+                                onChange={(e) => setCompanyName(e.target.value)}
                                 required
                                 disabled={!selectedRole}
                             />
                         )}
+
                         {selectedRole !== 'Coordinator' && (
                             <input
                                 className='field'
@@ -265,6 +319,7 @@ function Login() {
                                 disabled={!selectedRole}
                             />
                         )}
+
                         <input
                             className='field'
                             type="email"
@@ -287,16 +342,14 @@ function Login() {
                                 ))}
                             </select>
                         )}
-                        {selectedRole !== 'Coordinator' && (
-                            <input
-                                className='field'
-                                type="password"
-                                placeholder="Password"
-                                onChange={(e) => setPassword(e.target.value)}
-                                required
-                                disabled={!selectedRole}
-                            />
-                        )}
+                        <input
+                            className='field'
+                            type="password"
+                            placeholder="Password"
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            disabled={!selectedRole}
+                        />
                         <input
                             className='field'
                             type="password"
@@ -323,7 +376,8 @@ function Login() {
                         >
                             Sign Up
                         </button>
-                        {error && <p className="error">{error}</p>}
+                        {error && !message && <p className="error">{error}</p>}
+                        {message && !error && <p className="message">{message}</p>}
                     </form>
                 </div>
 
@@ -345,9 +399,9 @@ function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
-                        <p>Forgot your password?</p>
+                        <p id='forgot'>Forgot your password?</p>
                         <button id='sgn' onClick={handleSignIn}>Log In</button>
-                        <p>────────── or ──────────</p>
+                        <p id='decoy'>────────── or ──────────</p>
                         <button id='google' type="button" onClick={handleGoogleSignIn}>
                             <img id='google-logo' src="/images/GOOGLE.webp" alt="" /> Sign in with Google
                         </button>
@@ -360,12 +414,12 @@ function Login() {
                     <div className="toggle">
                         <div className="toggle-panel toggle-left">
                             <h1>Welcome Back!</h1>
-                            <p>To keep connected with us, please log in with your personal info</p>
+                            <p>Access your account to continue your journey!</p>
                             <button id="login" onClick={handleLoginToggle}>Sign In</button>
                         </div>
                         <div className="toggle-panel toggle-right">
-                            <h1>Hello, Friend!</h1>
-                            <p>Enter your personal details and start your journey with us</p>
+                            <h1>Join Us!</h1>
+                            <p>Register to get the most out of your experience.</p>
                             <button id="register" onClick={handleRegisterToggle}>Sign Up</button>
                         </div>
                     </div>

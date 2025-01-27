@@ -70,6 +70,16 @@
     width: 15rem;
 }
 
+.field-container{
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+}
+
+.field-container input{
+    width: 9.75rem;
+}
+
 .field {
     background-color: #EDEDED;
     border-radius: 10px;
@@ -78,30 +88,46 @@
     padding: 5px;
     margin-bottom: 5px;
     font-size: 13px;
-    width: 15rem;
+    width: 20rem;
 }
 
 .container input{
     padding-left: 10px;
 }
 #sgn{
+    margin: -5px 0;
     width: 15rem;
     height: 10%;
     border-radius:50px;
-    margin-bottom: -10px;
     background-color: #FDB853;
+    transition: ease-in-out 0.2s;
+}
+
+#sgn:hover{
+    background-color: #ffcb7c;
 }
 
 #SU{
     background-color: #FDB853;
     border-radius: 25px;
-    padding: 5px 20px;
+    padding: 8px 20px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.9);
+    transition: ease-in-out 0.1s;
+}
+
+#SU:hover{
+    background-color: #FFF5CC;
 }
 
 #register, #login {
     background-color: transparent;
     border: 1px solid black;
     border-radius: 25px;
+    transition: ease-in-out 0.1s;
+}
+
+#register:hover, #login:hover {
+    background-color: #ffcb7c;
 }
 
 .toggle-panel h1{
@@ -109,11 +135,12 @@
     font-weight: 700;
 }
 
-.container #google{
+.container{
     margin-top: -10px;
 }
 
 #google {
+    margin-top: -5px;
     height: 10%;
     width: 15rem;
     padding: 0;
@@ -384,16 +411,6 @@
     
 }
 
-/* .role button {
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-    
-    cursor: pointer;
-    font-weight: 500;
-    width: 110px;
-} */
-
 .form-container #rl{
     border-radius: 25px;
 }
@@ -403,27 +420,29 @@
     justify-content: center;
     align-items: center;
     padding: 8px 20px;
-    margin: 5px;
+    margin: 5px 2px;
     cursor: pointer;
     font-weight: bold;
-    width: 110px;
-    background: #F9F6DF;
+    width: 100px;
+    background: #FFF5CC;
     border: 1px solid transparent;
     border-radius: 25px;
     transition: background-color 0.3s, color 0.3s;
-    box-shadow: 0 4px 6px rgba(0, 0.25, 0.25, 0.25);
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.5);
     text-transform: none;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .role button:hover {
-    background-color: #f3f2eb; /* Hover color for non-active buttons */
+    background-color: #FDB853; 
+
 }
 
 .role button.active {
     background-color: #FDB853; 
     border: 1px solid black;
     color: black;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.9);
 }
 
 
@@ -474,5 +493,4 @@
 .error {
     color: red;
     font-size: 12px;
-    margin-top: 5px;
 }

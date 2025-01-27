@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Header from "../comp/header";
 import NavSupervisor from '../comp/navSupervisor';
+import Footer from "../comp/footer";
 import { TiHome } from "react-icons/ti";
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
@@ -40,10 +41,7 @@ const SupervisorResources = () => {
         </div>
       </div>
     </body>
-    <footer className="foot1">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+    <Footer/>
   </>
   );
 };

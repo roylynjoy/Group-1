@@ -320,12 +320,15 @@ html, body{
 
 .company-attendance-header-row {
   display: grid;
-  grid-template-columns: auto 10% 33% 10% 24%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
+  margin-left: 2%;
   gap: 10px;
   font-weight: bold;
   margin-bottom: 10px;
+  width: 80%;
 }
+
 
 .company-attendance-row-wrapper {
   display: flex;
@@ -336,10 +339,9 @@ html, body{
 .company-attendance-row {
   width: 80%;
   display: grid;
-  grid-template-columns: 15% auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   text-align: center;
   align-items: center;
-  gap: 10px;
   background-color: #FFF5CC;
   border: 2px solid #FDDD5D;
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
@@ -413,6 +415,7 @@ html, body{
   text-align: center;
   font-style: italic;
   color: #777;
+  margin: 10vh 0px;
 }
 
 .custom-modal-overlay {
@@ -508,4 +511,80 @@ html, body{
   height: 48px;
   right: 50px;
   top: 30px;
+}
+
+/* For 1920x1080 (Large desktop screens) */
+
+@media (min-width: 1921px) {
+  .company-attendance-header-row {
+    grid-template-columns: 27% 20% 27% 22% 20%; /* Adjusted for larger screen */
+  }
+}
+
+@media (max-width: 1920px) {
+  .company-attendance-header-row {
+    grid-template-columns: 27% 20% 27% 22% 20%; /* Adjusted for larger screen */
+  }
+}
+
+@media (min-width: 1441px) {
+  .company-attendance-header-row {
+    grid-template-columns: 26% 20% 27% 19% 20%; /* Adjusted for large laptop */
+  }
+}
+
+/* For 1440px (Large laptop screens) */
+@media (max-width: 1440px) {
+  .company-attendance-header-row {
+    grid-template-columns: 21% 29% 16% 30% 15%; /* Adjusted for large laptop */
+  }
+}
+
+/* For 1366px (Typical laptop screens) */
+@media (max-width: 1366px) {
+  .company-attendance-header-row {
+    grid-template-columns: 22% 27% 17% 28% 17%; /* Adjusted for typical laptop */
+  }
+}
+
+/* For 1280px (Medium laptops or smaller desktops) */
+@media (max-width: 1280px) {
+  .company-attendance-header-row {
+    grid-template-columns: 23% 27% 17% 25% 18%; /* Adjusted for medium laptops */
+  }
+}
+
+/* For 1024px (Smaller laptops or larger tablets) */
+@media (max-width: 1024px) {
+  .company-attendance-header-row {
+    grid-template-columns: 20% 25% 15% 25% 15%; /* Adjusted for smaller laptops */
+  }
+}
+
+/* For 900px (Small tablets or larger mobile screens) */
+@media (max-width: 900px) {
+  .company-attendance-header-row {
+    grid-template-columns: 18% 27% 18% 20% 17%; /* Adjusted for smaller tablets */
+  }
+}
+
+/* For 768px (Standard tablets) */
+@media (max-width: 768px) {
+  .company-attendance-header-row {
+    grid-template-columns: 15% 30% 15% 25% 15%; /* Adjusted for standard tablets */
+  }
+}
+
+/* For 600px (Portrait tablets or small mobile screens) */
+@media (max-width: 600px) {
+  .company-attendance-header-row {
+    grid-template-columns: 20% 25% 20% 20% 15%; /* Adjusted for portrait tablets */
+  }
+}
+
+/* For 480px (Smaller mobile screens) */
+@media (max-width: 480px) {
+  .company-attendance-header-row {
+    grid-template-columns: 25% 25% 25% 15% 10%; /* Adjusted for smaller mobile screens */
+  }
 }

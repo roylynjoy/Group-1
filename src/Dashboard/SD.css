@@ -339,6 +339,10 @@
   margin-top: 50px;
 }
 
+.grid span {
+  place-self: start;
+}
+
 .col-span-2, .row-span-2, .performance, .readings {
   background-color: #FFFFFF;
   padding: 20px;
@@ -508,9 +512,7 @@
   position: absolute;
   width: 100vw;
   height: 100px;
-
-  background: #E7BD18;
-
+  background: #F9BF62;
   display: flex;
   justify-content: center;
   align-items: center;

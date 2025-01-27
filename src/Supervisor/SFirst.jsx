@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../Resources/Resources.css'
+import Header from '../comp/header';
+import Footer from "../comp/footer";
+import NavSupervisor from '../comp/navSupervisor';
 import { Link } from 'react-router-dom';
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
@@ -28,36 +31,11 @@ const First = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-      <header className="header">
-          <div id="logo">
-            <img src="/images/logo.png" alt="Logo" />
-            <h1>Fieldmate</h1>
-          </div>
-                
-          <div className="user-profile">
-            <i className="fa-solid fa-bell"></i>
-            <i className="fa-solid fa-envelope"></i>
-            <img src="/images/user1.png" alt="User" onClick={handleProfileClick} style={{ cursor: 'pointer' }}/>
-            {showLogoutBox && (
-              <div className="logout-box">
-                <button id="edit">Edit Profile</button>
-                <button id="edit">Settings</button>
-                <button onClick={handleLogout} className="logout-button">Logout</button>
-              </div>
-            )}
-          </div>
-        </header>
-      
-        <div className="dash">
-          <span>Supervisor Resources</span>
-            <div id="img">
-              <Link to="/" ><TiHome id="icon"/></Link>
-              <FaUserCheck id="icon"/>
-              <ImBooks id="icon"/>
-            </div>
-        </div>
+      <Header/>
+      <NavSupervisor />
 
         <div className="SD-container">
+        <div id="perfAtt"></div>
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">
@@ -78,10 +56,7 @@ const First = () => {
         </div>
       </div>
     </body>
-    <footer className="foot1">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+    <Footer/>
   </>
   );
 };

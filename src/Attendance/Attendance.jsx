@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Att.css';
 import Header from '../comp/header';
 import NavStudent from '../comp/navStudent';
+import Footer from '../comp/footer';
 import { IoIosArrowUp } from "react-icons/io";
 import { db } from '../firebase';
 import { collection, addDoc, updateDoc, query, where, getDocs, Timestamp } from 'firebase/firestore';
@@ -346,7 +347,7 @@ const Attendance = () => {
                 </div>
                 <div className="att-text">
                   <label>Status:</label>
-                  <p style={{color: timeInStatus === 'Pending' ? 'orange' : timeInStatus === 'Approved' ? 'green' : 'red',}}>{timeOutStatus}</p>
+                  <p style={{color: timeOutStatus === 'Pending' ? 'orange' : timeOutStatus === 'Approved' ? 'green' : 'red',}}>{timeOutStatus}</p>
                 </div>
                 <button
                   onClick={() => handleAttendanceSubmit('TimeOut')}
@@ -359,11 +360,7 @@ const Attendance = () => {
           </div>
         </div>
       </div>
-      <footer className="foot2">
-        <p>&copy; 2025 LVCC INC... All rights reserved.</p>
-        <p>Privacy Policy | Terms of Service </p>
-        <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
-      </footer>
+    <Footer/>
     </>
   );
 };

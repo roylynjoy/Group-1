@@ -124,7 +124,7 @@ function Header() {
       <header className="header">
         <div id="logo">
           <img src="/images/logo.png" alt="Logo" />
-          <h1>Fieldmate</h1>
+          <h1>FieldMate</h1>
         </div>
 
         <div className="user-profile">
