@@ -75,6 +75,7 @@ const homepage = () => {
                     height="500"
                     style={{ border: 0 }}
                     allowFullScreen=""
+                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Google Map"
                   ></iframe>

@@ -57,6 +57,14 @@ function App() {
         <Route path="Resources/Chapter2.1" element={<Chapter2 />} />
         <Route path="Resources/Chapter2.2" element={<Chapter202 />} />
         <Route path="Resources/Chapter2.3" element={<Chapter203 />} />
+        <Route path="Supervisor/SupervisorResources" element={<SupervisorResources />} />
+        <Route path="Supervisor/SThird" element={<SThird />} />
+        <Route path="Supervisor/SSecond" element={<SSecond />} />
+        <Route path="Supervisor/SFirst" element={<SFirst />} />
+        <Route path="Supervisor/AddBooks" element={<AddBooks />} />
+        <Route path="/Attendance" element={<Attendance />} />
+        <Route path="/SupervisorAtt" element={<SupervisorAtt />} />
+        <Route path="/CompanyAtt" element={<CompanyAtt />} />
       </Routes>
     </Router>
   );

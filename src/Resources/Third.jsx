@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import './Resources.css'
 import Header from '../comp/header';
+import NavStudent from '../comp/navStudent';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { FaUserCheck } from "react-icons/fa";
@@ -36,7 +37,8 @@ const Third = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-      <Header/>              
+      <Header />
+      <NavStudent />              
 
         <div className="SD-container">
         <div id="perfAtt"></div>

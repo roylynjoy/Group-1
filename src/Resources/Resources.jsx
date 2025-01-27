@@ -64,7 +64,7 @@ const Resources = () => {
     </body>
     <div>
     <footer className="foot1 ">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+      <p>&copy; 2025 LVCC Inc... All rights reserved.</p>
       <p>Privacy Policy | Terms of Service </p>
     </footer>
     </div>
