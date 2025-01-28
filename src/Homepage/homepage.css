@@ -1,5 +1,6 @@
 body {
   overflow-x: hidden;
+  
 }
 
 .homepage {
@@ -8,6 +9,7 @@ body {
   align-items: center;
   background-color:#FFDC9C;
   text-align: center;
+
 }
 
 .hp-header {
@@ -20,19 +22,21 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 30px;
-  
+  gap: 15px;
+  font-weight: bold;
+}
+
+.logo-home {
+  margin-left: 30px;
+  width: 50px;
 }
 
 .hp-header h1 {
-  margin-left: 30px;
   margin-right: 20px;
-
   font-style: 'Work Sans';
   font-weight: 600;
   font-size: 35px;
   text-align: center;
-
   color: #000000;
 }
 
@@ -59,11 +63,10 @@ body {
 
 .deer{
   position: absolute;
-  width: 1400px;
+  width: 1000px;
   height: 1000px;
-  left: 749.95px;
+  left: 730px;
   top: -128px;
-
   background: #FFF0C1;
   border-radius: 100%;
 
@@ -93,45 +96,40 @@ body {
 .fm-container h1{
   position: absolute;
   width: 1034.96px;;
-  left: 1px;
-  top: 138.78px;
+  left: 62.31px;
+  top: 160.78px;
 
   font-style: 'Work Sans';
   font-weight: 600;
   font-size: 145px;
   line-height: 176px;
   text-align: center;
-
   color: #000000;
-
-
 }
 
 .fm-container h2{
   position: absolute;
-  width: 1034.96px;
+  width: 700px;
   height: 97.42px;
-  left: 5px;
+  left: 11%;
   top: 308.78px;
 
   font-style:'Work Sans';
-  font-weight: 500;
-  font-size: 53px;
-  line-height: 65px;
+  font-weight: bold;
+  font-size: 27px;
   text-align: center;
-
   color: #000000;
 }
 
 .fm-container p{
   position: absolute;
-  width: 866.13px;
+  width: 800px;
   height: 110.1px;
   left:95px;
-  top: 388.78px;
+  top: 400px;
 
   font-style:'Work Sans';
-  font-size: 30px;
+  font-size: 20px;
   line-height: 35px;
   text-align: center;
 
@@ -157,16 +155,11 @@ body {
 
 .about-container{
   background-color: #F9F9F9;
-
-  position: absolute;
   width: 100vw;
   height: 1750.46px;
-  left: 2.31px;
-  top: 110vh;
-
   background: #F7F4EB;
   border-radius: 50px 50px 0px 0px;
-
+  z-index: 1;
 }
 
 .about-container h2 {
@@ -374,7 +367,7 @@ body {
 }
 
 .contact-section {
-  position: absolute;
+  margin-top: -10%;
   width: 100vw;
   height: 500.82px;
   left: 2.31px;
@@ -382,7 +375,7 @@ body {
 
   background: #FFEBAD;
   border-radius: 50px 50px 0px 0px;
-
+  z-index: 1;
 }
 
 .contact-section h2 {
@@ -504,3 +497,84 @@ margin-top:  360px;
   right: 50px;
   top: 30px;
 }
+
+@media (min-width: 1920px) {
+  .deer {
+    width: 1300px;
+    height: 1300px;
+    top: -100px;
+    left: 900px;
+  }
+
+  .deer img {
+    width: 1100px;
+    top: 20px;
+    left: -90px;
+  }
+
+  .fm-container h1 {
+    font-size: 150px;
+    top: 250px;
+    left: 90px;
+  }
+
+  .fm-container h2 {
+    font-size: 1.5vw;
+    top: 400px;
+    left: 250px;
+  }
+
+  .fm-container p {
+    font-size: 1vw;
+  }
+}
+
+/* @media (min-width: 1366px) and (max-width: 1919px) {
+  .deer {
+    width: 600px;
+    height: 600px;
+    top: -100px;
+  }
+
+  .deer img {
+    width: 500px;
+    top: 80px;
+  }
+
+  .fm-container h1 {
+    font-size: 4vw;
+  }
+
+  .fm-container h2 {
+    font-size: 1.8vw;
+  }
+
+  .fm-container p {
+    font-size: 1.2vw;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1365px) {
+  .deer {
+    width: 500px;
+    height: 500px;
+    top: -80px;
+  }
+
+  .deer img {
+    width: 400px;
+    top: 70px;
+  }
+
+  .fm-container h1 {
+    font-size: 5vw;
+  }
+
+  .fm-container h2 {
+    font-size: 2.5vw;
+  }
+
+  .fm-container p {
+    font-size: 1.5vw;
+  }
+} */

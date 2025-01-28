@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
-import Header from '../comp/header';
-import NavCompany from '../comp/navCompany';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import NavCompany from '../components/navCompany';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -36,15 +37,12 @@ const CompanyAtt = () => {
       }
       
       const companiesRef = collection(db, 'Companies');
-      // Normalize both the Firestore email and userEmail to lowercase for case-insensitive comparison
       const q = query(companiesRef, where('email', '==', userEmail.toLowerCase()));
       const querySnapshot = await getDocs(q);
       
       if (querySnapshot.empty) {
         setMessage('No company found for this email.');
         setIsCompany(false);
-        console.log(email);
-        // navigate('/login');
         return;
       }      
 
@@ -138,48 +136,31 @@ const CompanyAtt = () => {
   };
 
   const handleAction = (recordId, isTimeIn, action) => {
-    // Open the modal and set its state (type of action, record details)
     setModal({ isVisible: true, action, recordId, isTimeIn });
   };
   
   const confirmAction = () => {
-    // Destructure the modal state to determine what to do
     const { action, recordId, isTimeIn } = modal;
-  
     if (action === 'approve') {
-      handleApprove(recordId, isTimeIn); // Call the actual approve function
+      handleApprove(recordId, isTimeIn);
     } else if (action === 'deny') {
-      handleDeny(recordId, isTimeIn); // Call the actual deny function
+      handleDeny(recordId, isTimeIn);
     }
-  
-    // Close the modal after performing the action
     setModal({ isVisible: false, action: null, recordId: null, isTimeIn: true });
   };
-  
+
   const closeModal = () => {
-    // Simply close the modal without performing any action
     setModal({ isVisible: false, action: null, recordId: null, isTimeIn: true });
   };
-  
+
   const handleApprove = async (recordId, isTimeIn) => {
     try {
       const attendanceDocRef = doc(db, 'Attendance', recordId);
-  
       if (isTimeIn) {
-        // Update TimeInStatus to true for Time In
-        await updateDoc(attendanceDocRef, {
-          TimeInStatus: true,
-        });
-        console.log(`Approved Time In for record ID: ${recordId}`);
+        await updateDoc(attendanceDocRef, { TimeInStatus: true });
       } else {
-        // Update TimeOutStatus to true for Time Out
-        await updateDoc(attendanceDocRef, {
-          TimeOutStatus: true,
-        });
-        console.log(`Approved Time Out for record ID: ${recordId}`);
+        await updateDoc(attendanceDocRef, { TimeOutStatus: true });
       }
-  
-      // Refresh the attendance records
       fetchAttendanceRecords();
     } catch (error) {
       console.error(`Error approving record ID ${recordId}:`, error);
@@ -189,22 +170,11 @@ const CompanyAtt = () => {
   const handleDeny = async (recordId, isTimeIn) => {
     try {
       const attendanceDocRef = doc(db, 'Attendance', recordId);
-  
       if (isTimeIn) {
-        // Update DenyIn to true for Time In
-        await updateDoc(attendanceDocRef, {
-          DenyIn: true,
-        });
-        console.log(`Denied Time In for record ID: ${recordId}`);
+        await updateDoc(attendanceDocRef, { DenyIn: true });
       } else {
-        // Update DenyOut to true for Time Out
-        await updateDoc(attendanceDocRef, {
-          DenyOut: true,
-        });
-        console.log(`Denied Time Out for record ID: ${recordId}`);
+        await updateDoc(attendanceDocRef, { DenyOut: true });
       }
-  
-      // Refresh the attendance records
       fetchAttendanceRecords();
     } catch (error) {
       console.error(`Error denying record ID ${recordId}:`, error);
@@ -221,7 +191,7 @@ const CompanyAtt = () => {
             <div className="grid">
               <div className="col-span-3 perf">
                 <div id="perf">
-                  <h1>Welcome Back, Coordinator!</h1>
+                  <h1>Welcome, Coordinator!</h1>
                   <span>Always stay connected in your Fieldmate</span>
                 </div>
                 <img src="/images/Coordinator.png" alt="" />
@@ -246,7 +216,10 @@ const CompanyAtt = () => {
               <div className="company-time-in-section">
                 <p className="time-sections">Pending Student Time In</p>
                 <div className="company-attendance-list-section">
-                  <div className="company-attendance-header-row">
+                  <div
+                    className="company-attendance-header-row"
+                    style={{ display: timeInRecords.length === 0 ? 'none' : 'grid' }}
+                  >
                     <div className="company-attendance-header"></div>
                     <div className="company-attendance-header">ID Number</div>
                     <div className="company-attendance-header">Name</div>
@@ -262,17 +235,10 @@ const CompanyAtt = () => {
                       >
                         <div className="company-attendance-row">
                           <div className="company-attendance-cell">
-                            <img
-                              src="/images/blank-profile.jpg"
-                              alt=""
-                            />
+                            <img src="/images/blank-profile.jpg" alt="" />
                           </div>
-                          <div className="company-attendance-cell">
-                            {record.idNumber}
-                          </div>
-                          <div className="company-attendance-cell">
-                            {record.name}
-                          </div>
+                          <div className="company-attendance-cell">{record.idNumber}</div>
+                          <div className="company-attendance-cell">{record.name}</div>
                           <div className="company-attendance-cell">
                             {formatTimestamp(record.TimeIn)}
                           </div>
@@ -294,9 +260,7 @@ const CompanyAtt = () => {
                       </div>
                     ))
                   ) : (
-                    <p className="company-no-records">
-                      No Time In records to display.
-                    </p>
+                    <p className="company-no-records">No Time In records to display.</p>
                   )}
                 </div>
               </div>
@@ -307,7 +271,10 @@ const CompanyAtt = () => {
               <div className="company-time-out-section">
                 <p className="time-sections">Pending Student Time Out</p>
                 <div className="company-attendance-list-section">
-                  <div className="company-attendance-header-row">
+                  <div
+                    className="company-attendance-header-row"
+                    style={{ display: timeOutRecords.length === 0 ? 'none' : 'grid' }}
+                  >
                     <div className="company-attendance-header"></div>
                     <div className="company-attendance-header">ID Number</div>
                     <div className="company-attendance-header">Name</div>
@@ -323,17 +290,10 @@ const CompanyAtt = () => {
                       >
                         <div className="company-attendance-row">
                           <div className="company-attendance-cell">
-                            <img
-                              src="/images/blank-profile.jpg"
-                              alt=""
-                            />
+                            <img src="/images/blank-profile.jpg" alt="" />
                           </div>
-                          <div className="company-attendance-cell">
-                            {record.idNumber}
-                          </div>
-                          <div className="company-attendance-cell">
-                            {record.name}
-                          </div>
+                          <div className="company-attendance-cell">{record.idNumber}</div>
+                          <div className="company-attendance-cell">{record.name}</div>
                           <div className="company-attendance-cell">
                             {formatTimestamp(record.TimeOut)}
                           </div>
@@ -355,24 +315,23 @@ const CompanyAtt = () => {
                       </div>
                     ))
                   ) : (
-                    <p className="company-no-records">
-                      No Time Out records to display.
-                    </p>
+                    <p className="company-no-records">No Time Out records to display.</p>
                   )}
                 </div>
               </div>
             </div>
           </div>
+          <Footer />
         </div>
       </div>
-  
-      {/* Confirmation Modal */}
+
+      {/* Modal */}
       {modal.isVisible && (
         <div className="custom-modal-overlay">
           <div className="custom-modal">
             <p>
               Are you sure you want to{' '}
-              <strong>{modal.action === 'approve' ? 'approve' : 'deny'}</strong> this{' '}
+              <strong>{modal.action === 'approve' ? 'Approve' : 'Deny'}</strong> this{' '}
               {modal.isTimeIn ? 'Time In' : 'Time Out'} record?
             </p>
             <div className="custom-modal-buttons">
@@ -394,7 +353,6 @@ const CompanyAtt = () => {
       )}
     </>
   );
-  
 };
 
 export default CompanyAtt;

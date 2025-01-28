@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './homepage.css';
+import Footer from '../components/footer';
 import { IoIosArrowUp } from "react-icons/io";
 
 const homepage = () => {
@@ -13,7 +14,8 @@ const homepage = () => {
   return (
         <div className="homepage"> 
               <header className="hp-header">
-                <h1>Fieldmate</h1>
+                <img className='logo-home' src="/images/logo.png" alt="Logo" />
+                <h1>FieldMate</h1>
                 <h6 id='home'>HOME</h6>
                 <h6><a href='#about'>ABOUT</a></h6>
                 <h6><a href='#contact'>CONTACT</a></h6>
@@ -24,8 +26,8 @@ const homepage = () => {
                   <img src="/images/deer.png" alt="" />
                 </span>
                 <div id='fm'>
-                  <h1>Fieldmate:</h1>
-                  <h2>BSA/BSAIS FIELD PRACTICUM</h2>
+                  <h1>FieldMate:</h1>
+                  <h2>BSA/BSAIS FIELD PRACTICUM ATTENDANCE TRACKING + RESOURCES COMPILATION SYSTEM</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.  
                   </p>
                   <button id='cta-button'><Link to="/Login">GET STARTED</Link></button>
@@ -75,18 +77,12 @@ const homepage = () => {
                     height="500"
                     style={{ border: 0 }}
                     allowFullScreen=""
-                    loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Google Map"
                   ></iframe>
                 </div>
+                <Footer></Footer>
               </section>
-
-      <footer className="footer">
-        <p>&copy; 2025 LVCC Inc... All rights reserved.</p>
-        <p>Privacy Policy | Terms of Service </p>
-        <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
-      </footer>
     </div>
   );
 
