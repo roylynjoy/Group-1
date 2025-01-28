@@ -7,7 +7,7 @@ const navSupervisor = () => {
   return (
     <>
       <div className="dash">
-        <span>Supervisor Resources</span>
+        <span>Supervisor Dashboard</span>
         <div id="img">
           <NavLink
             to="/SupervisorAtt"
