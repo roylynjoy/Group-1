@@ -331,7 +331,7 @@ const CompanyAtt = () => {
           <div className="custom-modal">
             <p>
               Are you sure you want to{' '}
-              <strong>{modal.action === 'Approve' ? 'Approve' : 'Deny'}</strong> this{' '}
+              <strong>{modal.action === 'approve' ? 'Approve' : 'Deny'}</strong> this{' '}
               {modal.isTimeIn ? 'Time In' : 'Time Out'} record?
             </p>
             <div className="custom-modal-buttons">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaUserCheck } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const navSupervisor = () => {
   return (
@@ -9,12 +9,25 @@ const navSupervisor = () => {
       <div className="dash">
         <span>Supervisor Dashboard</span>
         <div id="img">
-          <Link to="/SupervisorAtt">
-            <FaUserCheck id="icon" />
-          </Link>
-          <Link to="/Supervisor/SupervisorResources">
-            <ImBooks id="icon" />
-          </Link>
+          <NavLink
+            to="/SupervisorAtt"
+            id="icon"
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            <FaUserCheck />
+          </NavLink>
+          <NavLink
+            to="/Supervisor/SupervisorResources"
+            id="icon"
+            className={({ isActive }) =>
+              isActive || 
+              ['/Supervisor/SSecond', '/Supervisor/SFirst', '/Supervisor/SThird', '/Supervisor/SResourcesBook'].includes(window.location.pathname)
+                ? "active-link3"
+                : ""
+            }
+          >
+            <ImBooks />
+          </NavLink>
         </div>
       </div>
     </>

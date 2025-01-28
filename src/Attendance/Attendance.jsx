@@ -23,7 +23,6 @@ const Attendance = () => {
   const [timeOut, setTimeOut] = useState('00:00');
   const [timeInStatus, setTimeInStatus] = useState('Pending');
   const [timeOutStatus, setTimeOutStatus] = useState('Pending');
-  
 
   const auth = getAuth();
   const navigate = useNavigate();
@@ -43,7 +42,7 @@ const Attendance = () => {
       const querySnapshot = await getDocs(q);
 
       if (querySnapshot.empty) {
-        navigate('/login'); 
+        navigate('/login');
         setIsStudent(false);
         return;
       }
@@ -56,107 +55,31 @@ const Attendance = () => {
     }
   };
 
-  // Clear local storage for a new day
   useEffect(() => {
-    const now = new Date();
-    const today = now.toDateString();
+    const updateDateTime = () => {
+      const now = new Date();
+      const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(now);
+      const options = {
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
+        timeZone: 'Asia/Manila',
+      };
+      const formattedDate = new Intl.DateTimeFormat('en-US', options).format(now);
 
-    const savedSession = JSON.parse(localStorage.getItem(userEmail));
-
-    if (savedSession && savedSession.date !== today) {
-      localStorage.removeItem(userEmail);
-      setIsTimeInSubmitted(false);
-      setIsTimeOutSubmitted(false);
-      setIsSubmitAllPressed(false);
-    }
-  }, [userEmail]);
-
-  // Load saved session data
-  useEffect(() => {
-    const savedSession = JSON.parse(localStorage.getItem(userEmail));
-
-    if (savedSession) {
-      setIsTimeInSubmitted(savedSession.isTimeInSubmitted);
-      setIsTimeOutSubmitted(savedSession.isTimeOutSubmitted);
-      setIsSubmitAllPressed(savedSession.isSubmitAllPressed);
-    }
-  }, [userEmail]);
-
-  // Save session data to localStorage
-  useEffect(() => {
-    const now = new Date();
-    const today = now.toDateString();
-
-    const sessionData = {
-      isTimeInSubmitted,
-      isTimeOutSubmitted,
-      isSubmitAllPressed,
-      date: today,
+      setCurrentDate(formattedDate);
+      setCurrentDay(weekday);
+      setCurrentTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
     };
 
-    localStorage.setItem(userEmail, JSON.stringify(sessionData));
-  }, [isTimeInSubmitted, isTimeOutSubmitted, isSubmitAllPressed, userEmail]);
+    updateDateTime();
+    const intervalId = setInterval(updateDateTime, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
 
-  const getStudentDetails = async () => {
-    try {
-      const studentsRef = collection(db, 'Students');
-      const q = query(studentsRef, where('email', '==', userEmail));
-      const querySnapshot = await getDocs(q);
-  
-      if (querySnapshot.empty) {
-        console.log('No student found with this email');
-        return { name: null, company: null, idNumber: null }; // Return null if no student is found
-      }
-  
-      const studentDoc = querySnapshot.docs[0].data();
-      return {
-        name: studentDoc.firstName, 
-        company: studentDoc.company,
-        idNumber: studentDoc.idNumber,
-      };
-    } catch (error) {
-      console.error('Error fetching student details:', error);
-      return { name: null, company: null, idNumber: null}; // Return null if there's an error
-    }
-  };
-
-  useEffect(() => {
-    if (isStudent) {
-      const updateDateTime = () => {
-        const now = new Date();
-
-        // Extract weekday
-        const weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(now);
-
-        // Extract formatted date (Month Day, Year)
-        const options = {
-          year: 'numeric',
-          month: 'long',
-          day: '2-digit',
-          timeZone: 'Asia/Manila',
-        };
-        const formattedDate = new Intl.DateTimeFormat('en-US', options).format(now);
-
-        setCurrentDate(formattedDate);
-        setCurrentDay(weekday);
-        setCurrentTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }));
-      };
-
-      updateDateTime();
-      const intervalId = setInterval(updateDateTime, 1000);
-      return () => clearInterval(intervalId);
-    }
-  }, [isStudent]);
-
-  // Fetching attendance data based on current date
   useEffect(() => {
     const fetchAttendanceData = async () => {
       try {
-        if (isSubmitAllPressed || isTimeInSubmitted) {
-          // Skip fetching if "Submit All" was pressed or Time-In is already submitted
-          return;
-        }
-  
         const attendanceRef = collection(db, 'Attendance');
         const q = query(
           attendanceRef,
@@ -164,23 +87,21 @@ const Attendance = () => {
           where('userEmail', '==', userEmail)
         );
         const querySnapshot = await getDocs(q);
-  
+
         if (querySnapshot.empty) {
-          // If no data is found, set default values
           setTimeIn('00:00');
           setTimeOut('00:00');
           setTimeInStatus('Pending');
           setTimeOutStatus('Pending');
+          setIsTimeInSubmitted(false);
+          setIsTimeOutSubmitted(false);
         } else {
-          // Data exists, update the state accordingly
           querySnapshot.forEach((doc) => {
             const data = doc.data();
-            
-            // Set TimeIn and TimeOut values
+
             setTimeIn(data.TimeIn ? data.TimeIn.toDate().toLocaleTimeString() : '00:00');
             setTimeOut(data.TimeOut ? data.TimeOut.toDate().toLocaleTimeString() : '00:00');
-            
-            // Determine TimeInStatus
+
             if (data.DenyIn) {
               setTimeInStatus('Denied');
             } else if (data.TimeInStatus) {
@@ -188,8 +109,7 @@ const Attendance = () => {
             } else {
               setTimeInStatus('Pending');
             }
-  
-            // Determine TimeOutStatus
+
             if (data.DenyOut) {
               setTimeOutStatus('Denied');
             } else if (data.TimeOutStatus) {
@@ -197,30 +117,57 @@ const Attendance = () => {
             } else {
               setTimeOutStatus('Pending');
             }
+
+            setIsTimeInSubmitted(!!data.TimeIn);
+            setIsTimeOutSubmitted(!!data.TimeOut);
           });
         }
       } catch (error) {
         console.error('Error fetching attendance data:', error);
       }
     };
-  
-    if (currentDate && userEmail && !isSubmitAllPressed) {
+
+    if (currentDate && userEmail) {
       fetchAttendanceData();
     }
-  }, [currentDate, userEmail, isSubmitAllPressed]);
+  }, [currentDate, userEmail]);
+
+  const getStudentDetails = async () => {
+    try {
+      const studentsRef = collection(db, 'Students');
+      const q = query(studentsRef, where('email', '==', userEmail));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        const studentDoc = querySnapshot.docs[0].data();
+        return {
+          name: studentDoc.firstName,
+          company: studentDoc.company,
+          idNumber: studentDoc.idNumber,
+        };
+      } else {
+        setMessage('Student details not found.');
+        return {};
+      }
+    } catch (error) {
+      console.error('Error fetching student details:', error);
+      setMessage('An error occurred while fetching student details.');
+      return {};
+    }
+  };
   
 
   const handleAttendanceSubmit = async (type) => {
     try {
       const now = Timestamp.fromDate(new Date());
-      const { name, company, idNumber } = await getStudentDetails();  // Get both name and company
-  
-      if (!name || !company || !idNumber) return;  // Ensure both name and company are available
-  
+      const { name, company, idNumber } = await getStudentDetails();
+
+      if (!name || !company || !idNumber) return;
+
       const attendanceRef = collection(db, 'Attendance');
       const q = query(attendanceRef, where('userEmail', '==', userEmail), where('Submit', '==', false));
       const snapshot = await getDocs(q);
-  
+
       if (snapshot.empty && type === 'TimeIn') {
         await addDoc(attendanceRef, {
           Date: Timestamp.fromDate(new Date(currentDate)),
@@ -239,44 +186,34 @@ const Attendance = () => {
         });
         setIsTimeInSubmitted(true);
         setMessage('Time-In recorded successfully!');
-        setTimeIn(now.toDate().toLocaleTimeString()); // Update state directly
-        setTimeInStatus('Pending'); // Update status
+        setTimeIn(now.toDate().toLocaleTimeString());
+        setTimeInStatus('Pending');
       } else if (!snapshot.empty && type === 'TimeOut') {
         const attendanceDocRef = snapshot.docs[0].ref;
         await updateDoc(attendanceDocRef, { TimeOut: now });
         setIsTimeOutSubmitted(true);
         setMessage('Time-Out recorded successfully!');
-        setTimeOut(now.toDate().toLocaleTimeString()); // Update state directly
-        setTimeOutStatus('Pending'); // Update status
+        setTimeOut(now.toDate().toLocaleTimeString());
+        setTimeOutStatus('Pending');
       } else if (!snapshot.empty && type === 'SubmitAll') {
         const recordRef = snapshot.docs[0].ref;
         const recordData = snapshot.docs[0].data();
-  
+
         if (recordData.TimeIn && recordData.TimeOut) {
           await updateDoc(recordRef, { Submit: true });
           setIsSubmitAllPressed(true);
           setMessage('Attendance submitted successfully!');
-  
-          // Reset flags for the next day
-          setIsTimeInSubmitted(false);
-          setIsTimeOutSubmitted(false);
-          setIsSubmitAllPressed(false);
-  
-          // Optionally clear local storage flags
-          localStorage.removeItem(userEmail);
         } else {
           setMessage('Please submit both Time-In and Time-Out before submitting attendance.');
         }
       } else {
         throw new Error('Invalid action or record already exists.');
       }
-  
     } catch (error) {
       console.error('Error handling attendance submission:', error);
       setMessage('Attendance submission failed.');
     }
   };
-  
 
   if (!currentUser) {
     return <p>Please log in to submit attendance.</p>;
@@ -296,6 +233,7 @@ const Attendance = () => {
       behavior: 'smooth'
     });
   };
+  console.log('Current Time In:', timeIn);
 
   return (
     <>
@@ -306,18 +244,19 @@ const Attendance = () => {
 
           <div className="SD-container">
             <div className="">
- 
-                <div id="perfAtt">
-                  <h1>Date: {currentDate} | {currentDay}</h1>
-                  <button
-                    className="submit-all"
-                    onClick={() => handleAttendanceSubmit('SubmitAll')}
-                    disabled={!isTimeInSubmitted || !isTimeOutSubmitted || isSubmitAllPressed}
-                    style={{ display: isTimeInSubmitted && isTimeOutSubmitted ? 'block' : 'none' }}
-                  >
-                    Submit Attendance
-                  </button>
-                </div>
+
+              <div id="perfAtt">
+                <h1>Date: {currentDate} | {currentDay}</h1>
+                <button
+                  className="submit-all"
+                  onClick={() => handleAttendanceSubmit('SubmitAll')}
+                  disabled={!isTimeInSubmitted || !isTimeOutSubmitted || isSubmitAllPressed}
+                  style={{ display: isSubmitAllPressed || !(isTimeInSubmitted && isTimeOutSubmitted) ? 'none' : 'block' }}
+                >
+                  Submit Attendance
+                </button>
+
+              </div>
 
             </div>
             <div className="prompt">
@@ -331,14 +270,18 @@ const Attendance = () => {
                 </div>
                 <div className="att-text">
                   <label>Status:</label>
-                  <p style={{color: timeInStatus === 'Pending' ? 'orange' : timeInStatus === 'Approved' ? 'green' : 'red',}}>{timeInStatus}</p>
+                  <p style={{ color: timeInStatus === 'Pending' ? 'orange' : timeInStatus === 'Approved' ? 'green' : 'red', }}>
+                    {timeInStatus}
+                  </p>
                 </div>
                 <button
+                
                   onClick={() => handleAttendanceSubmit('TimeIn')}
-                  disabled={isTimeInSubmitted || isSubmitAllPressed || timeIn !== '00:00'}
+                  disabled={isTimeInSubmitted || isSubmitAllPressed || timeIn !== '00:00' || timeInStatus !== 'Pending'}
                 >
                   Submit
                 </button>
+
               </div>
               <div className="attendance-container">
                 <div className="att-text">
@@ -347,9 +290,12 @@ const Attendance = () => {
                 </div>
                 <div className="att-text">
                   <label>Status:</label>
-                  <p style={{color: timeOutStatus === 'Pending' ? 'orange' : timeOutStatus === 'Approved' ? 'green' : 'red',}}>{timeOutStatus}</p>
+                  <p style={{ color: timeOutStatus === 'Pending' ? 'orange' : timeOutStatus === 'Approved' ? 'green' : 'red', }}>
+                    {timeOutStatus}
+                  </p>
                 </div>
                 <button
+                  className="submit-time-out"
                   onClick={() => handleAttendanceSubmit('TimeOut')}
                   disabled={!isTimeInSubmitted || isTimeOutSubmitted || isSubmitAllPressed}
                 >
@@ -360,7 +306,7 @@ const Attendance = () => {
           </div>
         </div>
       </div>
-    <Footer/>
+      <Footer />
     </>
   );
 };

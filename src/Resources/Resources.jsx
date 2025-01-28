@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import './Resources.css';
 import Header from '../comp/header';
 import NavStudent from '../comp/navStudent';
-import Footer from '../comp/footer';
-import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import { TiHome } from "react-icons/ti";
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
+import { IoSearchSharp } from "react-icons/io5";
+
+
 
 const Resources = () => {
   const [showLogoutBox, setShowLogoutBox] = useState(false);
@@ -60,11 +58,15 @@ const Resources = () => {
             <h5 className="title3"><Link to="/Resources/Second">Second</Link></h5>
             <h5 className="title4"><Link to="/Resources/First">First</Link></h5>
           </div>
+          <IoSearchSharp className="search"/>
         </div>
       </div>
     </body>
     <div>
-    <Footer/>
+    <footer className="foot1 ">
+      <p>&copy; 2025 LVCC Inc... All rights reserved.</p>
+      <p>Privacy Policy | Terms of Service </p>
+    </footer>
     </div>
   </>
   );

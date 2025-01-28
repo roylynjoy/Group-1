@@ -16,6 +16,7 @@ import Chapter2 from './Resources/chapter2.1';
 import Chapter202 from './Resources/chapter2.2';
 import Chapter203 from './Resources/chapter2.3';
 import SupervisorResources from './Supervisor/SupervisorResources';
+import SResourcesBook from './Supervisor/SResourcesBook';
 import SThird from './Supervisor/SThird';
 import SSecond from './Supervisor/SSecond';
 import SFirst from './Supervisor/SFirst';
@@ -58,6 +59,7 @@ function App() {
         <Route path="Resources/Chapter2.2" element={<Chapter202 />} />
         <Route path="Resources/Chapter2.3" element={<Chapter203 />} />
         <Route path="Supervisor/SupervisorResources" element={<SupervisorResources />} />
+        <Route path="Supervisor/SResourcesBook" element={<SResourcesBook />} />
         <Route path="Supervisor/SThird" element={<SThird />} />
         <Route path="Supervisor/SSecond" element={<SSecond />} />
         <Route path="Supervisor/SFirst" element={<SFirst />} />

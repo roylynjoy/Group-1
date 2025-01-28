@@ -1,5 +1,6 @@
 body {
   overflow-x: hidden;
+  
 }
 
 .homepage {
@@ -8,6 +9,7 @@ body {
   align-items: center;
   background-color:#FFDC9C;
   text-align: center;
+
 }
 
 .hp-header {
@@ -20,19 +22,21 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 30px;
-  
+  gap: 15px;
+  font-weight: bold;
+}
+
+.logo-home {
+  margin-left: 30px;
+  width: 50px;
 }
 
 .hp-header h1 {
-  margin-left: 30px;
   margin-right: 20px;
-
   font-style: 'Work Sans';
   font-weight: 600;
   font-size: 35px;
   text-align: center;
-
   color: #000000;
 }
 
@@ -91,46 +95,40 @@ body {
 
 .fm-container h1{
   position: absolute;
-  width: 1034.96px;;
-  left: 1px;
+  width: 1000px;;
+  left: 1%;
   top: 138.78px;
-
   font-style: 'Work Sans';
   font-weight: 600;
   font-size: 145px;
   line-height: 176px;
   text-align: center;
-
   color: #000000;
-
-
 }
 
 .fm-container h2{
   position: absolute;
-  width: 1034.96px;
+  width: 700px;
   height: 97.42px;
-  left: 5px;
+  left: 11%;
   top: 308.78px;
 
   font-style:'Work Sans';
-  font-weight: 500;
-  font-size: 53px;
-  line-height: 65px;
+  font-weight: bold;
+  font-size: 27px;
   text-align: center;
-
   color: #000000;
 }
 
 .fm-container p{
   position: absolute;
-  width: 866.13px;
+  width: 800px;
   height: 110.1px;
   left:95px;
-  top: 388.78px;
+  top: 400px;
 
   font-style:'Work Sans';
-  font-size: 30px;
+  font-size: 20px;
   line-height: 35px;
   text-align: center;
 

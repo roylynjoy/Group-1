@@ -1,72 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../Resources/Resources.css'
-import Header from '../comp/header';
-import Footer from "../comp/footer";
-import NavSupervisor from '../comp/navSupervisor';
-import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
-import { TiHome } from "react-icons/ti";
+import Header from "../comp/header";
+import NavSupervisor from '../comp/navSupervisor';
 import { FaPlus } from "react-icons/fa";
 
-
-
-
-const Second = () => {
-
-  const [showLogoutBox, setShowLogoutBox] = useState(false);
-    const navigate = useNavigate();
-  
-    const handleProfileClick = () => {
-      setShowLogoutBox(!showLogoutBox);
-    };
-  
-    const handleLogout = () => {
-      navigate('/homepage');
-      console.log("User logged out");
-      setShowLogoutBox(false);
-    };
-  
+const SSecond = () => {
   return (
     <>
     <body className="bd1">
       <div className="Resources">
       <Header/>
       <NavSupervisor />
-
-        <div className="SD-container">
-        <div id="perfAtt"></div>
+      <div className="SD-container">
+          <div id="perfAtt"></div>
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">
-                  <p id="sub">Subject Title</p>
+                  <p id="sub"><Link to="/Resources/ResourcesBook" >Management Accounting</Link></p>
                 </div>
                 <div id="ST-cont2">
-                  <p id="sub">Subject Title</p>
+                  <p id="sub">Accounting Essentials for Small Businesses</p>
                 </div>
                 <div id="ST-cont3">
-                  <p id="sub">Subject Title</p>
+                  <p id="sub">Business Advice For Accounting</p>
                 </div>
                 <div id="add">
                   <Link to="/Supervisor/AddBooks"><FaPlus /></ Link>
                 </div>
             </div>
-            <h5 className="title1"><Link to="/Supervisor/SupervisorResources">Fourth</Link></h5>
+            <h5 className="fourth"><Link to="/Supervisor/SupervisorResources">Fourth</Link></h5>
             <h5 className="title2"><Link to="/Supervisor/SThird"> Third</Link></h5>
-            <h5 className="title3"><Link to="/Supervisor/SSecond">Second</Link></h5>
+            <h5 className="second"><Link to="/Supervisor/SSecond">Second</Link></h5>
             <h5 className="title4"><Link to="/Supervisor/SFirst">First</Link></h5>
-            
           </div>
-
         </div>
       </div>
     </body>
-    <Footer/>
+    <footer className="foot1">
+      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+      <p>Privacy Policy | Terms of Service </p>
+    </footer>
   </>
   );
 };
 
-export default Second
-
+export default SSecond;

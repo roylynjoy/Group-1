@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import './Resources.css'
 import Header from '../comp/header';
 import NavStudent from '../comp/navStudent';
-import Footer from '../comp/footer';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
-import { TiHome } from "react-icons/ti";
+import { IoSearchSharp } from "react-icons/io5";
+
 
 
 
@@ -38,13 +36,13 @@ const Third = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-      <Header/>
-      <NavStudent/>           
+      <Header />
+      <NavStudent />              
 
         <div className="SD-container">
         <div id="perfAtt"></div>
           <div className="welcome">
-            <div className="resources-container">
+            <div className="resources-container rc">
                 <div id="ST-cont1">
                   <p id="sub">Subject Title</p>
                 </div>
@@ -62,11 +60,14 @@ const Third = () => {
             <h5 className="title4"><Link to="/Resources/First">First</Link></h5>
             
           </div>
-
+          <IoSearchSharp className="search"/>
         </div>
       </div>
     </body>
-    <Footer/>
+    <footer className="foot1">
+      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+      <p>Privacy Policy | Terms of Service </p>
+    </footer>
   </>
   );
 };

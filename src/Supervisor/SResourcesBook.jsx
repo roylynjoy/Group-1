@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import './Resources.css';
+import '../Resources/Resources.css';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import Header from '../comp/header';
-import NavStudent from '../comp/navStudent';
+import NavSupervisor from "../comp/navSupervisor";
 
 
 
-const ResourcesBook = () => {
+const SResourcesBook = () => {
   const navigate = useNavigate();
 
 
@@ -28,7 +28,7 @@ const ResourcesBook = () => {
     <body className="bd1">
       <div className="Resources">
         <Header />
-        <NavStudent/>
+        <NavSupervisor />
         <div id="perfAtt"></div>
         <div className="bg">   
             <div className="bag">
@@ -67,4 +67,4 @@ const ResourcesBook = () => {
   );
 };
 
-export default ResourcesBook;
+export default SResourcesBook;

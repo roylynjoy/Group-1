@@ -42,13 +42,14 @@
 .active-link {
   background-color: #a5a4a4;
   border-radius: 15px;
-  padding: 12px;
+  padding: 13px;
 }
 
 .active-link3 {
   background-color: #a5a4a4;
   border-radius: 15px 50px 50px 15px;
-  padding: 12px;
+  padding: 13px;
+  margin-right: -20px;
 }
 
 

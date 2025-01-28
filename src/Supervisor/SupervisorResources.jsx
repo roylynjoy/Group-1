@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import Header from "../comp/header";
 import NavSupervisor from '../comp/navSupervisor';
-import Footer from "../comp/footer";
-import { TiHome } from "react-icons/ti";
-import { FaUserCheck } from "react-icons/fa";
-import { ImBooks } from "react-icons/im";
 import { FaPlus } from "react-icons/fa";
 
 const SupervisorResources = () => {
@@ -15,13 +11,13 @@ const SupervisorResources = () => {
     <body className="bd1">
       <div className="Resources">
       <Header/>
-      <NavSupervisor />
-        <div className="SD-container">
-        <div id="perfAtt"></div>
+      <NavSupervisor/>
+      <div className="SD-container">
+          <div id="perfAtt"></div>
           <div className="welcome">
             <div className="resources-container">
                 <div id="ST-cont1">
-                  <p id="sub"><Link to="/Resources/ResourcesBook" >Management Accounting</Link></p>
+                  <p id="sub"><Link to="/Supervisor/SResourcesBook" >Management Accounting</Link></p>
                 </div>
                 <div id="ST-cont2">
                   <p id="sub">Accounting Essentials for Small Businesses</p>
@@ -41,7 +37,10 @@ const SupervisorResources = () => {
         </div>
       </div>
     </body>
-    <Footer/>
+    <footer className="foot1">
+      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
+      <p>Privacy Policy | Terms of Service </p>
+    </footer>
   </>
   );
 };
