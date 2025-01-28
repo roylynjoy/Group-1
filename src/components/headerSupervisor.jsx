@@ -199,7 +199,7 @@ const Header = () => {
                     src="/images/supervisor-profile.png"
                     alt="User"
                   />
-                  <p>Company</p>
+                  <p>Supervisor</p>
                 </div>
               </div>
               <hr />

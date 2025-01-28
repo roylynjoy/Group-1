@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import '../student_resources/Resources.css';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import Header from '../components/header';
+import HeaderSupervisor from '../components/headerSupervisor';
 import NavSupervisor from "../components/navSupervisor";
 import Footer from "../components/footer";
 
@@ -28,7 +28,7 @@ const SResourcesBook = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-        <Header />
+        <HeaderSupervisor />
         <NavSupervisor />
         <div id="perfAtt"></div>
         <div className="bg">   
