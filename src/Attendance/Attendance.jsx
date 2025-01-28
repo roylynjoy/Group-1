@@ -251,10 +251,10 @@ const Attendance = () => {
         <div className="dashboard">
           <Header />
           <NavStudent />
-
+  
           <div className="SD-container">
             <div className="">
-
+  
               <div id="perfAtt">
                 <h1>Date: {currentDate} | {currentDay}</h1>
                 <button
@@ -265,10 +265,9 @@ const Attendance = () => {
                 >
                   Submit Attendance
                 </button>
-
-
+  
               </div>
-
+  
             </div>
             <div className="prompt">
               {message && <p>{message}</p>}
@@ -286,13 +285,17 @@ const Attendance = () => {
                   </p>
                 </div>
                 <button
-                
                   onClick={() => handleAttendanceSubmit('TimeIn')}
                   disabled={isTimeInSubmitted || isSubmitAllPressed || timeIn !== '00:00' || timeInStatus !== 'Pending'}
+                  style={{
+                    backgroundColor: isTimeInSubmitted ? '#00428d' : '', // Dark blue when submitted
+                    color: isTimeInSubmitted ? 'white' : '', // White text when submitted
+                    filter: isTimeInSubmitted ? 'brightness(0.7)' : 'brightness(1)',
+                  }}
                 >
-                  Submit
+                  {isTimeInSubmitted ? 'Submitted' : 'Submit'}
                 </button>
-
+  
               </div>
               <div className="attendance-container">
                 <div className="att-text">
@@ -309,8 +312,13 @@ const Attendance = () => {
                   className="submit-time-out"
                   onClick={() => handleAttendanceSubmit('TimeOut')}
                   disabled={!isTimeInSubmitted || isTimeOutSubmitted || isSubmitAllPressed}
+                  style={{
+                    backgroundColor: isTimeOutSubmitted ? '#00428d' : '', // Dark blue when submitted
+                    color: isTimeOutSubmitted ? 'white' : '', // White text when submitted
+                    filter: isTimeOutSubmitted ? 'brightness(0.7)' : 'brightness(1)',
+                  }}
                 >
-                  Submit
+                  {isTimeOutSubmitted ? 'Submitted' : 'Submit'}
                 </button>
               </div>
             </div>
@@ -320,6 +328,7 @@ const Attendance = () => {
       <Footer />
     </>
   );
+  
 };
 
 export default Attendance;
