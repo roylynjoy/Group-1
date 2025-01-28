@@ -18,6 +18,8 @@ const Attendance = () => {
   const [isTimeInSubmitted, setIsTimeInSubmitted] = useState(false);
   const [isTimeOutSubmitted, setIsTimeOutSubmitted] = useState(false);
   const [isStudent, setIsStudent] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
 
   const [timeIn, setTimeIn] = useState('00:00');
   const [timeOut, setTimeOut] = useState('00:00');
@@ -87,7 +89,7 @@ const Attendance = () => {
           where('userEmail', '==', userEmail)
         );
         const querySnapshot = await getDocs(q);
-
+  
         if (querySnapshot.empty) {
           setTimeIn('00:00');
           setTimeOut('00:00');
@@ -95,13 +97,14 @@ const Attendance = () => {
           setTimeOutStatus('Pending');
           setIsTimeInSubmitted(false);
           setIsTimeOutSubmitted(false);
+          setIsSubmitted(false); // No record, so it's not submitted
         } else {
           querySnapshot.forEach((doc) => {
             const data = doc.data();
-
+            
             setTimeIn(data.TimeIn ? data.TimeIn.toDate().toLocaleTimeString() : '00:00');
             setTimeOut(data.TimeOut ? data.TimeOut.toDate().toLocaleTimeString() : '00:00');
-
+  
             if (data.DenyIn) {
               setTimeInStatus('Denied');
             } else if (data.TimeInStatus) {
@@ -109,7 +112,7 @@ const Attendance = () => {
             } else {
               setTimeInStatus('Pending');
             }
-
+  
             if (data.DenyOut) {
               setTimeOutStatus('Denied');
             } else if (data.TimeOutStatus) {
@@ -117,20 +120,25 @@ const Attendance = () => {
             } else {
               setTimeOutStatus('Pending');
             }
-
+  
             setIsTimeInSubmitted(!!data.TimeIn);
             setIsTimeOutSubmitted(!!data.TimeOut);
+            
+            // Set the Submit status from Firestore
+            setIsSubmitted(data.Submit || false); // If Submit is true, set isSubmitted to true, else false
           });
         }
       } catch (error) {
         console.error('Error fetching attendance data:', error);
       }
     };
-
+  
     if (currentDate && userEmail) {
       fetchAttendanceData();
     }
-  }, [currentDate, userEmail]);
+  }, [currentDate, userEmail]); // Add dependencies so it refetches on these changes
+  
+  
 
   const getStudentDetails = async () => {
     try {
@@ -161,13 +169,13 @@ const Attendance = () => {
     try {
       const now = Timestamp.fromDate(new Date());
       const { name, company, idNumber } = await getStudentDetails();
-
+  
       if (!name || !company || !idNumber) return;
-
+  
       const attendanceRef = collection(db, 'Attendance');
       const q = query(attendanceRef, where('userEmail', '==', userEmail), where('Submit', '==', false));
       const snapshot = await getDocs(q);
-
+  
       if (snapshot.empty && type === 'TimeIn') {
         await addDoc(attendanceRef, {
           Date: Timestamp.fromDate(new Date(currentDate)),
@@ -175,7 +183,7 @@ const Attendance = () => {
           TimeOut: null,
           TimeInStatus: false,
           TimeOutStatus: false,
-          Submit: false,
+          Submit: false,  // Initially false
           Record: false,
           DenyIn: false,
           DenyOut: false,
@@ -198,9 +206,9 @@ const Attendance = () => {
       } else if (!snapshot.empty && type === 'SubmitAll') {
         const recordRef = snapshot.docs[0].ref;
         const recordData = snapshot.docs[0].data();
-
+  
         if (recordData.TimeIn && recordData.TimeOut) {
-          await updateDoc(recordRef, { Submit: true });
+          await updateDoc(recordRef, { Submit: true }); // Set Submit to true after both TimeIn and TimeOut are recorded
           setIsSubmitAllPressed(true);
           setMessage('Attendance submitted successfully!');
         } else {
@@ -214,6 +222,8 @@ const Attendance = () => {
       setMessage('Attendance submission failed.');
     }
   };
+  
+  
 
   if (!currentUser) {
     return <p>Please log in to submit attendance.</p>;
@@ -250,11 +260,12 @@ const Attendance = () => {
                 <button
                   className="submit-all"
                   onClick={() => handleAttendanceSubmit('SubmitAll')}
-                  disabled={!isTimeInSubmitted || !isTimeOutSubmitted || isSubmitAllPressed}
-                  style={{ display: isSubmitAllPressed || !(isTimeInSubmitted && isTimeOutSubmitted) ? 'none' : 'block' }}
+                  disabled={!isTimeInSubmitted || !isTimeOutSubmitted || isSubmitAllPressed || isSubmitted} // Disable if already submitted
+                  style={{ display: isSubmitted || !(isTimeInSubmitted && isTimeOutSubmitted) ? 'none' : 'block' }} // Hide if already submitted
                 >
                   Submit Attendance
                 </button>
+
 
               </div>
 

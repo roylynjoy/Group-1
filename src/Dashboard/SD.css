@@ -366,6 +366,10 @@
 
 }
 
+.readings:hover{
+  filter: brightness(90%);
+}
+
 .performance img{
   width: 15rem;
   margin-top: 15px;
