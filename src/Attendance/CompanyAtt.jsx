@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
-import Header from '../components/header';
+import HeaderCompany from '../components/headerCompany';
 import Footer from '../components/footer';
 import NavCompany from '../components/navCompany';
 import { db } from '../firebase';
@@ -55,10 +55,11 @@ const CompanyAtt = () => {
   };
 
   useEffect(() => {
-    if (isCompany) {
+    if (isCompany && filterDate) {
       fetchAttendanceRecords();
     }
   }, [filterDate, isCompany]);
+  
 
   const fetchAttendanceRecords = async () => {
     setLoading(true);
@@ -67,60 +68,55 @@ const CompanyAtt = () => {
       const companiesRef = collection(db, 'Companies');
       const companyQuery = query(companiesRef, where('email', '==', userEmail));
       const companySnapshot = await getDocs(companyQuery);
-
+  
       if (companySnapshot.empty) {
         setMessage('No company found for this email.');
         setLoading(false);
         return;
       }
-
+  
       const companyData = companySnapshot.docs[0].data();
       const companyName = companyData.company;
-
+  
       const timeInQuery = query(
         attendanceCollectionRef,
         where('TimeInStatus', '==', false),
         where('DenyIn', '==', false),
         where('company', '==', companyName)
       );
-
+  
       const timeInSnapshot = await getDocs(timeInQuery);
       const timeInData = timeInSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-
+  
       const timeOutQuery = query(
         attendanceCollectionRef,
         where('TimeOutStatus', '==', false),
         where('DenyOut', '==', false),
         where('company', '==', companyName)
       );
-
+  
       const timeOutSnapshot = await getDocs(timeOutQuery);
       const timeOutData = timeOutSnapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-
-      if (filterDate) {
-        const filterDateObj = new Date(filterDate).setHours(0, 0, 0, 0);
-        const filteredTimeIn = timeInData.filter((record) => {
-          const recordDate = new Date(record.Date.seconds * 1000).setHours(0, 0, 0, 0);
-          return recordDate === filterDateObj;
-        });
-
-        const filteredTimeOut = timeOutData.filter((record) => {
-          const recordDate = new Date(record.Date.seconds * 1000).setHours(0, 0, 0, 0);
-          return recordDate === filterDateObj;
-        });
-
-        setTimeInRecords(filteredTimeIn);
-        setTimeOutRecords(filteredTimeOut);
-      } else {
-        setTimeInRecords(timeInData);
-        setTimeOutRecords(timeOutData);
-      }
+  
+      const filterDateObj = new Date(filterDate).setHours(0, 0, 0, 0);
+      const filteredTimeIn = timeInData.filter((record) => {
+        const recordDate = new Date(record.Date.seconds * 1000).setHours(0, 0, 0, 0);
+        return recordDate === filterDateObj;
+      });
+  
+      const filteredTimeOut = timeOutData.filter((record) => {
+        const recordDate = new Date(record.Date.seconds * 1000).setHours(0, 0, 0, 0);
+        return recordDate === filterDateObj;
+      });
+  
+      setTimeInRecords(filteredTimeIn);
+      setTimeOutRecords(filteredTimeOut);
     } catch (error) {
       console.error('Error fetching attendance records:', error);
       setMessage('Failed to fetch attendance records.');
@@ -128,6 +124,7 @@ const CompanyAtt = () => {
       setLoading(false);
     }
   };
+  
 
   const formatTimestamp = (timestamp) => {
     if (!timestamp) return '-';
@@ -185,7 +182,7 @@ const CompanyAtt = () => {
     <>
       <div className="bd1">
         <div className="dashboard">
-          <Header />
+          <HeaderCompany />
           <NavCompany />
           <div className="SD-container">
             <div className="grid">

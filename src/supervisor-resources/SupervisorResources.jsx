@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import Header from "../components/header";
+import HeaderSupervisor from "../components/headerSupervisor";
 import NavSupervisor from '../components/navSupervisorResources';
 import Footer from '../components/footer';
 import { FaPlus } from "react-icons/fa";
@@ -11,7 +11,7 @@ const SupervisorResources = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-      <Header/>
+      <HeaderSupervisor/>
       <NavSupervisor/>
       <div className="SD-container">
           <div id="perfAtt"></div>

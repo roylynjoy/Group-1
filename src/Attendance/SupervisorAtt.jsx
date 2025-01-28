@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
-import Header from '../components/header';
+import HeaderSupervisor from '../components/headerSupervisor';
 import NavSupervisor from '../components/navSupervisor';
 import Footer from '../components/footer';
 import { IoIosArrowDown } from "react-icons/io";
@@ -11,7 +11,7 @@ import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 const SupervisorAtt = () => {
-  const [date, setDate] = useState(new Date()); // Default to current date
+  const [date, setDate] = useState(null); // Set to null initially
   const [attendances, setAttendances] = useState([]);
   const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -55,6 +55,7 @@ const SupervisorAtt = () => {
     const newDate = new Date(e.target.value);
     if (!isNaN(newDate)) {
       setDate(newDate);
+      setMessage(''); // Clear any previous messages
     } else {
       setMessage('Invalid date selected');
     }
@@ -66,16 +67,21 @@ const SupervisorAtt = () => {
   };
 
   useEffect(() => {
+    if (!date) {
+      setAttendances([]); // Clear the attendance list when the date is null
+      return;
+    }
+
     const fetchAttendanceRecords = async () => {
-      const selectedDate = new Date(date) || new Date();  // Ensure the date is a valid Date object
-      selectedDate.setHours(0, 0, 0, 0);  // Set the start of the day
-      const startOfDay = new Date(selectedDate); // Make a copy for start
+      const selectedDate = new Date(date); // Ensure the date is a valid Date object
+      selectedDate.setHours(0, 0, 0, 0); // Set the start of the day
+      const startOfDay = new Date(selectedDate);
       selectedDate.setHours(23, 59, 59, 999); // Set the end of the day
-      const endOfDay = new Date(selectedDate); // Make a copy for end
-  
+      const endOfDay = new Date(selectedDate);
+
       setIsLoading(true);
       setMessage('');
-  
+
       try {
         const attendanceCollectionRef = collection(db, 'Attendance');
         const q = query(
@@ -83,9 +89,9 @@ const SupervisorAtt = () => {
           where('Date', '>=', startOfDay),
           where('Date', '<=', endOfDay)
         );
-  
+
         const querySnapshot = await getDocs(q);
-  
+
         if (querySnapshot.empty) {
           setMessage('No attendance records found for the selected date.');
           setAttendances([]);
@@ -96,7 +102,6 @@ const SupervisorAtt = () => {
               return {
                 id: doc.id,
                 ...data,
-                // Ensure that TimeIn and TimeOut are converted to Date objects if they're Firestore timestamps
                 TimeIn: data.TimeIn ? data.TimeIn.toDate() : null,
                 TimeOut: data.TimeOut ? data.TimeOut.toDate() : null,
               };
@@ -108,7 +113,7 @@ const SupervisorAtt = () => {
                 attendance.DenyIn !== true &&
                 attendance.DenyOut !== true
             );
-  
+
           if (fetchedAttendances.length === 0) {
             setMessage('No records to mark as recorded.');
             setAttendances([]);
@@ -124,7 +129,7 @@ const SupervisorAtt = () => {
         setIsLoading(false);
       }
     };
-  
+
     fetchAttendanceRecords();
   }, [date]);
 
@@ -150,16 +155,9 @@ const SupervisorAtt = () => {
 
   const getAttendanceStatus = (attendance) => {
     if (attendance.TimeInStatus && attendance.TimeOutStatus) {
-      return { status: 'Approved', color: 'green' };  // Green for approved
+      return { status: 'Approved', color: 'green' };
     }
-    return { status: 'Pending', color: 'orange' };  // Orange for pending
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    return { status: 'Pending', color: 'orange' };
   };
 
   const openModal = (attendanceId) => {
@@ -179,21 +177,12 @@ const SupervisorAtt = () => {
     closeModal();
   };
 
-  const confirmAction = () => {
-    handleModalConfirm(); // Call the existing function to handle confirmation
-  };
-  
-  const cancelAction = () => {
-    closeModal(); // Close the modal without taking any action
-  };
-
   return (
     <>
       <div className="bd1">
         <div className="dashboard">
-          <Header />
+          <HeaderSupervisor />
           <NavSupervisor />
-
           <div className="SD-container">
             <div className="grid">
               <div className="col-span-3 perf">
@@ -205,52 +194,53 @@ const SupervisorAtt = () => {
               </div>
             </div>
             <div className="supervisor-container">
-                {selectedView === 'attendance' ? (
-                  <div className="attendance-section">
-                    <div className="attendance-filter">
-                      <div className="date-display">
-                        <input
-                          type="date"
-                          value={date.toISOString().substring(0, 10)}
-                          onChange={handleDateChange}
-                          className="date-input"
-                        />
-                      </div>
+              {selectedView === 'attendance' ? (
+                <div className="attendance-section">
+                  <div className="attendance-filter">
+                    <div className="date-display">
+                      <input
+                        type="date"
+                        value={date ? date.toISOString().substring(0, 10) : ''}
+                        onChange={handleDateChange}
+                        className="date-input"
+                      />
                     </div>
+                  </div>
 
-                    <div className="attendance-list-section">
-                      {attendances.length > 0 ? (
-                        <>
-                          <div className="attendance-header-row">
-                            <div className="attendance-header"></div> 
-                            <div className="attendance-header">Name</div>
-                            <div className="attendance-header">Company</div>
-                            <div className="attendance-header">Time In</div>
-                            <div className="attendance-header">Time Out</div>
-                            <div className="attendance-header">Status</div>
-                            <div className="attendance-header"></div> 
-                          </div>
+                  <div className="attendance-list-section">
+                    {attendances.length > 0 ? (
+                      <>
+                        <div className="attendance-header-row">
+                          <div className="attendance-header"></div> 
+                          <div className="attendance-header">Name</div>
+                          <div className="attendance-header">Company</div>
+                          <div className="attendance-header">Time In</div>
+                          <div className="attendance-header">Time Out</div>
+                          <div className="attendance-header">Status</div>
+                          <div className="attendance-header"></div> 
+                        </div>
 
-                          {attendances.map((attendance) => (
-                            <div className="attendance-row-wrapper" key={attendance.id}>
-                              <div className="attendance-row">
-                                <div className="attendance-cell">
-                                  <img
-                                    className="profile"
-                                    src="/images/blank-profile.jpg"
-                                    alt="Profile"
-                                  />
-                                </div>
-                                <div className="attendance-cell">{attendance.name}</div>
-                                <div className="attendance-cell">{attendance.company}</div>
-                                <div className="attendance-cell">{formatTimestamp(attendance.TimeIn)}</div>
-                                <div className="attendance-cell">{formatTimestamp(attendance.TimeOut)}</div>
-                                <div className="attendance-cell">
-                                  <p style={{ color: getAttendanceStatus(attendance).color }}>
-                                  {getAttendanceStatus(attendance).status}</p>
-                                </div>
+                        {attendances.map((attendance) => (
+                          <div className="attendance-row-wrapper" key={attendance.id}>
+                            <div className="attendance-row">
+                              <div className="attendance-cell">
+                                <img
+                                  className="profile"
+                                  src="/images/blank-profile.jpg"
+                                  alt="Profile"
+                                />
                               </div>
-                              <div className="attendance-record-button">
+                              <div className="attendance-cell">{attendance.name}</div>
+                              <div className="attendance-cell">{attendance.company}</div>
+                              <div className="attendance-cell">{formatTimestamp(attendance.TimeIn)}</div>
+                              <div className="attendance-cell">{formatTimestamp(attendance.TimeOut)}</div>
+                              <div className="attendance-cell">
+                                <p style={{ color: getAttendanceStatus(attendance).color }}>
+                                  {getAttendanceStatus(attendance).status}
+                                </p>
+                              </div>
+                            </div>
+                            <div className="attendance-record-button">
                               <button
                                 onClick={() => openModal(attendance.id)}
                                 disabled={getAttendanceStatus(attendance).status === "Pending"}
@@ -258,19 +248,19 @@ const SupervisorAtt = () => {
                               >
                                 Record
                               </button>
-                              </div>
                             </div>
-                          ))}
-                        </>
-                      ) : (
-                        <p className='no-record-message'>No records to display.</p>
-                      )}
-                    </div>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <p className="no-record-message">No records to display.</p>
+                    )}
                   </div>
-                ) : (
-                  <p>Please select an option to view.</p>
-                )}
-              </div>
+                </div>
+              ) : (
+                <p>Please select an option to view.</p>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -278,15 +268,15 @@ const SupervisorAtt = () => {
       {isModalOpen && (
         <div className="custom-modal-overlay">
           <div className="custom-modal">
-            <p>Are you sure you want to mark this record as recorded?</p>
+            <p>Are you sure you want to mark this attendance as recorded?</p>
             <div className="custom-modal-buttons">
-              <button className="custom-modal-yes" onClick={confirmAction}>Yes</button>
-              <button className="custom-modal-no" onClick={cancelAction}>No</button>
+              <button className="custom-modal-yes" onClick={handleModalConfirm}>Yes</button>
+              <button className="custom-modal-no" onClick={closeModal}>No</button>
             </div>
           </div>
         </div>
       )}
-    <Footer/>
+      <Footer />
     </>
   );
 };

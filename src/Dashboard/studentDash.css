@@ -70,7 +70,7 @@ html, body {
 
 .modal-envelop, .modal-bell {
   display: grid;
-  width: 250px;
+  width: 270px;
   position: absolute;
   top: 100%;
   right: 1%;
@@ -183,7 +183,7 @@ html, body {
 .msg-cont {
   place-self: center;
   display: flex;
-  width: 200px;
+  width: 230px;
   padding: 0 10px;
   align-items: center;
   gap: 5px;
@@ -191,6 +191,8 @@ html, body {
   font-weight: 500;
   transition: ease-in-out 0.1s;
 }
+
+
 
 .name {
   font-weight: bold;
@@ -213,6 +215,11 @@ html, body {
   text-overflow: ellipsis; 
   max-width: 98%;
 }
+
+#bell {
+  border: none;
+}
+
 
 .msg-img {
   border: #ccc solid 1px;

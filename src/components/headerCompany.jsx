@@ -185,7 +185,7 @@ const Header = () => {
           )}
 
           <img
-            src="/images/user1.png"
+            src="/images/company-profile.png"
             alt="User"
             onClick={handleProfileClick}
             style={{ cursor: "pointer" }}
@@ -196,10 +196,10 @@ const Header = () => {
                 <h3>Profile</h3>
                 <div className="profile-cont">
                   <img
-                    src="/images/user1.png"
+                    src="/images/company-profile.png"
                     alt="User"
                   />
-                  <p>Student</p>
+                  <p>Company</p>
                 </div>
               </div>
               <hr />

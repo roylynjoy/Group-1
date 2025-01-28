@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { LuPenLine } from "react-icons/lu";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
-import Header from "../components/header";
+import HeaderSupervisor from "../components/headerSupervisor";
 import NavSupervisor from '../components/navSupervisor';
 
 
@@ -21,7 +21,7 @@ const ResourcesBook = () => {
     <>
     <body className="bd1">
       <div className="Resources">
-        <Header />
+        <HeaderSupervisor />
         <NavSupervisor />
         <div id="perfAtt"></div>
         <div className="bg">    
@@ -29,7 +29,6 @@ const ResourcesBook = () => {
             <div className="Book-container add-container">
                 <FaArrowLeft  className="addarrow" onClick={handleBack}/>
                 <p>Subject Title : ______________</p>
-                <p>Instructor Name : ______________</p> 
                 <h5>Course Description</h5>   
                 <i>Description...</i>
                 <h5>Table of Content</h5>
