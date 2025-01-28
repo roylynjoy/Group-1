@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../Resources/Resources.css';
+import '../student_resources/Resources.css';
 import { Link } from 'react-router-dom';
 import { LuPenLine } from "react-icons/lu";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
-import Header from "../comp/header";
-import NavSupervisor from '../comp/navSupervisor';
+import Header from "../components/header";
+import NavSupervisor from '../components/navSupervisor';
 
 
 

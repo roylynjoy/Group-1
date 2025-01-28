@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import Header from "../comp/header";
-import NavSupervisor from '../comp/navSupervisor';
+import Header from "../components/header";
+import NavSupervisor from '../components/navSupervisor';
+import Footer from "../components/footer";
 import { FaPlus } from "react-icons/fa";
 
-const SFirst = () => {
+const SSecond = () => {
   return (
     <>
     <body className="bd1">
       <div className="Resources">
       <Header/>
-      <NavSupervisor/>
+      <NavSupervisor />
       <div className="SD-container">
           <div id="perfAtt"></div>
           <div className="welcome">
-            <div className="resources-container rc">
+            <div className="resources-container">
                 <div id="ST-cont1">
                   <p id="sub"><Link to="/Resources/ResourcesBook" >Management Accounting</Link></p>
                 </div>
                 <div id="ST-cont2">
                   <p id="sub">Accounting Essentials for Small Businesses</p>
+                </div>
+                <div id="ST-cont3">
+                  <p id="sub">Business Advice For Accounting</p>
                 </div>
                 <div id="add">
                   <Link to="/Supervisor/AddBooks"><FaPlus /></ Link>
@@ -28,18 +32,15 @@ const SFirst = () => {
             </div>
             <h5 className="fourth"><Link to="/Supervisor/SupervisorResources">Fourth</Link></h5>
             <h5 className="title2"><Link to="/Supervisor/SThird"> Third</Link></h5>
-            <h5 className="title3"><Link to="/Supervisor/SSecond">Second</Link></h5>
-            <h5 className="first"><Link to="/Supervisor/SFirst">First</Link></h5>
+            <h5 className="second"><Link to="/Supervisor/SSecond">Second</Link></h5>
+            <h5 className="title4"><Link to="/Supervisor/SFirst">First</Link></h5>
           </div>
         </div>
       </div>
     </body>
-    <footer className="foot1">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+    <Footer/>
   </>
   );
 };
 
-export default SFirst
+export default SSecond;

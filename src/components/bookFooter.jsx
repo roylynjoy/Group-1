@@ -12,8 +12,7 @@ function Footer() {
 
   return (
     <footer className="foot">
-        <p>&copy; 2025 FieldMate. All rights reserved.</p>
-        <p>Privacy Policy | Terms of Service </p>
+      <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
     </footer>
   )
 }

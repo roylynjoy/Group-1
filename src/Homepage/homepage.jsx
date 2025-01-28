@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './homepage.css';
-import Footer from '../comp/footer';
+import Footer from '../components/footer';
 import { IoIosArrowUp } from "react-icons/io";
 
 const homepage = () => {

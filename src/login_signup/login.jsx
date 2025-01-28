@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Login.css';
+import './login.css';
 import { useNavigate } from 'react-router-dom';
 import { auth, googleProvider } from '../firebase';
 import { signInWithEmailAndPassword, signInWithPopup, createUserWithEmailAndPassword } from 'firebase/auth';
@@ -323,7 +323,7 @@ function Login() {
                         <input
                             className='field'
                             type="email"
-                            placeholder="LV Email"
+                            placeholder="Email"
                             onChange={(e) => setLvEmail(e.target.value)}
                             required
                             disabled={!selectedRole}

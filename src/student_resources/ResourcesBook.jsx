@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import './Resources.css';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import Header from '../comp/header';
-import NavStudent from '../comp/navStudent';
+import Header from '../components/header';
+import NavStudent from '../components/navStudent';
 
 
 

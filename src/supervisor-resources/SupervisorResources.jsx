@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from 'react-router-dom';
-import Header from "../comp/header";
-import NavSupervisor from '../comp/navSupervisor';
+import Header from "../components/header";
+import NavSupervisor from '../components/navSupervisor';
+import Footer from '../components/footer';
 import { FaPlus } from "react-icons/fa";
 
 const SupervisorResources = () => {
@@ -37,10 +38,7 @@ const SupervisorResources = () => {
         </div>
       </div>
     </body>
-    <footer className="foot1">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+    <Footer/>
   </>
   );
 };

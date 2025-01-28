@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Resources.css';
-import Header from '../comp/header';
-import NavStudent from '../comp/navStudent';
+import Header from '../components/header';
+import NavStudent from '../components/navStudent';
 import { Link } from 'react-router-dom';
 import { IoSearchSharp } from "react-icons/io5";
 

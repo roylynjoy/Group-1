@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import './SD.css';
-import Header from '../comp/header';
-import Footer from "../comp/footer";
-import NavStudent from '../comp/navStudent';
+import './studentDash.css';
+import Header from '../components/header';
+import Footer from "../components/footer";
+import NavStudent from '../components/navStudent';
 import Calendar from "./calendar";
 import { IoIosArrowUp } from "react-icons/io";
 

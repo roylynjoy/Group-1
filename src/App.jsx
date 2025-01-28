@@ -1,29 +1,29 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'; 
-import Dashboard from './Dashboard/StudentDashboard';
-import Homepage from './Homepage/homepage';
-import Login from './Login/Login';
-import Welcome from './Login/Welcome'
-import Resources from './Resources/Resources';
-import Third from './Resources/Third';
-import Second from './Resources/Second';
-import First from'./Resources/First';
-import ResourcesBook from './Resources/ResourcesBook';
-import Chapter1 from './Resources/chapter1.1';
-import Chapter102 from './Resources/chapter1.2';
-import Chapter103 from './Resources/chapter1.3';
-import Chapter2 from './Resources/chapter2.1';
-import Chapter202 from './Resources/chapter2.2';
-import Chapter203 from './Resources/chapter2.3';
-import SupervisorResources from './Supervisor/SupervisorResources';
-import SResourcesBook from './Supervisor/SResourcesBook';
-import SThird from './Supervisor/SThird';
-import SSecond from './Supervisor/SSecond';
-import SFirst from './Supervisor/SFirst';
-import AddBooks from './Supervisor/AddBooks'
-import Attendance from './Attendance/Attendance';
-import SupervisorAtt from './Attendance/SupervisorAtt';
-import CompanyAtt from './Attendance/CompanyAtt';
+import Dashboard from './dashboard/studentDashboard';
+import Homepage from './homepage/homepage';
+import Login from './login_signup/login';
+import Welcome from './login_signup/welcomePage'
+import Resources from './student_resources/Resources';
+import Third from './student_resources/Third';
+import Second from './student_resources/Second';
+import First from'./student_resources/First';
+import ResourcesBook from './student_resources/ResourcesBook';
+import Chapter1 from './student_resources/chapter1.1';
+import Chapter102 from './student_resources/chapter1.2';
+import Chapter103 from './student_resources/chapter1.3';
+import Chapter2 from './student_resources/chapter2.1';
+import Chapter202 from './student_resources/chapter2.2';
+import Chapter203 from './student_resources/chapter2.3';
+import SupervisorResources from './supervisor-resources/SupervisorResources';
+import SResourcesBook from './supervisor-resources/SResourcesBook';
+import SThird from './supervisor-resources/SThird';
+import SSecond from './supervisor-resources/SSecond';
+import SFirst from './supervisor-resources/SFirst';
+import AddBooks from './supervisor-resources/AddBooks'
+import Attendance from './attendance/studentAtt';
+import SupervisorAtt from './attendance/supervisorAtt';
+import CompanyAtt from './attendance/companyAtt';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
 import './App.css';

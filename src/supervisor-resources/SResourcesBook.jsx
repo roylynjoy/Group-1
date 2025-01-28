@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../Resources/Resources.css';
+import '../student_resources/Resources.css';
 import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import Header from '../comp/header';
-import NavSupervisor from "../comp/navSupervisor";
+import Header from '../components/header';
+import NavSupervisor from "../components/navSupervisor";
+import Footer from "../components/footer";
 
 
 
@@ -58,11 +59,7 @@ const SResourcesBook = () => {
           </div>
         </div>
     </body>
-    <footer className="foot">
-      <p>&copy; 2025 LVCC Inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-      <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
-    </footer>
+    <Footer/>
   </>
   );
 };

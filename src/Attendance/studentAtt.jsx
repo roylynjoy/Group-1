@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
-import Header from '../comp/header';
-import NavStudent from '../comp/navStudent';
-import Footer from '../comp/footer';
+import Header from '../components/header';
+import NavStudent from '../components/navStudent';
+import Footer from '../components/footer';
 import { IoIosArrowUp } from "react-icons/io";
 import { db } from '../firebase';
 import { collection, addDoc, updateDoc, query, where, getDocs, Timestamp } from 'firebase/firestore';

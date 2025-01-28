@@ -21,7 +21,7 @@ const navSupervisor = () => {
             id="icon"
             className={({ isActive }) =>
               isActive || 
-              ['/Supervisor/SSecond', '/Supervisor/SFirst', '/Supervisor/SThird', '/Supervisor/SResourcesBook'].includes(window.location.pathname)
+              ['/Supervisor/SSecond', '/Supervisor/SFirst', '/Supervisor/SThird', '/Supervisor/SResourcesBook', '/Supervisor/AddBooks'].includes(window.location.pathname)
                 ? "active-link3"
                 : ""
             }

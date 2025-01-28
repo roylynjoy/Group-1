@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
-import Header from '../comp/header';
-import Footer from '../comp/footer';
-import NavCompany from '../comp/navCompany';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import NavCompany from '../components/navCompany';
 import { db } from '../firebase';
 import { getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';

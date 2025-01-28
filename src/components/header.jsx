@@ -223,7 +223,7 @@ function Header() {
                 </button>
               </div>
 
-              <button className="change-button">Change</button>
+              <button onClick={handleCloseSettingsModal} className="change-button">Change</button>
             </div>
           </div>
         </div>

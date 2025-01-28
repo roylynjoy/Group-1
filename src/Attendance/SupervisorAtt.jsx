@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Att.css';
 import '../index.css';
-import Header from '../comp/header';
-import NavSupervisor from '../comp/navSupervisor';
-import Footer from '../comp/footer';
+import Header from '../components/header';
+import NavSupervisor from '../components/navSupervisor';
+import Footer from '../components/footer';
 import { IoIosArrowDown } from "react-icons/io";
 import { db } from '../firebase';
 import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
