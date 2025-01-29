@@ -72,29 +72,27 @@ Additionally, the system gives students the access to essential resources, addre
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-Project%20Manager-blue?style=for-the-badge&logo=jira&logoColor=white"/>
       <br>
-      <img src="/public/assets/image/marco.jpg.png" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/members/pagarigan.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Shaina Karillyn Pagarigan</b>
       <br>
-      <sub><code>Strategic Planning | Resource Allocation</code></sub>
       <br>
       <br>
-      <a href="">
-        <img src=""/>
+      <a href="https://github.com/shaina31">
+        <img src="https://img.shields.io/badge/GitHub-shaina31-black?style=flat-square&logo=github"/>
       </a>
     </td>
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-Project%20Manager-blue?style=for-the-badge&logo=jira&logoColor=white"/>
       <br>
-      <img src="" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/members/santos.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Aerrol Kyle Santos</b>
       <br>
-      <sub><code>Sprint Planning | Risk Management</code></sub>
       <br>
       <br>
-      <a href="">
-        <img src=""/>
+      <a href="https://github.com/Aerrol-Kyle">
+        <img src="https://img.shields.io/badge/GitHub-Aerrol-black?style=flat-square&logo=github"/>
       </a>
     </td>
   </tr>
@@ -107,29 +105,27 @@ Additionally, the system gives students the access to essential resources, addre
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-Lead%20Developer-black?style=for-the-badge&logo=javascript&logoColor=white"/>
       <br>
-      <img src="/public/assets/image/p.jpg" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/members/isip.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Christian Eliseo Isip</b>
       <br>
-      <sub><code>Frontend Architecture | Performance Optimization</code></sub>
       <br>
       <br>
-      <a href="">
-        <img src=""/>
+      <a href="https://github.com/ChristianEliseoNavales">
+        <img src="https://img.shields.io/badge/GitHub-ChristianEliseoNavales-black?style=flat-square&logo=github"/>
       </a>
     </td>
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-Lead%20Developer-black?style=for-the-badge&logo=javascript&logoColor=white"/>
       <br>
-      <img src="/public/assets/image/Rodolfo.jpg.png" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/members/dicdican.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Roylyn Dicdican</b>
       <br>
-      <sub><code>Component Development | Integration Testing</code></sub>
       <br>
       <br>
-      <a href="">
-        <img src=""/>
+      <a href="https://github.com/roylynjoy">
+        <img src="https://img.shields.io/badge/GitHub-roylynjoy-black?style=flat-square&logo=github"/>
       </a>
     </td>
   </tr>
@@ -142,29 +138,27 @@ Additionally, the system gives students the access to essential resources, addre
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-UI%2FUX%20Designer-purple?style=for-the-badge&logo=figma&logoColor=white"/>
       <br>
-      <img src="/public/assets/image/Lenie.jpg.png" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/members/asaldo.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Rizalyne Asaldo</b>
       <br>
-      <sub><code>Interface Design | Design System</code></sub>
       <br>
       <br>
-      <a href="">
-        <img src=""/>
+      <a href="https://github.com/rizalyneasaldo1">
+        <img src="https://img.shields.io/badge/GitHub-rizalyneasaldo1-black?style=flat-square&logo=github"/>
       </a>
     </td>
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-UI%2FUX%20Designer-purple?style=for-the-badge&logo=figma&logoColor=white"/>
       <br>
-      <img src="/public/assets/image/Trisha.jpg" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/members/reyes.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Lorenz Genesis Reyes</b>
       <br>
-      <sub><code>Prototyping | Visual Design</code></sub>
       <br>
       <br>
-      <a href="">
-        <img src=""/>
+      <a href="https://github.com/O127Lorenz">
+        <img src="https://img.shields.io/badge/GitHub-O127Lorenz-black?style=flat-square&logo=github"/>
       </a>
     </td>
   </tr>
@@ -177,15 +171,14 @@ Additionally, the system gives students the access to essential resources, addre
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-SQA-red?style=for-the-badge&logo=testcafe&logoColor=white"/>
       <br>
-      <img src="/public/assets/members/magpayo.png" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/members/magpayo.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Kristel Magpayo</b>
       <br>
-      <sub><code>Test Strategy | Quality Standards</code></sub>
       <br>
       <br>
-      <a href="">
-        <img src=""/>
+      <a href="https://github.com/TelTrekker">
+        <img src="https://img.shields.io/badge/GitHub-TelTrekker-black?style=flat-square&logo=github"/>
       </a>
     </td>
   </tr>
