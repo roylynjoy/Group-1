@@ -5,6 +5,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import Header from '../components/header';
 import NavStudent from '../components/navStudentResources';
+import Footer from "../components/footer";
 
 
 
@@ -58,11 +59,7 @@ const ResourcesBook = () => {
           </div>
         </div>
     </body>
-    <footer className="foot">
-      <p>&copy; 2025 LVCC Inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-      <IoIosArrowUp id="arrow-up-icon" onClick={scrollToTop} style={{ cursor: 'pointer' }}/>
-    </footer>
+    <Footer/>
   </>
   );
 };

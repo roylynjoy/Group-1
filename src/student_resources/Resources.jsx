@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import './Resources.css';
 import Header from '../components/header';
 import NavStudent from '../components/navStudentResources';
+import Footer from "../components/footer";
 import { Link } from 'react-router-dom';
 import { IoSearchSharp } from "react-icons/io5";
 
@@ -63,10 +64,7 @@ const Resources = () => {
       </div>
     </body>
     <div>
-    <footer className="foot1 ">
-      <p>&copy; 2025 LVCC Inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+      <Footer/>
     </div>
   </>
   );

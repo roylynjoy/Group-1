@@ -7,6 +7,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
 import HeaderSupervisor from "../components/headerSupervisor";
 import NavSupervisor from '../components/navSupervisor';
+import Footer from "../components/footer";
 
 
 
@@ -43,10 +44,7 @@ const ResourcesBook = () => {
           </div>
         </div>
     </body>
-    <footer className="foot">
-      <p>&copy; 2025 LVCC inc... All rights reserved.</p>
-      <p>Privacy Policy | Terms of Service </p>
-    </footer>
+    <Footer/>
   </>
   );
 };
