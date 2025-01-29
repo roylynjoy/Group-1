@@ -177,7 +177,7 @@ Additionally, the system gives students the access to essential resources, addre
     <td align="center" width="400">
       <img src="https://img.shields.io/badge/Role-SQA-red?style=for-the-badge&logo=testcafe&logoColor=white"/>
       <br>
-      <img src="/public/assets/image/she.jpg.png" width="100" height="100" style="border-radius: 50%"/>
+      <img src="/public/assets/members/magpayo.png" width="100" height="100" style="border-radius: 50%"/>
       <br>
       <b>Kristel Magpayo</b>
       <br>
